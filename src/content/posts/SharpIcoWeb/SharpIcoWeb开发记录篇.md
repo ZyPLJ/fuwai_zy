@@ -6,6 +6,7 @@ image: ./2756baed-a0e4-4e17-8e57-9b770def0469.png
 tags: [C#, .NET, MinimalApi]
 category: .NET 技术合集
 draft: false
+pinned: true
 ---
 `
 
