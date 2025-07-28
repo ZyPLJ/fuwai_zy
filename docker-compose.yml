@@ -5,5 +5,5 @@ services:
     ports:
       - "4321:4321"
     volumes:
-      - /www/wwwroot/default/newblog:/usr/share/nginx/html:ro
+      - /www/wwwroot/default/newblog/dist:/usr/share/nginx/html:ro
     restart: unless-stopped
