@@ -1,4 +1,4 @@
 # About
-This is the demo site for [Fuwari](https://github.com/ZyPLJ/fuwari).
+This is the demo site for [Fuwari](https://github.com/ZyPLJ/fuwai_zy).
 
-::github{repo="ZyPLJ/fuwari"}
+::github{repo="ZyPLJ/fuwai_zy"}
