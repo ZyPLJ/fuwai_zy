@@ -28,10 +28,7 @@ jobs:
           host: ${{ secrets.SERVER_IP }}
           username: ${{ secrets.SSH_USERNAME }}
           key: ${{ secrets.SSH_PRIVATE_KEY }}
-          source: |
-            dist/*
-            docker/*
-            docker-compose.yml
+          source: "dist/*,docker/*,docker-compose.yml"
           target: "/www/wwwroot/default/newblog"
 
       - name: Deploy with Docker Compose
