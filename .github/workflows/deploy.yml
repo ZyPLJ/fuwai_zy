@@ -36,6 +36,6 @@ jobs:
             docker rm astro-app || true
             docker run -d \
               --name astro-app \
-              -p 4321:4321 \
+              -p 4321:80 \
               -v /www/wwwroot/default/newblog:/usr/share/nginx/html:ro \
               nginx:alpine
