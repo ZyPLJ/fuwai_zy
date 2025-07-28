@@ -22,11 +22,10 @@ jobs:
           username: ${{ secrets.SSH_USERNAME }}
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           source: |
-            dist/*
-            docker/*
-            docker-compose.yml
-          target: /www/wwwroot/default/newblog
-          overwrite: true      # 覆盖已存在文件
+            ./dist/*
+            ./docker/*
+            ./docker-compose.yml
+          target: "/www/wwwroot/default/newblog"
 
       - name: Deploy with Docker Compose
         uses: appleboy/ssh-action@v1
