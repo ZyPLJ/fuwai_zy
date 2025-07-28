@@ -1,4 +1,4 @@
-name: Deploy to My Server
+name: Deploy with Volume Mount
 
 on:
   push:
@@ -6,29 +6,36 @@ on:
   workflow_dispatch:
 
 jobs:
-  build:
+  deploy:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Install and Build
+      - name: Install and Build (Astro)
         uses: withastro/action@v3
 
-      - name: Upload via SSH
+      - name: Upload Files to Server
         uses: appleboy/scp-action@v0.1.6
         with:
           host: ${{ secrets.SERVER_IP }}
           username: ${{ secrets.SSH_USERNAME }}
           key: ${{ secrets.SSH_PRIVATE_KEY }}
-          source: "dist/*"  # Astro 默认构建目录
-          target: "/www/wwwroot/default/newblog"  # 服务器目标路径
+          source: "dist/*"
+          target: "/www/wwwroot/default/newblog"  # 直接上传到挂载目录
 
-      - name: Restart Nginx (Optional)
-        uses: appleboy/ssh-action@v1.0.0
+      - name: Start/Restart Container
+        uses: appleboy/ssh-action@v1
         with:
           host: ${{ secrets.SERVER_IP }}
           username: ${{ secrets.SSH_USERNAME }}
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           script: |
-            systemctl restart nginx
+            # 直接运行Nginx容器并挂载目录
+            docker stop astro-app || true
+            docker rm astro-app || true
+            docker run -d \
+              --name astro-app \
+              -p 4321:4321 \
+              -v /www/wwwroot/default/newblog:/usr/share/nginx/html:ro \
+              nginx:alpine
