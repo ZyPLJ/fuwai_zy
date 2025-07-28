@@ -36,12 +36,12 @@ function getReplies(parentId: string): any[] {
 }
 
 function getComments(slug: string) {
-	const stored = localStorage.getItem("comments_" + slug);
+	const stored = localStorage.getItem(`comments_${slug}`);
 	return stored ? JSON.parse(stored) : [];
 }
 
 function saveComments(slug: string, comments: any[]) {
-	localStorage.setItem("comments_" + slug, JSON.stringify(comments));
+	localStorage.setItem(`comments_${slug}`,·JSON.stringify(comments));
 }
 
 function renderStatus(msg: string, cls: string) {
