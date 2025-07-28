@@ -26,6 +26,7 @@ jobs:
             docker/*
             docker-compose.yml
           target: /www/wwwroot/default/newblog
+          overwrite: true      # 覆盖已存在文件
 
       - name: Deploy with Docker Compose
         uses: appleboy/ssh-action@v1
