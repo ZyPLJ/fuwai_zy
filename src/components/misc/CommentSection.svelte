@@ -41,7 +41,7 @@ function getComments(slug: string) {
 }
 
 function saveComments(slug: string, comments: any[]) {
-	localStorage.setItem(`comments_${slug}`,JSON.stringify(comments));
+	localStorage.setItem(`comments_${slug}`, JSON.stringify(comments));
 }
 
 function renderStatus(msg: string, cls: string) {
