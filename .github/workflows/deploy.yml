@@ -14,19 +14,25 @@ jobs:
 
       - name: Install and Build (Astro)
         uses: withastro/action@v3
+        
+      - name: Debug file existence
+        run: |
+          ls -la
+          ls -la dist/ || echo "dist/ not found"
+          ls -la docker/ || echo "docker/ not found"
+          test -f docker-compose.yml && echo "docker-compose.yml exists" || echo "docker-compose.yml missing"
 
-      - name: Upload via Rsync
-        uses: burnett01/rsync-deployments@5.2.3
+      - name: Upload Files to Server
+        uses: appleboy/scp-action@v0.1.6
         with:
-          switches: -avzr --delete
-          path: |
-            dist/
-            docker/
+          host: ${{ secrets.SERVER_IP }}
+          username: ${{ secrets.SSH_USERNAME }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          source: |
+            dist/*
+            docker/*
             docker-compose.yml
-          remote_path: /www/wwwroot/default/newblog/
-          remote_host: ${{ secrets.SERVER_IP }}
-          remote_user: ${{ secrets.SSH_USERNAME }}
-          remote_key: ${{ secrets.SSH_PRIVATE_KEY }}
+          target: "/www/wwwroot/default/newblog"
 
       - name: Deploy with Docker Compose
         uses: appleboy/ssh-action@v1
