@@ -1,4 +1,4 @@
-name: Deploy with Volume Mount
+name: Docker Compose Deploy
 
 on:
   push:
@@ -21,21 +21,20 @@ jobs:
           host: ${{ secrets.SERVER_IP }}
           username: ${{ secrets.SSH_USERNAME }}
           key: ${{ secrets.SSH_PRIVATE_KEY }}
-          source: "dist/*"
-          target: "/www/wwwroot/default/newblog"  # 直接上传到挂载目录
+          source: |
+            dist/*
+            docker/*
+            docker-compose.yml
+          target: /www/wwwroot/default/newblog
 
-      - name: Start/Restart Container
+      - name: Deploy with Docker Compose
         uses: appleboy/ssh-action@v1
         with:
           host: ${{ secrets.SERVER_IP }}
           username: ${{ secrets.SSH_USERNAME }}
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           script: |
-            # 直接运行Nginx容器并挂载目录
-            docker stop astro-app || true
-            docker rm astro-app || true
-            docker run -d \
-              --name astro-app \
-              -p 4321:80 \
-              -v /www/wwwroot/default/newblog:/usr/share/nginx/html:ro \
-              nginx:alpine
+            cd /www/wwwroot/default/newblog
+            docker-compose down
+            docker-compose up -d --build
+            docker system prune -f
