@@ -15,17 +15,18 @@ jobs:
       - name: Install and Build (Astro)
         uses: withastro/action@v3
 
-      - name: Upload Files to Server
-        uses: appleboy/scp-action@v0.1.6
+      - name: Upload via Rsync
+        uses: burnett01/rsync-deployments@5.2.3
         with:
-          host: ${{ secrets.SERVER_IP }}
-          username: ${{ secrets.SSH_USERNAME }}
-          key: ${{ secrets.SSH_PRIVATE_KEY }}
-          source: |
-            ./dist/*
-            ./docker/*
-            ./docker-compose.yml
-          target: "/www/wwwroot/default/newblog"
+          switches: -avzr --delete
+          path: |
+            dist/
+            docker/
+            docker-compose.yml
+          remote_path: /www/wwwroot/default/newblog/
+          remote_host: ${{ secrets.SERVER_IP }}
+          remote_user: ${{ secrets.SSH_USERNAME }}
+          remote_key: ${{ secrets.SSH_PRIVATE_KEY }}
 
       - name: Deploy with Docker Compose
         uses: appleboy/ssh-action@v1
