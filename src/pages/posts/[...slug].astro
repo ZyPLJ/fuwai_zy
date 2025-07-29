@@ -127,6 +127,16 @@ const jsonLd = {
                             console.log('Twikoo comments loaded successfully');
                         }
                     });
+
+                    // 防止 twikoo 内部 a 标签 href="#" 导致页面跳到顶部
+                    // todo: 不知道为啥会导致页面跳到顶部，暂时先用这种方式解决
+                    document.getElementById('twikoo').addEventListener('click', function (e) {
+                        if (e.target.tagName === 'path' || e.target.tagName === 'svg' || (e.target.tagName === 'A' && e.target.getAttribute('href') === '#')) {
+                            console.log('path clicked')
+                            e.preventDefault();
+                            e.stopPropagation();
+                        }
+                    });
                 }
     
                 var script = document.createElement('script');
