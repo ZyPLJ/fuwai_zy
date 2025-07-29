@@ -78,6 +78,16 @@ export const licenseConfig: LicenseConfig = {
 	url: "https://creativecommons.org/licenses/by-nc-sa/4.0/",
 };
 
+export const commentConfig = {
+	enable: true,
+	provider: "twikoo",
+	twikoo: {
+		envId: "http://47.116.117.180:4333", // 移除末尾的斜杠
+		region: "",
+		lang: "zh-CN",
+	},
+};
+
 export const expressiveCodeConfig: ExpressiveCodeConfig = {
 	// Note: Some styles (such as background color) are being overridden, see the astro.config.mjs file.
 	// Please select a dark theme, as this blog theme currently only supports dark background color

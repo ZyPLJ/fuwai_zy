@@ -28,7 +28,10 @@ import { pluginCustomCopyButton } from "./src/plugins/expressive-code/custom-cop
 export default defineConfig({
 	site: "https://blog.pljzy.top",
 	base: '/',
-	trailingSlash: "always",
+	trailingSlash: 'ignore',  // 或 'never'
+	build: {
+		format: 'file'  // 关键配置，生成.html文件
+	},
 	integrations: [
 		tailwind({
 			nesting: true,
