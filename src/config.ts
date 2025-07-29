@@ -82,7 +82,7 @@ export const commentConfig = {
 	enable: true,
 	provider: "twikoo",
 	twikoo: {
-		envId: "http://47.116.117.180:4333", // 移除末尾的斜杠
+		envId: "https://api.pljzy.top", // 移除末尾的斜杠
 		region: "",
 		lang: "zh-CN",
 	},
