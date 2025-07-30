@@ -130,17 +130,27 @@ const jsonLd = {
 
                     // 防止 twikoo 内部 a 标签 href="#" 导致页面跳到顶部
                     // todo: 不知道为啥会导致页面跳到顶部，暂时先用这种方式解决
-                    document.getElementById('twikoo').addEventListener('click', function (e) {
-                        if (e.target.tagName === 'path' || e.target.tagName === 'svg' || (e.target.tagName === 'A' && e.target.getAttribute('href') === '#')) {
-                            console.log('path clicked')
-                            e.preventDefault();
-                            e.stopPropagation();
-                        }
-                    });
+                    const commentContainer = document.getElementById('twikoo');
+                    if (commentContainer) {
+                        commentContainer.addEventListener('click', function (e) {
+                             // 检查是否包含以 tk-action- 开头的 class
+                             const hasActionClass = Array.from(e.target.classList).some(cls => cls.startsWith('tk-action-'));
+                             
+                             if (e.target.tagName === 'path' || 
+                                 e.target.tagName === 'svg' || 
+                                 (e.target.tagName === 'A' && e.target.getAttribute('href') === '#') ||
+                                 hasActionClass
+                             ) {
+                                 console.log('Twikoo action clicked, preventing default behavior');
+                                 e.preventDefault();
+                                 e.stopPropagation();
+                             }
+                        });
+                    }
                 }
-    
+                // https://twikoo.js.org/frontend.html CDN指南
                 var script = document.createElement('script');
-                script.src = 'https://cdn.pljzy.top/twikoo.min.js';
+                script.src = 'https://cdn.pljzy.top/twikoo.min.js' 
                 script.onload = function() {
                     initTwikoo();
                 };
