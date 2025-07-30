@@ -29,9 +29,6 @@ export default defineConfig({
 	site: "https://blog.pljzy.top",
 	base: '/',
 	trailingSlash: 'ignore',
-	build: {
-		format: 'file'  // 生成 .html 文件，与 trailingSlash: 'never' 匹配
-	},
 	integrations: [
 		tailwind({
 			nesting: true,
