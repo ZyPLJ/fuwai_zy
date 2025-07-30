@@ -12,8 +12,24 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Install and Build (Astro)
-        uses: withastro/action@v3
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+          cache: 'npm'
+          
+      - name: Install Dependencies
+        run: |
+          npm install -g pnpm
+          pnpm install --frozen-lockfile
+          
+      - name: Clean and Build Astro
+        run: |
+          # 清除任何可能的缓存
+          pnpm astro telemetry disable
+          rm -rf dist/ .astro/
+          # 强制重新构建
+          pnpm build
         
       - name: Debug file existence
         run: |
@@ -22,6 +38,17 @@ jobs:
           ls -la docker/ || echo "docker/ not found"
           test -f docker-compose.yml && echo "docker-compose.yml exists" || echo "docker-compose.yml missing"
 
+      - name: Clear Server Cache and Upload Files
+        uses: appleboy/ssh-action@v1
+        with:
+          host: ${{ secrets.SERVER_IP }}
+          username: ${{ secrets.SSH_USERNAME }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          script: |
+            # 清除旧的文件
+            cd /www/wwwroot/default/newblog
+            rm -rf dist/* docker/* docker-compose.yml
+            
       - name: Upload Files to Server
         uses: appleboy/scp-action@v0.1.6
         with:
@@ -39,6 +66,11 @@ jobs:
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           script: |
             cd /www/wwwroot/default/newblog
-            docker-compose down
-            docker-compose up -d --build
-            docker system prune -f
+            # 停止并删除所有容器
+            docker-compose down --remove-orphans
+            # 删除相关镜像，强制重建
+            docker-compose build --no-cache --pull
+            # 启动服务
+            docker-compose up -d
+            # 清理无用的镜像和容器
+            docker system prune -af --volumes
