@@ -183,6 +183,12 @@ const bannerOffset =
 					document.head.appendChild(script);
 				};
 				
+				// 加载 APlayer CSS
+				const aplayerCSS = document.createElement('link');
+				aplayerCSS.rel = 'stylesheet';
+				aplayerCSS.href = 'https://cdn.bootcdn.net/ajax/libs/aplayer/1.10.1/APlayer.min.css';
+				document.head.appendChild(aplayerCSS);
+				
 				// 加载 APlayer 库
 				const aplayerScript = document.createElement('script');
 				aplayerScript.src = 'https://cdn.bootcdn.net/ajax/libs/aplayer/1.10.1/APlayer.min.js';
@@ -192,8 +198,16 @@ const bannerOffset =
 				console.log('APlayer 已加载，跳过重复加载');
 			}
 
-			// 监听 Astro 页面导航事件，确保音乐播放器容器存在
+			// 监听 Astro 页面导航事件，确保音乐播放器容器和样式存在
 			document.addEventListener('astro:page-load', function() {
+				// 确保 APlayer CSS 始终存在
+				if (!document.querySelector('link[href*="aplayer"]')) {
+					const aplayerCSS = document.createElement('link');
+					aplayerCSS.rel = 'stylesheet';
+					aplayerCSS.href = 'https://cdn.bootcdn.net/ajax/libs/aplayer/1.10.1/APlayer.min.css';
+					document.head.appendChild(aplayerCSS);
+				}
+				
 				// 确保音乐播放器容器存在
 				if (!document.getElementById('player')) {
 					const playerContainer = document.createElement('div');
@@ -207,6 +221,7 @@ const bannerOffset =
 					const newContainer = document.getElementById('player');
 					if (newContainer && !newContainer.querySelector('.aplayer-body')) {
 						// 容器为空，需要重新初始化播放器到新容器
+						console.log('检测到播放器容器重建，重新初始化音乐播放器...');
 						window.musicPlayerInitialized = false;
 						window.loadMasterMusic();
 					}
