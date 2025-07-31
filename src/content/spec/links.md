@@ -44,6 +44,18 @@
     </a>
 </div>
 
+<div class="friend-link-card">
+    <a href="https://blog.deali.cn/" target="_blank">
+        <div class="card-avatar">
+            <img src="https://blog.deali.cn/images/codelab.jpg" alt="程序设计实验室">
+        </div>
+        <div class="card-info">
+            <h3 class="card-title">程序设计实验室</h3>
+            <p class="card-desc">一个技术探索与分享的平台，专注于互联网热门新技术探索与团队敏捷开发实践，包括Web前后端、移动端开发、机器学习、数据分析、算法、Linux等技术，欢迎探讨、分享学习实践经验。</p>
+        </div>
+    </a>
+</div>
+
 </div>
 
 ---

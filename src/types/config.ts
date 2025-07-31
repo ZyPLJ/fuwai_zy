@@ -14,6 +14,7 @@ export type SiteConfig = {
 		enable: boolean;
 		src: string;
 		position?: "top" | "center" | "bottom";
+		type?: "image" | "video"; // 支持图片或视频格式
 		credit: {
 			enable: boolean;
 			text: string;

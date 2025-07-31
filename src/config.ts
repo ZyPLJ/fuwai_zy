@@ -16,9 +16,13 @@ export const siteConfig: SiteConfig = {
 		fixed: false, // Hide the theme color picker for visitors
 	},
 	banner: {
-		enable: false,
-		src: "assets/images/demo-banner.png", // Relative to the /src directory. Relative to the /public directory if it starts with '/'
+		enable: true,
+		src: "https://cdn.pljzy.top/banner.jpg", // Relative to the /src directory. Relative to the /public directory if it starts with '/'
+		// 如果要使用MP4视频，可以这样配置：
+		// src: "/videos/banner-video.mp4", // 视频文件放在 public/videos/ 目录下
+		// type: "video", // 设置为视频类型
 		position: "center", // Equivalent to object-position, only supports 'top', 'center', 'bottom'. 'center' by default
+		type: "image", // Support 'image' or 'video' format
 		credit: {
 			enable: false, // Display the credit text of the banner image
 			text: "", // Credit text to be displayed
