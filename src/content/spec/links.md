@@ -56,6 +56,18 @@
     </a>
 </div>
 
+<div class="friend-link-card">
+    <a href="https://www.jjy2023.cn/" target="_blank">
+        <div class="card-avatar">
+            <img src="https://upyun.jjy2023.cn/2024/06/Pika.jpg" alt="云深知处">
+        </div>
+        <div class="card-info">
+            <h3 class="card-title">云深知处</h3>
+            <p class="card-desc">在喧嚣世界寻求片刻宁静</p>
+        </div>
+    </a>
+</div>
+
 </div>
 
 ---
