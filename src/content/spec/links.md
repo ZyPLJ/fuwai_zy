@@ -68,6 +68,18 @@
     </a>
 </div>
 
+<div class="friend-link-card">
+    <a href="https://pinaland.cn/" target="_blank">
+        <div class="card-avatar">
+            <img src="https://pic.pinaland.cn/uploads/2024/05/27/6653f31f92d2a.png" alt="空屿">
+        </div>
+        <div class="card-info">
+            <h3 class="card-title">空屿</h3>
+            <p class="card-desc">一颗树，一座灯塔，一座岛</p>
+        </div>
+    </a>
+</div>
+
 </div>
 
 ---
@@ -113,10 +125,10 @@
 - 网站图标/头像
 
 参考格式：
-- 网站名称：ZY 知识库
+- 网站名称：ZYBlog
 - 网站介绍：一个技术探索与分享的平台
-- 网站地址：https://pljzy.top/
-- 网站头像：https://pljzy.top/images/logo4.jpg
+- 网站地址：https://blog.pljzy.top/
+- 网站头像：https://blog.pljzy.top/_astro/logo.BxIxyJV1_Z19cEQW.webp
 ---
 
 **感谢大家的支持与分享！** 🙏
