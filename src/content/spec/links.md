@@ -80,6 +80,18 @@
     </a>
 </div>
 
+<div class="friend-link-card">
+    <a href="https://xeonzilla.top/" target="_blank">
+        <div class="card-avatar">
+            <img src="https://xeonzilla.top/img/avatar.avif" alt="Xeonzilla’s Note">
+        </div>
+        <div class="card-info">
+            <h3 class="card-title">Xeonzilla’s Note</h3>
+            <p class="card-desc">Yuri is life.</p>
+        </div>
+    </a>
+</div>
+
 </div>
 
 ---
@@ -116,7 +128,7 @@
 
 提交issue至：[https://github.com/ZyPLJ/fuwai_zy/issues](https://github.com/ZyPLJ/fuwai_zy/issues)
 
-或者去旧站提交：[https://www.pljzy.top/LinkExchange/Add](https://www.pljzy.top/LinkExchange/Add)
+或者在下方评论区留言。
 
 请在邮件中包含以下信息：
 - 网站名称
