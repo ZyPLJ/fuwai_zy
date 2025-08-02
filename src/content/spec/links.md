@@ -112,6 +112,18 @@
     </a>
 </div>
 
+<div class="friend-link-card">
+    <a href="https://ebook.deali.cn/" target="_blank">
+        <div class="card-avatar">
+            <img src="https://ebook.deali.cn/static/favicon.ico" alt="TXT转电子书工具">
+        </div>
+        <div class="card-info">
+            <h3 class="card-title">TXT转电子书工具</h3>
+            <p class="card-desc">将TXT文本文件转换为EPUB、MOBI、AZW3等电子书格式</p>
+        </div>
+    </a>
+</div>
+
 </div>
 
 ---
