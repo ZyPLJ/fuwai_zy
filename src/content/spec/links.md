@@ -104,6 +104,18 @@
     </a>
 </div>
 
+<div class="friend-link-card">
+    <a href="https://blog.slhaf.work/" target="_blank">
+        <div class="card-avatar">
+            <img src="https://blog.slhaf.work/upload/favicon.png" alt="SLHAF的个人博客">
+        </div>
+        <div class="card-info">
+            <h3 class="card-title">SLHAF的个人博客</h3>
+            <p class="card-desc">Spread the Knowledge Wisely & Widely</p>
+        </div>
+    </a>
+</div>
+
 </div>
 
 ---
