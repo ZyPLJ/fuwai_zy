@@ -83,7 +83,7 @@
 <div class="friend-link-card">
     <a href="https://xeonzilla.top/" target="_blank">
         <div class="card-avatar">
-            <img src="https://xeonzilla.top/img/avatar.avif" alt="Xeonzilla’s Note">
+            <img src="https://cdn.pljzy.top/linkIco/avatar.avif" alt="Xeonzilla’s Note">
         </div>
         <div class="card-info">
             <h3 class="card-title">Xeonzilla’s Note</h3>
@@ -107,7 +107,7 @@
 <div class="friend-link-card">
     <a href="https://blog.slhaf.work/" target="_blank">
         <div class="card-avatar">
-            <img src="https://blog.slhaf.work/upload/favicon.png" alt="SLHAF的个人博客">
+            <img src="https://cdn.pljzy.top/linkIco/favicon.png" alt="SLHAF的个人博客">
         </div>
         <div class="card-info">
             <h3 class="card-title">SLHAF的个人博客</h3>
