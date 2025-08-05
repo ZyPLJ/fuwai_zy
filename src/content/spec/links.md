@@ -173,7 +173,7 @@
 - 网站图标/头像
 
 参考格式：
-- 网站名称：ZYBlog
+- 网站名称：ZY知识库
 - 网站介绍：一个技术探索与分享的平台
 - 网站地址：https://blog.pljzy.top/
 - 网站头像：https://blog.pljzy.top/_astro/logo.BxIxyJV1_Z19cEQW.webp

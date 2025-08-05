@@ -26,7 +26,7 @@ draft: false
 
 目前我的新博客也已经部署到服务器上了，地址为：
 
-- [ZYBlog](https://blog.pljzy.top/) https://blog.pljzy.top/
+- [ZY知识库](https://blog.pljzy.top/) https://blog.pljzy.top/
 
 欢迎大家访问我的新博客！
 
