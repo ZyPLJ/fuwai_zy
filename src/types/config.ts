@@ -27,6 +27,15 @@ export type SiteConfig = {
 	};
 
 	favicon: Favicon[];
+
+	clarity: {
+		enable: boolean;
+		projectId: string;
+	};
+
+	musicPlayer: {
+		enable: boolean;
+	};
 };
 
 export type Favicon = {

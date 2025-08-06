@@ -145,10 +145,23 @@ const bannerOffset =
 
 		<slot name="head"></slot>
 
-		<!-- 音乐播放器样式 -->
-		<link href="https://cdn.bootcdn.net/ajax/libs/aplayer/1.10.1/APlayer.min.css" rel="stylesheet">
+		{/* 音乐播放器样式 */}
+		{siteConfig.musicPlayer.enable && (
+			<link href="https://cdn.bootcdn.net/ajax/libs/aplayer/1.10.1/APlayer.min.css" rel="stylesheet">
+		)}
 
 		<link rel="alternate" type="application/rss+xml" title={profileConfig.name} href={`${Astro.site}rss.xml`}/>
+
+		{/* Microsoft Clarity 分析脚本 */}
+		{siteConfig.clarity.enable && (
+			<script is:inline define:vars={{projectId: siteConfig.clarity.projectId}}>
+				(function(c,l,a,r,i,t,y){
+					c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+					t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+					y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+				})(window, document, "clarity", "script", projectId);
+			</script>
+		)}
 
 	</head>
 	<body class=" min-h-screen transition " class:list={[{"lg:is-home": isHomePage, "enable-banner": enableBanner}]}
@@ -157,14 +170,17 @@ const bannerOffset =
 		<ConfigCarrier></ConfigCarrier>
 		<slot />
 
-		<!-- 音乐播放器容器 -->
-		<div id="player" class="aplayer"></div>
+		{/* 音乐播放器容器 */}
+		{siteConfig.musicPlayer.enable && (
+			<div id="player" class="aplayer"></div>
+		)}
 
 		<!-- increase the page height during page transition to prevent the scrolling animation from jumping -->
 		<div id="page-height-extend" class="hidden h-[300vh]"></div>
 
-		<!-- 音乐播放器脚本 -->
-		<script is:inline>
+		{/* 音乐播放器脚本 */}
+		{siteConfig.musicPlayer.enable && (
+			<script is:inline>
 			// 防止重复加载脚本
 			if (!window.aplayerLoaded) {
 				window.aplayerLoaded = true;
@@ -260,6 +276,7 @@ const bannerOffset =
 				});
 			}
 		</script>
+		)}
 	</body>
 </html>
 
