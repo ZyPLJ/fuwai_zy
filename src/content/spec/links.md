@@ -83,10 +83,10 @@
 <div class="friend-link-card">
     <a href="https://xeonzilla.top/" target="_blank">
         <div class="card-avatar">
-            <img src="https://cdn.pljzy.top/linkIco/avatar.avif" alt="Xeonzilla’s Note">
+            <img src="https://cdn.pljzy.top/linkIco/avatar.avif" alt="Xeonzilla's Note">
         </div>
         <div class="card-info">
-            <h3 class="card-title">Xeonzilla’s Note</h3>
+            <h3 class="card-title">Xeonzilla's Note</h3>
             <p class="card-desc">Yuri is life.</p>
         </div>
     </a>
@@ -95,10 +95,10 @@
 <div class="friend-link-card">
     <a href="https://blog.hxrch.top" target="_blank">
         <div class="card-avatar">
-            <img src="https://cdn-images.hxrch.top/blog-logo_128x128.png" alt="Horean’s Blog">
+            <img src="https://cdn-images.hxrch.top/blog-logo_128x128.png" alt="Horean's Blog">
         </div>
         <div class="card-info">
-            <h3 class="card-title">Horean’s Blog</h3>
+            <h3 class="card-title">Horean's Blog</h3>
             <p class="card-desc">Spread the Knowledge Wisely & Widely</p>
         </div>
     </a>
