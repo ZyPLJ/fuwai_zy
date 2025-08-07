@@ -110,8 +110,8 @@
             <img src="https://cdn.pljzy.top/linkIco/favicon.png" alt="SLHAF的个人博客">
         </div>
         <div class="card-info">
-            <h3 class="card-title">SLHAF的个人博客</h3>
-            <p class="card-desc">Spread the Knowledge Wisely & Widely</p>
+            <h3 class="card-title">SLHAF's blog</h3>
+            <p class="card-desc">SLHAF的个人博客</p>
         </div>
     </a>
 </div>
