@@ -116,6 +116,18 @@
     </a>
 </div>
 
+<div class="friend-link-card">
+    <a href="https://joeytoday.com" target="_blank">
+        <div class="card-avatar">
+            <img src="https://joeytoday.com/favicon/favicon.ico" alt="joeytoday">
+        </div>
+        <div class="card-info">
+            <h3 class="card-title">joeytoday</h3>
+            <p class="card-desc">Show, not tell. Thinking, Reading, Writing.</p>
+        </div>
+    </a>
+</div>
+
 </div>
 
 ---
