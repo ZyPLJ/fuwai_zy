@@ -1,4 +1,4 @@
-::github{repo="ZyPLJ/fuwai_zy"}
+::github{repo="ZyPLJ/fuwai_zyplj"}
 
 ---
 

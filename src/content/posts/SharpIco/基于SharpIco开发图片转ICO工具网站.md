@@ -5,7 +5,7 @@ description: 基于SharpIco开发图片转ICO工具网站SharpIcoWebLicense.NETS
 tags: [C#, .NET, MinimalApi]
 category: .NET 技术合集
 draft: false
-pinned: true
+pinned: false
 ---
 
 # 基于SharpIco开发图片转ICO工具网站
