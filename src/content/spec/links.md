@@ -13,10 +13,8 @@
         <div class="card-avatar">
             <img src="https://pljzy.top/images/logo4.jpg" alt="博客园">
         </div>
-        <div class="card-info">
-            <h3 class="card-title">博客园</h3>
-            <p class="card-desc">技术分享与学习交流的园地</p>
-        </div>
+        <h3 class="card-title">博客园</h3>
+        <p class="card-desc">技术分享与学习交流的园地</p>
     </a>
 </div>
 
@@ -25,10 +23,8 @@
         <div class="card-avatar">
             <img src="https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png" alt="GitHub">
         </div>
-        <div class="card-info">
-            <h3 class="card-title">GitHub</h3>
-            <p class="card-desc">代码托管与开源项目分享</p>
-        </div>
+        <h3 class="card-title">GitHub</h3>
+        <p class="card-desc">代码托管与开源项目分享</p>
     </a>
 </div>
 
@@ -37,10 +33,8 @@
         <div class="card-avatar">
             <img src="https://pljzy.top/images/logo4.jpg" alt="旧站">
         </div>
-        <div class="card-info">
-            <h3 class="card-title">我的旧站</h3>
-            <p class="card-desc">记录技术成长的足迹</p>
-        </div>
+        <h3 class="card-title">我的旧站</h3>
+        <p class="card-desc">记录技术成长的足迹</p>
     </a>
 </div>
 
@@ -49,10 +43,8 @@
         <div class="card-avatar">
             <img src="https://blog.deali.cn/images/codelab.jpg" alt="程序设计实验室">
         </div>
-        <div class="card-info">
-            <h3 class="card-title">程序设计实验室</h3>
-            <p class="card-desc">一个技术探索与分享的平台，专注于互联网热门新技术探索与团队敏捷开发实践，包括Web前后端、移动端开发、机器学习、数据分析、算法、Linux等技术，欢迎探讨、分享学习实践经验。</p>
-        </div>
+        <h3 class="card-title">程序设计实验室</h3>
+        <p class="card-desc">一个技术探索与分享的平台，专注于互联网热门新技术探索与团队敏捷开发实践，包括Web前后端、移动端开发、机器学习、数据分析、算法、Linux等技术，欢迎探讨、分享学习实践经验。</p>
     </a>
 </div>
 
@@ -61,10 +53,8 @@
         <div class="card-avatar">
             <img src="https://upyun.jjy2023.cn/2024/06/Pika.jpg" alt="云深知处">
         </div>
-        <div class="card-info">
-            <h3 class="card-title">云深知处</h3>
-            <p class="card-desc">在喧嚣世界寻求片刻宁静</p>
-        </div>
+        <h3 class="card-title">云深知处</h3>
+        <p class="card-desc">在喧嚣世界寻求片刻宁静</p>
     </a>
 </div>
 
@@ -73,10 +63,8 @@
         <div class="card-avatar">
             <img src="https://pic.pinaland.cn/uploads/2024/05/27/6653f31f92d2a.png" alt="空屿">
         </div>
-        <div class="card-info">
-            <h3 class="card-title">空屿</h3>
-            <p class="card-desc">一颗树，一座灯塔，一座岛</p>
-        </div>
+        <h3 class="card-title">空屿</h3>
+        <p class="card-desc">一颗树，一座灯塔，一座岛</p>
     </a>
 </div>
 
@@ -85,10 +73,8 @@
         <div class="card-avatar">
             <img src="https://cdn.pljzy.top/linkIco/avatar.avif" alt="Xeonzilla's Note">
         </div>
-        <div class="card-info">
-            <h3 class="card-title">Xeonzilla's Note</h3>
-            <p class="card-desc">Yuri is life.</p>
-        </div>
+        <h3 class="card-title">Xeonzilla's Note</h3>
+        <p class="card-desc">Yuri is life.</p>
     </a>
 </div>
 
@@ -97,10 +83,8 @@
         <div class="card-avatar">
             <img src="https://cdn-images.hxrch.top/blog-logo_128x128.png" alt="Horean's Blog">
         </div>
-        <div class="card-info">
-            <h3 class="card-title">Horean's Blog</h3>
-            <p class="card-desc">Spread the Knowledge Wisely & Widely</p>
-        </div>
+        <h3 class="card-title">Horean's Blog</h3>
+        <p class="card-desc">Spread the Knowledge Wisely & Widely</p>
     </a>
 </div>
 
@@ -109,10 +93,8 @@
         <div class="card-avatar">
             <img src="https://cdn.pljzy.top/linkIco/favicon.png" alt="SLHAF的个人博客">
         </div>
-        <div class="card-info">
-            <h3 class="card-title">SLHAF's blog</h3>
-            <p class="card-desc">SLHAF的个人博客</p>
-        </div>
+        <h3 class="card-title">SLHAF's blog</h3>
+        <p class="card-desc">SLHAF的个人博客</p>
     </a>
 </div>
 
@@ -121,10 +103,18 @@
         <div class="card-avatar">
             <img src="https://joeytoday.com/favicon/favicon.ico" alt="joeytoday">
         </div>
-        <div class="card-info">
-            <h3 class="card-title">joeytoday</h3>
-            <p class="card-desc">Show, not tell. Thinking, Reading, Writing.</p>
+        <h3 class="card-title">joeytoday</h3>
+        <p class="card-desc">Show, not tell. Thinking, Reading, Writing.</p>
+    </a>
+</div>
+
+<div class="friend-link-card">
+    <a href="https://gwy.fun" target="_blank">
+        <div class="card-avatar">
+            <img src="https://www.gwy.fun/zhan/logo.jpg" alt="Guoweiyi">
         </div>
+        <h3 class="card-title">Guoweiyi</h3>
+        <p class="card-desc">不知何时春日悄来临， 不知何日春花已落尽。</p>
     </a>
 </div>
 
@@ -196,81 +186,68 @@
 <style>
 .friend-links-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-    gap: 1.5rem;
-    margin: 2rem 0;
+    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+    gap: 2rem;
+    justify-items: center;
+    padding: 2rem 0;
 }
 
 .friend-link-card {
-    background: var(--card-bg);
-    border: 1px solid var(--line-divider);
-    border-radius: 12px;
-    overflow: hidden;
-    transition: all 0.3s ease;
-    position: relative;
+    text-align: center;
+    transition: transform 0.25s ease;
 }
 
 .friend-link-card:hover {
     transform: translateY(-4px);
-    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
-    border-color: var(--primary);
 }
 
 .friend-link-card a {
-    display: flex;
-    align-items: center;
-    padding: 0;
-    text-decoration: none;
+    text-decoration: none !important;
     color: inherit;
-    height: 100%;
+    display: block;
 }
 
 .card-avatar {
-    flex-shrink: 0;
-    width: 80px;
-    height: 80px;
+    width: 72px;
+    height: 72px;
+    border-radius: 16px; /* 方圆角头像 */
     overflow: hidden;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 12px 0 0 12px;
+    margin: 0 auto 0.75rem;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+    transition: transform 0.3s ease;
 }
 
-.card-info {
-    flex: 1;
-    min-width: 0;
-    padding: 1rem 1.25rem;
+.friend-link-card:hover .card-avatar {
+    transform: scale(1.05);
 }
 
 .card-avatar img {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    transition: transform 0.3s ease;
-}
-
-.friend-link-card:hover .card-avatar img {
-    transform: scale(1.05);
+    margin:0;
+    padding:0;
+    pointer-events: none;
 }
 
 .card-title {
-    font-size: 1.1rem;
+    font-size: 1rem;
     font-weight: 600;
-    color: var(--text-primary);
-    margin: 0 0 0.25rem 0;
-    line-height: 1.3;
+    margin: 0.25rem 0;
 }
 
 .card-desc {
-    font-size: 0.875rem;
-    color: var(--text-secondary);
+    font-size: 0.70rem; /* 字体更小 */
+    color: 	#808080;
     margin: 0;
     line-height: 1.4;
-    display: -webkit-box;
-    -webkit-line-clamp: 2;
+    display: -webkit-box; /* 多行省略号关键 */
+    -webkit-line-clamp: 2; /* 限制显示 2 行 */
     -webkit-box-orient: vertical;
     overflow: hidden;
+    text-overflow: ellipsis;
 }
+
 
 .custom-md a:not(.no-styling) {
     margin:0;
@@ -296,11 +273,15 @@
 
 /* 深色模式优化 */
 :root.dark .friend-link-card {
-    border-color: var(--line-divider);
+    border-color: #333;
 }
 
 :root.dark .friend-link-card:hover {
     box-shadow: 0 8px 25px rgba(255, 255, 255, 0.05);
+}
+
+:root.dark .card-desc {
+    color: #FFFFFF;
 }
 </style>
 
