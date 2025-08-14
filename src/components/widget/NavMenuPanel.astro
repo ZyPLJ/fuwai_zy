@@ -16,48 +16,83 @@ const links = Astro.props.links;
 		"float-panel float-panel-closed absolute transition-all fixed right-4 px-2 py-2"
 	]}
 >
-	{links.map((link) => {
-		// 如果有子链接，渲染链接组
+	{links.map((link, linkIndex) => {
+		// 如果有子链接，渲染可展开的链接组
 		if (link.links && link.links.length > 0) {
 			return (
-				<div class="link-group">
-					{/* 主菜单项 */}
-					<a
-						href={link.external ? link.url : url(link.url)}
-						class="group flex justify-between items-center py-2 pl-3 pr-1 rounded-lg gap-8 hover:bg-[var(--btn-plain-bg-hover)] active:bg-[var(--btn-plain-bg-active)] transition"
-						target={link.external ? "_blank" : null}
-						aria-label={link.name}
+				<div class="link-group mb-1" data-group-id={`group-${linkIndex}`}>
+					{/* 主菜单项 - 可展开 */}
+					<button
+						class="mobile-menu-item group flex justify-between items-center w-full py-3 pl-3 pr-2 rounded-xl gap-4 
+						       hover:bg-[var(--btn-plain-bg-hover)] active:bg-[var(--btn-plain-bg-active)] 
+						       transition-all duration-200 ease-out submenu-toggle border-l-4 border-transparent 
+						       hover:border-[var(--primary)] hover:shadow-sm"
+						data-target={`submenu-${linkIndex}`}
+						aria-label={`Toggle ${link.name} submenu`}
+						aria-expanded="false"
+						type="button"
 					>
-						<div class="transition text-black/75 dark:text-white/75 font-bold group-hover:text-[var(--primary)] group-active:text-[var(--primary)]">
-							{link.name}
+						<div class="flex items-center gap-3">
+							<div class="w-2 h-2 rounded-full bg-[var(--primary)] opacity-60 group-hover:opacity-100 
+							            transition-all duration-200 group-hover:scale-125"></div>
+							<span class="transition-all duration-200 text-black/75 dark:text-white/75 font-bold 
+							             group-hover:text-[var(--primary)] group-active:text-[var(--primary)]">
+								{link.name}
+							</span>
 						</div>
-						{!link.external && (
+						<div class="flex items-center gap-2">
+							{link.external && (
+								<Icon
+									name="fa6-solid:arrow-up-right-from-square"
+									class="text-[0.75rem] text-black/25 dark:text-white/25 transition-all duration-200"
+								/>
+							)}
 							<Icon
 								name="material-symbols:chevron-right-rounded"
-								class="transition text-[1.25rem] text-[var(--primary)]"
+								class="transition-all duration-300 ease-out text-[1.25rem] text-[var(--primary)] 
+								       submenu-arrow transform"
 							/>
-						)}
-						{link.external && (
-							<Icon
-								name="fa6-solid:arrow-up-right-from-square"
-								class="transition text-[0.75rem] text-black/25 dark:text-white/25 -translate-x-1"
-							/>
-						)}
-					</a>
+						</div>
+					</button>
 					
-					{/* 子菜单项 */}
-					{link.links.map((subLink) => (
-						<a
-							href={subLink.external ? subLink.url : url(subLink.url)}
-							class="ml-4 flex items-center py-2 pl-3 pr-1 rounded-lg gap-8 hover:bg-[var(--btn-plain-bg-hover)] active:bg-[var(--btn-plain-bg-active)] transition"
-							target={subLink.external ? "_blank" : null}
-							aria-label={subLink.name}
-						>
-							<div class="transition text-black/60 dark:text-white/60 font-medium group-hover:text-[var(--primary)] group-active:text-[var(--primary)]">
-								{subLink.name}
-							</div>
-						</a>
-					))}
+					{/* 子菜单项容器 */}
+					<div 
+						id={`submenu-${linkIndex}`}
+						class="submenu overflow-hidden transition-all duration-300 ease-out max-h-0 opacity-0"
+					>
+						<div class="mt-2 ml-4 pl-4 border-l-2 border-[var(--line-divider)] space-y-1">
+							{link.links.map((subLink, subIndex) => (
+								<a
+									href={subLink.external ? subLink.url : url(subLink.url)}
+									class="group/sub flex items-center justify-between py-2.5 pl-4 pr-2 rounded-lg gap-4 
+									       hover:bg-[var(--btn-plain-bg-hover)] active:bg-[var(--btn-plain-bg-active)] 
+									       transition-all duration-200 ease-out relative overflow-hidden"
+									target={subLink.external ? "_blank" : null}
+									aria-label={subLink.name}
+									style={`animation-delay: ${subIndex * 50}ms`}
+								>
+									<div class="flex items-center gap-3">
+										<div class="w-1.5 h-1.5 rounded-full bg-[var(--content-text-color)] opacity-40 
+										            group-hover/sub:bg-[var(--primary)] group-hover/sub:opacity-100 
+										            transition-all duration-200"></div>
+										<span class="transition-all duration-200 text-black/60 dark:text-white/60 font-medium 
+										             group-hover/sub:text-[var(--primary)] group-hover/sub:translate-x-1">
+											{subLink.name}
+										</span>
+									</div>
+									{subLink.external && (
+										<Icon
+											name="fa6-solid:arrow-up-right-from-square"
+											class="text-[0.65rem] text-black/25 dark:text-white/25 transition-all duration-200 
+											       group-hover/sub:text-[var(--primary)] group-hover/sub:scale-110"
+										/>
+									)}
+									<div class="absolute left-0 top-0 w-full h-full bg-gradient-to-r from-[var(--primary)]/5 to-transparent 
+									            transform translate-x-[-100%] group-hover/sub:translate-x-0 transition-transform duration-300 ease-out"></div>
+								</a>
+							))}
+						</div>
+					</div>
 				</div>
 			);
 		}
@@ -66,32 +101,126 @@ const links = Astro.props.links;
 		return (
 			<a 
 				href={link.external ? link.url : url(link.url)} 
-				class="group flex justify-between items-center py-2 pl-3 pr-1 rounded-lg gap-8 hover:bg-[var(--btn-plain-bg-hover)] active:bg-[var(--btn-plain-bg-active)] transition"
+				class="mobile-menu-item group flex justify-between items-center py-3 pl-3 pr-2 rounded-xl gap-4 mb-1
+				       hover:bg-[var(--btn-plain-bg-hover)] active:bg-[var(--btn-plain-bg-active)] 
+				       transition-all duration-200 ease-out border-l-4 border-transparent 
+				       hover:border-[var(--primary)] hover:shadow-sm"
 				target={link.external ? "_blank" : null}
 				aria-label={link.name}
 			>
-				<div class="transition text-black/75 dark:text-white/75 font-bold group-hover:text-[var(--primary)] group-active:text-[var(--primary)]">
-					{link.name}
+				<div class="flex items-center gap-3">
+					<div class="w-2 h-2 rounded-full bg-[var(--primary)] opacity-60 group-hover:opacity-100 
+					            transition-all duration-200 group-hover:scale-125"></div>
+					<span class="transition-all duration-200 text-black/75 dark:text-white/75 font-bold 
+					             group-hover:text-[var(--primary)] group-active:text-[var(--primary)]">
+						{link.name}
+					</span>
 				</div>
-				{!link.external && (
-					<Icon
-						name="material-symbols:chevron-right-rounded"
-						class="transition text-[1.25rem] text-[var(--primary)]"
-					/>
-				)}
-				{link.external && (
-					<Icon
-						name="fa6-solid:arrow-up-right-from-square"
-						class="transition text-[0.75rem] text-black/25 dark:text-white/25 -translate-x-1"
-					/>
-				)}
+				<div class="flex items-center gap-2">
+					{link.external && (
+						<Icon
+							name="fa6-solid:arrow-up-right-from-square"
+							class="text-[0.75rem] text-black/25 dark:text-white/25 transition-all duration-200 
+							       group-hover:text-[var(--primary)] group-hover:scale-110"
+						/>
+					)}
+					{!link.external && (
+						<Icon
+							name="material-symbols:chevron-right-rounded"
+							class="transition-all duration-200 text-[1.25rem] text-[var(--primary)] group-hover:translate-x-1"
+						/>
+					)}
+				</div>
 			</a>
 		);
 	})}
 </div>
 
+<script>
+	// 子菜单展开/收起功能
+	function initSubmenuToggle() {
+		const toggleButtons = document.querySelectorAll('.submenu-toggle');
+		
+		toggleButtons.forEach((button) => {
+			// 点击事件
+			button.addEventListener('click', (e) => {
+				e.preventDefault();
+				e.stopPropagation();
+				toggleSubmenu(button);
+			});
+			
+			// 键盘事件
+			button.addEventListener('keydown', (e) => {
+				if (e.key === 'Enter' || e.key === ' ') {
+					e.preventDefault();
+					toggleSubmenu(button);
+				}
+			});
+		});
+	}
+	
+	function toggleSubmenu(button) {
+		const targetId = button.getAttribute('data-target');
+		const submenu = document.getElementById(targetId);
+		const arrow = button.querySelector('.submenu-arrow');
+		
+		if (!submenu || !arrow) return;
+		
+		const isExpanded = !submenu.classList.contains('max-h-0');
+		
+		if (isExpanded) {
+			// 收起
+			submenu.style.maxHeight = '0px';
+			submenu.classList.add('max-h-0', 'opacity-0');
+			arrow.style.transform = 'rotate(0deg)';
+			button.setAttribute('aria-expanded', 'false');
+		} else {
+			// 展开
+			submenu.style.maxHeight = submenu.scrollHeight + 'px';
+			submenu.classList.remove('max-h-0', 'opacity-0');
+			arrow.style.transform = 'rotate(90deg)';
+			button.setAttribute('aria-expanded', 'true');
+		}
+	}
+
+	// 页面加载时初始化
+	if (document.readyState === 'loading') {
+		document.addEventListener('DOMContentLoaded', initSubmenuToggle);
+	} else {
+		initSubmenuToggle();
+	}
+
+	// 如果是单页应用，在路由变化时重新初始化
+	document.addEventListener('astro:page-load', initSubmenuToggle);
+</script>
+
 <style>
 	.link-group {
-		@apply space-y-1;
+		@apply space-y-0;
 	}
+	
+	/* 子菜单初始状态 */
+	.submenu {
+		max-height: 0;
+		opacity: 0;
+	}
+	
+	/* 子菜单项的入场动画 */
+	.submenu a {
+		transform: translateY(-10px);
+		transition: all 0.2s ease-out;
+	}
+	
+	/* 当子菜单展开时 */
+	.submenu:not(.max-h-0) a {
+		transform: translateY(0);
+		opacity: 1;
+	}
+	
+	/* 为子菜单项添加延迟动画 */
+	.submenu:not(.max-h-0) a:nth-child(1) { animation-delay: 0ms; }
+	.submenu:not(.max-h-0) a:nth-child(2) { animation-delay: 50ms; }
+	.submenu:not(.max-h-0) a:nth-child(3) { animation-delay: 100ms; }
+	.submenu:not(.max-h-0) a:nth-child(4) { animation-delay: 150ms; }
+	.submenu:not(.max-h-0) a:nth-child(5) { animation-delay: 200ms; }
 </style>

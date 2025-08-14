@@ -38,11 +38,11 @@ let links: NavBarLink[] = navBarConfig.links.map(
                             <div class="relative group">
                                 <div
                                         aria-label={l.name}
-                                        class="btn-plain scale-animation rounded-lg h-11 font-bold px-5 active:scale-95 flex items-center cursor-pointer"
+                                        class="btn-plain scale-animation rounded-lg h-11 font-bold px-5 active:scale-95 flex items-center cursor-pointer group-hover:text-[var(--primary)] transition-colors"
                                 >
                                     {l.name}
                                     <svg
-                                            class="ml-1 w-4 h-4 transition-transform group-hover:rotate-180"
+                                            class="ml-2 w-4 h-4 transition-all duration-300 ease-out group-hover:rotate-180 group-hover:text-[var(--primary)]"
                                             xmlns="http://www.w3.org/2000/svg"
                                             fill="none"
                                             viewBox="0 0 24 24"
@@ -54,15 +54,34 @@ let links: NavBarLink[] = navBarConfig.links.map(
 
                                 {/* 下拉菜单 */}
                                 <div
-                                        class="absolute left-0 mt-2 min-w-[8rem] rounded-lg shadow-lg bg-white dark:bg-gray-800 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50"
+                                        class="navbar-dropdown absolute left-0 top-full mt-2 min-w-[12rem] rounded-xl shadow-2xl bg-[var(--card-bg)] border border-[var(--line-divider)] 
+                                               opacity-0 invisible translate-y-[-10px] group-hover:opacity-100 group-hover:visible group-hover:translate-y-0 
+                                               transition-all duration-300 ease-out z-50 overflow-hidden"
                                 >
-                                    {l.links.map((sub) => (
-                                            <a aria-label={sub.name} href={sub.external ? sub.url : url(sub.url)} target={sub.external ? "_blank" : null}
-                                                    class="btn-plain scale-animation rounded-lg h-11 px-5 active:scale-95"
-                                            >
-                                                {sub.name}
-                                            </a>
-                                    ))}
+                                    <div class="py-2">
+                                        {l.links.map((sub, index) => (
+                                                <a 
+                                                    aria-label={sub.name} 
+                                                    href={sub.external ? sub.url : url(sub.url)} 
+                                                    target={sub.external ? "_blank" : null}
+                                                    class="group/item flex items-center justify-between px-4 py-3 text-sm font-medium 
+                                                           text-[var(--content-text-color)] hover:text-[var(--primary)] hover:bg-[var(--btn-plain-bg-hover)]
+                                                           transition-all duration-200 ease-out relative"
+                                                    style={`animation-delay: ${index * 50}ms`}
+                                                >
+                                                    <span class="transition-all duration-200 group-hover/item:translate-x-1">{sub.name}</span>
+                                                    {sub.external && (
+                                                        <Icon 
+                                                            name="fa6-solid:arrow-up-right-from-square" 
+                                                            class="text-[0.75rem] text-black/25 dark:text-white/25 transition-all duration-200 
+                                                                   group-hover/item:text-[var(--primary)] group-hover/item:scale-110" 
+                                                        />
+                                                    )}
+                                                    <div class="absolute left-0 top-0 w-1 h-full bg-[var(--primary)] transform scale-y-0 
+                                                                transition-transform duration-200 ease-out group-hover/item:scale-y-100 origin-center"></div>
+                                                </a>
+                                        ))}
+                                    </div>
                                 </div>
                             </div>
                     );
