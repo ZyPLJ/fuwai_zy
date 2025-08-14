@@ -139,6 +139,18 @@
 </div>
 
 <div class="friend-link-card">
+    <a href="https://share.pljzy.top" target="_blank">
+        <div class="card-avatar">
+            <img src="https://share.pljzy.top/assets/logo_small.png" alt="文件快递柜">
+        </div>
+        <div class="card-info">
+            <h3 class="card-title">文件快递柜</h3>
+            <p class="card-desc">FileCodeBox, 文件快递柜, 口令传送箱, 匿名口令分享文本, 文件</p>
+        </div>
+    </a>
+</div>
+
+<div class="friend-link-card">
     <a href="https://ebook.deali.cn/" target="_blank">
         <div class="card-avatar">
             <img src="https://ebook.deali.cn/static/favicon.ico" alt="TXT转电子书工具">
