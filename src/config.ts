@@ -69,7 +69,7 @@ export const navBarConfig: NavBarConfig = {
 					name: "图片转ico",
 					url: "https://ico.pljzy.top",
 					external: false,
-				}
+				},
 			],
 		},
 		{
