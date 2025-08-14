@@ -57,6 +57,22 @@ export const navBarConfig: NavBarConfig = {
 		LinkPreset.About,
 		LinkPreset.Links,
 		{
+			name: "工具",
+			url: "#",
+			links: [
+				{
+					name: "文件快递柜",
+					url: "https://share.pljzy.top",
+					external: false,
+				},
+				{
+					name: "图片转ico",
+					url: "https://ico.pljzy.top",
+					external: false,
+				}
+			],
+		},
+		{
 			name: "旧站",
 			url: "https://pljzy.top", // Internal links should not include the base path, as it is automatically added
 			external: true, // Show an external link icon and will open in a new tab

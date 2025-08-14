@@ -33,6 +33,42 @@ let links: NavBarLink[] = navBarConfig.links.map(
         </a>
         <div class="hidden md:flex">
             {links.map((l) => {
+                if (l.links && l.links.length > 0) {
+                    return (
+                            <div class="relative group">
+                                <div
+                                        aria-label={l.name}
+                                        class="btn-plain scale-animation rounded-lg h-11 font-bold px-5 active:scale-95 flex items-center cursor-pointer"
+                                >
+                                    {l.name}
+                                    <svg
+                                            class="ml-1 w-4 h-4 transition-transform group-hover:rotate-180"
+                                            xmlns="http://www.w3.org/2000/svg"
+                                            fill="none"
+                                            viewBox="0 0 24 24"
+                                            stroke="currentColor"
+                                    >
+                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7" />
+                                    </svg>
+                                </div>
+
+                                {/* 下拉菜单 */}
+                                <div
+                                        class="absolute left-0 mt-2 min-w-[8rem] rounded-lg shadow-lg bg-white dark:bg-gray-800 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50"
+                                >
+                                    {l.links.map((sub) => (
+                                            <a aria-label={sub.name} href={sub.external ? sub.url : url(sub.url)} target={sub.external ? "_blank" : null}
+                                                    class="btn-plain scale-animation rounded-lg h-11 px-5 active:scale-95"
+                                            >
+                                                {sub.name}
+                                            </a>
+                                    ))}
+                                </div>
+                            </div>
+                    );
+                }
+
+
                 return <a aria-label={l.name} href={l.external ? l.url : url(l.url)} target={l.external ? "_blank" : null}
                           class="btn-plain scale-animation rounded-lg h-11 font-bold px-5 active:scale-95"
                 >
