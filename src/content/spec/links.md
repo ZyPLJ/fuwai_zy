@@ -2,6 +2,8 @@
 
 欢迎来到友链页面！这里收集了一些优秀的技术博客和实用网站，希望对大家有所帮助。
 
+旧博客友链搬迁完成，如有遗漏，请在下方评论区留言。
+
 ---
 
 ## 🌟 友情博客
@@ -115,6 +117,86 @@
         </div>
         <h3 class="card-title">Guoweiyi</h3>
         <p class="card-desc">不知何时春日悄来临， 不知何日春花已落尽。</p>
+    </a>
+</div>
+
+<div class="friend-link-card">
+    <a href="https://www.lanol.cn/" target="_blank">
+        <div class="card-avatar">
+            <img src="https://cdn.pljzy.top/linkIco/lan.png" alt="Lan小站">
+        </div>
+        <h3 class="card-title">Lan小站</h3>
+        <p class="card-desc">Lan小站</p>
+    </a>
+</div>
+
+<div class="friend-link-card">
+    <a href="https://lzxjack.top" target="_blank">
+        <div class="card-avatar">
+            <img src="https://img.lzxjack.top/202203302154224.webp" alt="飞鸟">
+        </div>
+        <h3 class="card-title">飞鸟</h3>
+        <p class="card-desc">一只平凡的鸟罢了。</p>
+    </a>
+</div>
+
+<div class="friend-link-card">
+    <a href="https://www.imaegoo.com" target="_blank">
+        <div class="card-avatar">
+            <img src="https://www.imaegoo.com/images/avatar.jpg" alt="iMaeGoo’s Blog">
+        </div>
+        <h3 class="card-title">iMaeGoo’s Blog</h3>
+        <p class="card-desc">虹墨空间站</p>
+    </a>
+</div>
+
+<div class="friend-link-card">
+    <a href="https://storeweb.cn/site/o/2235" target="_blank">
+        <div class="card-avatar">
+            <img src="https://storeweb.cn/static/favicon.ico" alt="个站商店">
+        </div>
+        <h3 class="card-title">个站商店</h3>
+        <p class="card-desc">个站商店</p>
+    </a>
+</div>
+
+<div class="friend-link-card">
+    <a href="https://www.moeyao.cn/" target="_blank">
+        <div class="card-avatar">
+            <img src="https://dn-qiniu-avatar.qbox.me/avatar/d00de9fbffe50946b950a3fd0cd1bfdb" alt="云海花瑶">
+        </div>
+        <h3 class="card-title">云海花瑶</h3>
+        <p class="card-desc">我相信一切都会好起来的！</p>
+    </a>
+</div>
+
+<div class="friend-link-card">
+    <a href="https://champhoon.xyz/" target="_blank">
+        <div class="card-avatar">
+            <img src="https://api.champhoon.xyz/favicon/favicon-main.png" alt="澄沨的漫游茶记">
+        </div>
+        <h3 class="card-title">澄沨的漫游茶记</h3>
+        <p class="card-desc">Stay hungry, Stay foolish.</p>
+    </a>
+</div>
+
+<div class="friend-link-card">
+    <a href="https://www.zanks.link" target="_blank">
+        <div class="card-avatar">
+            <img src="https://avatars.githubusercontent.com/u/144093429?v=4" alt="乱话三千">
+        </div>
+        <h3 class="card-title">乱话三千</h3>
+        <p class="card-desc">养了一只叫基金的可爱小猫,平时会写点技术向的东西,有点做饭的小爱好</p>
+    </a>
+</div>
+
+<div class="friend-link-card">
+    <a href="https://elin521.cn" target="_blank">
+        <div class="card-avatar">
+            <img src="https://elin521.cn/_next/image?url=%2Fauther_avatar.webp&w=3840&q=75" alt="Elin's Blog">
+        </div>
+        <h3 class="card-title">Elin's Blog</h3>
+        <p class="card-desc">Elin's Blog个人博客</p>
     </a>
 </div>
 
