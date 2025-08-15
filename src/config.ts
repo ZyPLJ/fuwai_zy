@@ -56,6 +56,7 @@ export const navBarConfig: NavBarConfig = {
 		LinkPreset.Archive,
 		LinkPreset.About,
 		LinkPreset.Links,
+		LinkPreset.Images,
 		{
 			name: "旧站",
 			url: "https://pljzy.top", // Internal links should not include the base path, as it is automatically added
