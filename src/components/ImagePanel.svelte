@@ -1,6 +1,7 @@
 <script lang="ts">
-import { onMount } from "svelte";
 import Icon from "@iconify/svelte";
+import { onMount } from "svelte";
+import { imageLibraryConfig } from "../config";
 
 interface ImageData {
 	key: string;
@@ -24,6 +25,13 @@ interface ImageData {
 		markdown_with_link: string;
 		thumbnail_url: string;
 	};
+}
+
+interface Album {
+	id: number;
+	name: string;
+	intro: string;
+	image_num: number;
 }
 
 interface ApiResponse {
@@ -50,33 +58,84 @@ interface ApiResponse {
 	};
 }
 
+interface AlbumResponse {
+	status: boolean;
+	message: string;
+	data: {
+		data: Album[];
+		// 其他分页信息...
+	};
+}
+
 let images: ImageData[] = [];
+let albums: Album[] = [];
+let currentAlbum: Album | null = null;
 let currentPage = 1;
 let totalPages = 1;
 let totalImages = 0;
 let loading = false;
 let error = "";
 
-const API_BASE_URL = "http://47.116.117.180:8089/api/v1/images";
-const API_TOKEN = "1|co2iYJmY5BjA2NWIY0CLlodVZegBaMCJe143W5ET";
+const API_BASE_URL = imageLibraryConfig.apiBaseUrl;
+const API_TOKEN = imageLibraryConfig.apiToken;
+const ALBUMS_ENDPOINT = imageLibraryConfig.albumsEndpoint;
+const IMAGES_ENDPOINT = imageLibraryConfig.imagesEndpoint;
+const DEFAULT_ALBUM_ID = imageLibraryConfig.defaultAlbumId;
 
-async function fetchImages(page: number = 1) {
-	loading = true;
-	error = "";
-	
+async function fetchAlbums() {
 	try {
-		const response = await fetch(`${API_BASE_URL}?page=${page}&album_id=1`, {
+		const response = await fetch(`${API_BASE_URL}${ALBUMS_ENDPOINT}`, {
 			headers: {
-				'Accept': 'application/json',
-				'Authorization': `Bearer ${API_TOKEN}`
-			}
+				Accept: "application/json",
+				Authorization: `Bearer ${API_TOKEN}`,
+			},
 		});
 		if (!response.ok) {
 			throw new Error(`HTTP error! status: ${response.status}`);
 		}
-		
+
+		const data: AlbumResponse = await response.json();
+
+		if (data.status) {
+			albums = data.data.data;
+			// 设置默认相册
+			if (albums.length > 0) {
+				const defaultAlbum =
+					albums.find((album) => album.id === DEFAULT_ALBUM_ID) || albums[0];
+				currentAlbum = defaultAlbum;
+				// 获取默认相册的图片
+				await fetchImages(1, defaultAlbum.id);
+			}
+		} else {
+			error = data.message || "获取相册失败";
+		}
+	} catch (err) {
+		error = err instanceof Error ? err.message : "网络请求失败";
+	}
+}
+
+async function fetchImages(page = 1, albumId?: number) {
+	loading = true;
+	error = "";
+
+	const targetAlbumId = albumId || currentAlbum?.id || DEFAULT_ALBUM_ID;
+
+	try {
+		const response = await fetch(
+			`${API_BASE_URL}${IMAGES_ENDPOINT}?page=${page}&album_id=${targetAlbumId}`,
+			{
+				headers: {
+					Accept: "application/json",
+					Authorization: `Bearer ${API_TOKEN}`,
+				},
+			},
+		);
+		if (!response.ok) {
+			throw new Error(`HTTP error! status: ${response.status}`);
+		}
+
 		const data: ApiResponse = await response.json();
-		
+
 		if (data.status) {
 			images = data.data.data;
 			currentPage = data.data.current_page;
@@ -97,33 +156,89 @@ function formatFileSize(bytes: number): string {
 	const k = 1024;
 	const sizes = ["B", "KB", "MB", "GB"];
 	const i = Math.floor(Math.log(bytes) / Math.log(k));
-	return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + " " + sizes[i];
+	return `${Number.parseFloat((bytes / k ** i).toFixed(2))} + " " + ${sizes[i]}`;
 }
 
-function goToPage(page: number) {
+function handlePageClick(page: number) {
 	if (page >= 1 && page <= totalPages && page !== currentPage) {
-		fetchImages(page);
+		fetchImages(page, currentAlbum?.id);
 	}
 }
 
-// 分页按钮数组计算
-$: pageNumbers = Array.from(
-	{ length: Math.min(5, totalPages) },
-	(_, i) => Math.max(1, Math.min(totalPages, currentPage - 2 + i))
-).filter((pageNum, index, arr) => arr.indexOf(pageNum) === index);
+async function handleAlbumSwitch(album: Album) {
+	if (album.id !== currentAlbum?.id) {
+		currentAlbum = album;
+		currentPage = 1; // 重置到第一页
+		await fetchImages(1, album.id);
+	}
+}
+
+function getPageNumbers(): number[] {
+	const ADJ_DIST = 2;
+	const VISIBLE = ADJ_DIST * 2 + 1;
+
+	let count = 1;
+	let l = currentPage;
+	let r = currentPage;
+
+	while (0 < l - 1 && r + 1 <= totalPages && count + 2 <= VISIBLE) {
+		count += 2;
+		l--;
+		r++;
+	}
+	while (0 < l - 1 && count < VISIBLE) {
+		count++;
+		l--;
+	}
+	while (r + 1 <= totalPages && count < VISIBLE) {
+		count++;
+		r++;
+	}
+
+	let pages: number[] = [];
+	for (let i = l; i <= r; i++) {
+		pages.push(i);
+	}
+
+	return pages;
+}
 
 onMount(() => {
-	fetchImages(1);
+	fetchAlbums();
 });
 </script>
 
 <div class="card-base px-8 py-6">
 	<!-- Header -->
-	<div class="mb-6">
-		<h1 class="text-3xl font-bold text-[var(--primary)] mb-2">图片库</h1>
-		<p class="text-[var(--text-50)]">
-			共 {totalImages} 张图片，第 {currentPage} 页，共 {totalPages} 页
-		</p>
+	<div class="mb-6">		
+		<!-- Album Tabs -->
+		{#if albums.length > 0}
+			<div class="flex flex-wrap gap-2 mb-6">
+				{#each albums as album}
+					<button
+						on:click={() => handleAlbumSwitch(album)}
+						class="btn-regular h-8 text-sm px-3 rounded-lg"
+					>
+						<div class="flex items-center gap-2">
+							<Icon icon="material-symbols:photo-library" class="w-4 h-4" />
+							<span>{album.name}</span>
+							<span class="text-xs opacity-75">({album.image_num})</span>
+						</div>
+					</button>
+				{/each}
+			</div>
+		{/if}
+		
+		<!-- Current Album Info -->
+		{#if currentAlbum}
+			<p class="text-black/50 dark:text-white/50">
+				当前相册：{currentAlbum.name} - 共 {totalImages} 张图片，第 {currentPage} 页，共 {totalPages} 页，如有侵权联系博主删除！
+			</p>
+		{:else}
+			<p class="text-black/50 dark:text-white/50">
+				共 {totalImages} 张图片，第 {currentPage} 页，共 {totalPages} 页，如有侵权联系博主删除！
+			</p>
+		{/if}
 	</div>
 
 	<!-- Loading State -->
@@ -136,7 +251,7 @@ onMount(() => {
 		<div class="text-center py-12">
 			<div class="text-red-500 text-lg mb-4">{error}</div>
 			<button 
-				on:click={() => fetchImages(currentPage)}
+				on:click={() => currentAlbum ? fetchImages(currentPage, currentAlbum.id) : fetchImages(currentPage)}
 				class="btn-card px-6 py-2 rounded-lg"
 			>
 				重试
@@ -144,11 +259,14 @@ onMount(() => {
 		</div>
 	{:else}
 		<!-- Images Grid -->
-		<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 mb-8">
+		<div class="columns-1 md:columns-2 lg:columns-3 xl:columns-4 gap-6 mb-8">
 			{#each images as image}
-				<div class="group relative overflow-hidden rounded-lg bg-[var(--card-bg)] shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105">
+				<div class="group relative overflow-hidden rounded-lg bg-[var(--card-bg)] shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 mb-6 break-inside-avoid">
 					<!-- Image Container -->
-					<div class="relative aspect-square overflow-hidden">
+					<div 
+						class="relative overflow-hidden bg-gray-100 dark:bg-gray-800"
+						style="aspect-ratio: {image.width} / {image.height};"
+					>
 						<img
 							src={image.links.thumbnail_url || image.links.url}
 							alt={image.origin_name}
@@ -156,6 +274,13 @@ onMount(() => {
 							class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
 							loading="lazy"
 						/>
+						
+						<!-- GIF Indicator -->
+						{#if image.extension.toLowerCase() === 'gif'}
+							<div class="absolute top-2 right-2 bg-black/70 text-white text-xs px-2 py-1 rounded-full font-medium">
+								GIF
+							</div>
+						{/if}
 						
 						<!-- Overlay on hover -->
 						<div class="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-all duration-300 flex items-center justify-center">
@@ -175,11 +300,11 @@ onMount(() => {
 					
 					<!-- Image Info -->
 					<div class="p-4">
-						<h3 class="font-semibold text-[var(--text-75)] mb-2 line-clamp-2 group-hover:text-[var(--primary)] transition-colors duration-300">
+						<h3 class="font-semibold text-black/75 dark:text-white/75 mb-2 line-clamp-2 group-hover:text-[var(--primary)] transition-colors duration-300">
 							{image.origin_name}
 						</h3>
 						
-						<div class="space-y-1 text-sm text-[var(--text-50)]">
+						<div class="space-y-1 text-sm text-black/50 dark:text-white/50">
 							<div class="flex items-center justify-between">
 								<span>尺寸:</span>
 								<span>{image.width} × {image.height}</span>
@@ -204,69 +329,71 @@ onMount(() => {
 
 		<!-- Pagination -->
 		{#if totalPages > 1}
-			<div class="flex justify-center">
-				<div class="flex items-center gap-2">
-					<!-- Previous Page -->
-					<button
-						on:click={() => goToPage(currentPage - 1)}
-						disabled={currentPage <= 1}
-						class="btn-card px-4 py-2 rounded-lg disabled:opacity-50 disabled:cursor-not-allowed"
-					>
-						<Icon icon="material-symbols:chevron-left-rounded" class="w-5 h-5" />
-						上一页
-					</button>
+			<div class="flex flex-row gap-3 justify-center">
+				<!-- Previous Page -->
+				<button
+					on:click={() => handlePageClick(currentPage - 1)}
+					disabled={currentPage <= 1}
+					class="btn-card overflow-hidden rounded-lg text-[var(--primary)] w-11 h-11 disabled:opacity-50 disabled:cursor-not-allowed"
+					aria-label={currentPage > 1 ? "Previous Page" : null}
+				>
+					<Icon icon="material-symbols:chevron-left-rounded" class="text-[1.75rem]" />
+				</button>
 
-					<!-- Page Numbers -->
-					<div class="flex items-center gap-1">
-						{#if currentPage > 3}
-							<button
-								on:click={() => goToPage(1)}
-								class="btn-card w-10 h-10 rounded-lg"
-							>
-								1
-							</button>
-							{#if currentPage > 4}
-								<span class="px-2 text-[var(--text-50)]">...</span>
-							{/if}
+				<!-- Page Numbers -->
+				<div class="bg-[var(--card-bg)] flex flex-row rounded-lg items-center text-neutral-700 dark:text-neutral-300 font-bold">
+					{#if currentPage > 3}
+						<button
+							on:click={() => handlePageClick(1)}
+							class="btn-card w-11 h-11 rounded-lg overflow-hidden active:scale-[0.85]"
+							aria-label="Page 1"
+						>
+							1
+						</button>
+						{#if currentPage > 4}
+							<Icon icon="material-symbols:more-horiz" class="mx-1" />
 						{/if}
+					{/if}
 
-						{#each pageNumbers as pageNum}
+					{#each getPageNumbers() as pageNum}
+						{#if pageNum === currentPage}
+							<div class="h-11 w-11 rounded-lg bg-[var(--primary)] flex items-center justify-center font-bold text-white dark:text-black/70">
+								{pageNum}
+							</div>
+						{:else}
 							<button
-								on:click={() => goToPage(pageNum)}
-								class:list={[
-									"w-10 h-10 rounded-lg transition-all",
-									pageNum === currentPage 
-										? "bg-[var(--primary)] text-white" 
-										: "btn-card"
-								]}
+								on:click={() => handlePageClick(pageNum)}
+								class="btn-card w-11 h-11 rounded-lg overflow-hidden active:scale-[0.85]"
+								aria-label="Page {pageNum}"
 							>
 								{pageNum}
 							</button>
-						{/each}
-
-						{#if currentPage < totalPages - 2}
-							{#if currentPage < totalPages - 3}
-								<span class="px-2 text-[var(--text-50)]">...</span>
-							{/if}
-							<button
-								on:click={() => goToPage(totalPages)}
-								class="btn-card w-10 h-10 rounded-lg"
-							>
-								{totalPages}
-							</button>
 						{/if}
-					</div>
+					{/each}
 
-					<!-- Next Page -->
-					<button
-						on:click={() => goToPage(currentPage + 1)}
-						disabled={currentPage >= totalPages}
-						class="btn-card px-4 py-2 rounded-lg disabled:opacity-50 disabled:cursor-not-allowed"
-					>
-						下一页
-						<Icon icon="material-symbols:chevron-right-rounded" class="w-5 h-5" />
-					</button>
+					{#if currentPage < totalPages - 2}
+						{#if currentPage < totalPages - 3}
+							<Icon icon="material-symbols:more-horiz" class="mx-1" />
+						{/if}
+						<button
+							on:click={() => handlePageClick(totalPages)}
+							class="btn-card w-11 h-11 rounded-lg overflow-hidden active:scale-[0.85]"
+							aria-label="Page {totalPages}"
+						>
+							{totalPages}
+						</button>
+					{/if}
 				</div>
+
+				<!-- Next Page -->
+				<button
+					on:click={() => handlePageClick(currentPage + 1)}
+					disabled={currentPage >= totalPages}
+					class="btn-card overflow-hidden rounded-lg text-[var(--primary)] w-11 h-11 disabled:opacity-50 disabled:cursor-not-allowed"
+					aria-label={currentPage < totalPages ? "Next Page" : null}
+				>
+					<Icon icon="material-symbols:chevron-right-rounded" class="text-[1.75rem]" />
+				</button>
 			</div>
 		{/if}
 	{/if}

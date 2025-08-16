@@ -56,7 +56,7 @@ export const navBarConfig: NavBarConfig = {
 		LinkPreset.Archive,
 		LinkPreset.About,
 		LinkPreset.Links,
-		LinkPreset.Images,
+		LinkPreset.Images, // 如果没有lsky.pro图床，则注释掉 https://docs.lsky.pro/archive/free/v2/
 		{
 			name: "旧站",
 			url: "https://pljzy.top", // Internal links should not include the base path, as it is automatically added
@@ -110,4 +110,12 @@ export const expressiveCodeConfig: ExpressiveCodeConfig = {
 	// Note: Some styles (such as background color) are being overridden, see the astro.config.mjs file.
 	// Please select a dark theme, as this blog theme currently only supports dark background color
 	theme: "github-dark",
+};
+
+export const imageLibraryConfig = {
+	apiBaseUrl: "https://img.pljzy.top/api/v1", // 兰空图床API地址
+	apiToken: "2|gpPQhgQXm0M34dLD2JbE0bRLlRbpAOSLHIZ13AFf", // 用户token
+	albumsEndpoint: "/albums?order=earliest", // 相册列表接口
+	imagesEndpoint: "/images", // 图片列表接口
+	defaultAlbumId: 4, // 默认相册ID
 };
