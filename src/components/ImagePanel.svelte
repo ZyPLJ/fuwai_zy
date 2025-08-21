@@ -1,8 +1,8 @@
 <script lang="ts">
 import Icon from "@iconify/svelte";
+import { formatDateI18n } from "@utils/date-utils";
 import { onMount } from "svelte";
 import { imageLibraryConfig } from "../config";
-import { formatDateI18n } from "@utils/date-utils";
 
 interface ImageData {
 	key: string;
@@ -145,7 +145,7 @@ async function fetchImages(page = 1, albumId?: number) {
 			currentPage = data.data.current_page;
 			totalPages = data.data.last_page;
 			totalImages = data.data.total;
-			
+
 			// 如果是切换相册或者是第一页，更新banner图片
 			if (albumId && page === 1) {
 				bannerImage = images[0] || null;
@@ -277,12 +277,11 @@ onMount(() => {
 					<!-- 占位符背景 - 使用图片的主色调或渐变 -->
 					<div class="absolute inset-0 bg-gradient-to-br from-gray-200 via-gray-300 to-gray-400 dark:from-gray-700 dark:via-gray-600 dark:to-gray-500 animate-pulse"></div>
 					
-					<!-- 实际图片 - 渐进式加载 -->
 					<img
 						src={bannerImage.links.url}
 						alt={bannerImage.origin_name}
-						class="w-full h-full object-cover transition-all duration-700 {bannerImageLoaded ? 'opacity-100 scale-100' : 'opacity-0 scale-105'}"
-						loading="eager"
+						class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+						loading="lazy"
 						fetchpriority="high"
 						decoding="async"
 						on:load={handleBannerImageLoad}
