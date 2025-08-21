@@ -77,6 +77,8 @@ let totalImages = 0;
 let loading = false;
 let error = "";
 let bannerImage: ImageData | null = null;
+let bannerImageLoaded = false;
+let bannerImageError = false;
 
 const API_BASE_URL = imageLibraryConfig.apiBaseUrl;
 const API_TOKEN = imageLibraryConfig.apiToken;
@@ -147,6 +149,7 @@ async function fetchImages(page = 1, albumId?: number) {
 			// 如果是切换相册或者是第一页，更新banner图片
 			if (albumId && page === 1) {
 				bannerImage = images[0] || null;
+				resetBannerImageState(); // 重置banner图片状态
 			}
 		} else {
 			error = data.message || "获取图片失败";
@@ -210,6 +213,21 @@ function getPageNumbers(): number[] {
 	return pages;
 }
 
+function handleBannerImageLoad() {
+	bannerImageLoaded = true;
+	bannerImageError = false;
+}
+
+function handleBannerImageError() {
+	bannerImageError = true;
+	bannerImageLoaded = false;
+}
+
+function resetBannerImageState() {
+	bannerImageLoaded = false;
+	bannerImageError = false;
+}
+
 onMount(() => {
 	fetchAlbums();
 });
@@ -256,12 +274,41 @@ onMount(() => {
 		{:else if bannerImage}
 			<div class="gallery-group bg-[var(--card-bg)] rounded-[var(--radius-large)] overflow-hidden transition-all duration-300 hover:shadow-lg mb-6">
 				<div class="gallery-header cursor-pointer relative h-48 overflow-hidden group">
+					<!-- 占位符背景 - 使用图片的主色调或渐变 -->
+					<div class="absolute inset-0 bg-gradient-to-br from-gray-200 via-gray-300 to-gray-400 dark:from-gray-700 dark:via-gray-600 dark:to-gray-500 animate-pulse"></div>
+					
+					<!-- 实际图片 - 渐进式加载 -->
 					<img
 						src={bannerImage.links.url}
 						alt={bannerImage.origin_name}
-						class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
-						loading="lazy"
+						class="w-full h-full object-cover transition-all duration-700 {bannerImageLoaded ? 'opacity-100 scale-100' : 'opacity-0 scale-105'}"
+						loading="eager"
+						fetchpriority="high"
+						decoding="async"
+						on:load={handleBannerImageLoad}
+						on:error={handleBannerImageError}
 					/>
+					
+					<!-- 加载状态指示器 -->
+					{#if !bannerImageLoaded && !bannerImageError}
+						<div class="absolute inset-0 flex items-center justify-center bg-black/20">
+							<div class="flex flex-col items-center gap-3">
+								<div class="animate-spin rounded-full h-8 w-8 border-2 border-white border-t-transparent"></div>
+								<div class="text-white text-sm font-medium">加载中...</div>
+							</div>
+						</div>
+					{/if}
+					
+					<!-- 错误状态 -->
+					{#if bannerImageError}
+						<div class="absolute inset-0 flex items-center justify-center bg-black/40">
+							<div class="text-center text-white">
+								<Icon icon="material-symbols:broken-image" class="w-12 h-12 mx-auto mb-2 opacity-75" />
+								<div class="text-sm">图片加载失败</div>
+							</div>
+						</div>
+					{/if}
+					
 					<div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
 					<div class="absolute bottom-4 left-4 text-white">
 						<h3 class="text-xl font-bold mb-1">{currentAlbum?.name}</h3>
@@ -319,6 +366,8 @@ onMount(() => {
 							title={image.origin_name}
 							class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
 							loading="lazy"
+							decoding="async"
+							fetchpriority="auto"
 						/>
 						
 						<!-- GIF Indicator -->
@@ -452,5 +501,40 @@ onMount(() => {
 		-webkit-line-clamp: 2;
 		-webkit-box-orient: vertical;
 		overflow: hidden;
+	}
+	
+	/* Banner 图片加载优化 */
+	.gallery-header img {
+		will-change: opacity, transform;
+	}
+	
+	/* 渐进式加载动画 */
+	@keyframes fadeInScale {
+		from {
+			opacity: 0;
+			transform: scale(1.05);
+		}
+		to {
+			opacity: 1;
+			transform: scale(1);
+		}
+	}
+	
+	.banner-image-loaded {
+		animation: fadeInScale 0.7s ease-out forwards;
+	}
+	
+	/* 占位符动画优化 */
+	.animate-pulse {
+		animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+	}
+	
+	@keyframes pulse {
+		0%, 100% {
+			opacity: 1;
+		}
+		50% {
+			opacity: 0.5;
+		}
 	}
 </style>
