@@ -144,6 +144,12 @@ export const friendLinkSections: FriendLinkSection[] = [
 				avatar: "https://leehenry.top/friends/my-avatar-portrait.jpg",
 				desc: "莫听穿林打叶声，何妨吟啸且徐行。",
 			},
+			{
+				title: "酥米的小站",
+				url: "https://www.sumi233.top/",
+				avatar: "https://cdn.sumi233.top/gh/huang233893/blog-image-bed/top/huang233893/imgs/blog/userfb6a1018b84ce485.jpg",
+				desc: "终有一日，寻梦中人",
+			},
 		],
 	},
 	{
