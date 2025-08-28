@@ -151,6 +151,13 @@ export const friendLinkSections: FriendLinkSection[] = [
 					"https://cdn.sumi233.top/gh/huang233893/blog-image-bed/top/huang233893/imgs/blog/userfb6a1018b84ce485.jpg",
 				desc: "终有一日，寻梦中人",
 			},
+			{
+				title: "天海博客",
+				url: "https://woolyun.com/",
+				avatar:
+					"https://woolyun.com/wp-content/uploads/2025/05/yyl-e1746698677584.jpg",
+				desc: "建站经验记录，实用工具推荐，免费资源分享。",
+			},
 		],
 	},
 	{

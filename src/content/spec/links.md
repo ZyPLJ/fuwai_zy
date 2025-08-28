@@ -8,21 +8,15 @@
 
 ### 申请方式
 
-提交issue至：[https://github.com/ZyPLJ/fuwai_zy/issues](https://github.com/ZyPLJ/fuwai_zy/issues)
+提交issue至：[https://github.com/ZyPLJ/fuwai_zyplj/issues](https://github.com/ZyPLJ/fuwai_zy/issues)
 
 或者在下方评论区留言。
-
-请在邮件中包含以下信息：
-- 网站名称
-- 网站链接
-- 网站描述
-- 网站图标/头像
 
 参考格式：
 - 网站名称：ZY知识库
 - 网站介绍：一个技术探索与分享的平台
 - 网站地址：https://blog.pljzy.top/
-- 网站头像：https://blog.pljzy.top/_astro/logo.BxIxyJV1_Z19cEQW.webp
+- 网站图标/头像：https://blog.pljzy.top/_astro/logo.BxIxyJV1_Z19cEQW.webp
 
 ---
 
