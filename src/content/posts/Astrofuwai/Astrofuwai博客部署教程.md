@@ -107,6 +107,8 @@ script.src = 'https://registry.npmmirror.com/twikoo/1.6.44/files/dist/twikoo.min
 
 `src/content/spec/links.md`友链页面其实就是`md`文件，如果有新的友链，将参考的`div`复制一份修改里面的内容就行了，对于没有评论系统的，也想使用友链，可以将自己仓库的`issues`地址放出来，让其他博主在`github`上体积`issues`来达到友链提交的效果
 
+2025-08-25 优化后，在`src->data->frend-links.ts`文件中添加友链数据即可。
+
 ### 文章置顶
 
 `pinned` 属性设置为true即为置顶显示
