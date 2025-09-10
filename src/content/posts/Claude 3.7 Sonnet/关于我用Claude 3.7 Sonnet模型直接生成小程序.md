@@ -4,7 +4,7 @@ published: 2025-03-07 21:28:06
 description: 关于我用Claude 3.7 Sonnet模型直接生成小程序前言最近AI一直是很火的话题，Deepseek也是一夜爆火，但是实际使用下来发现Deepseek好像和其他大模型一样，并没有什么厉害之处，而且官网经常服务器繁忙。
 image: ./4.png
 tags: [AI, 大模型]
-category: .NET 技术合集
+category: 杂七杂八
 draft: false
 pinned: false
 ---
