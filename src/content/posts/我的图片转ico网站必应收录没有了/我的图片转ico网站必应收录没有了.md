@@ -5,7 +5,7 @@ description: 我在7月初的部署了一个[图片转ico图标](https://ico.plj
 tags: [日常]
 category: 杂七杂八
 draft: false
-pinned: true
+pinned: false
 ---
 
 # 我的图片转ico网站必应收录没有了

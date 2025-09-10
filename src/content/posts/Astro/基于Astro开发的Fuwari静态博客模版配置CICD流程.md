@@ -5,7 +5,7 @@ description: 同往常一样，上班摸鱼的时候，就喜欢逛逛随机逛�
 tags: [Docker, CICD, 博客]
 category: 杂七杂八
 draft: false
-pinned: true
+pinned: false
 ---
 
 
