@@ -158,6 +158,12 @@ export const friendLinkSections: FriendLinkSection[] = [
 					"https://woolyun.com/wp-content/uploads/2025/05/yyl-e1746698677584.jpg",
 				desc: "建站经验记录，实用工具推荐，免费资源分享。",
 			},
+			{
+				title: "小野博客",
+				url: "https://lb5.net/",
+				avatar: "https://lb5.net/favicon.ico",
+				desc: "小野（Hirono）博客的个人网站，主要讲述关于小野的一些陈芝麻烂谷子事。网络、生活、我的主张，也是一个自留地",
+			},
 		],
 	},
 	{
