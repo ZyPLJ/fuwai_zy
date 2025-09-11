@@ -71,7 +71,7 @@ export const navBarConfig: NavBarConfig = {
 };
 
 export const profileConfig: ProfileConfig = {
-	avatar: "assets/images/logo.jpg", // Relative to the /src directory. Relative to the /public directory if it starts with '/'
+	avatar: "assets/images/logo_1.png", // Relative to the /src directory. Relative to the /public directory if it starts with '/'
 	name: "ZyPlj",
 	bio: "一个热爱编程的全栈开发者，热爱开源，热爱分享。",
 	links: [
