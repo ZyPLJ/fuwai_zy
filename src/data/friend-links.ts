@@ -164,6 +164,13 @@ export const friendLinkSections: FriendLinkSection[] = [
 				avatar: "https://lb5.net/favicon.ico",
 				desc: "小野（Hirono）博客的个人网站，主要讲述关于小野的一些陈芝麻烂谷子事。网络、生活、我的主张，也是一个自留地",
 			},
+			{
+				title: "TimochanのBlog",
+				url: "Let's start learning",
+				avatar:
+					"https://www.timochan.cn/api/objects/icon/9s6tbcvax674yv2m88.jpg",
+				desc: "Let's start learning",
+			},
 		],
 	},
 	{
