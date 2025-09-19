@@ -166,7 +166,7 @@ export const friendLinkSections: FriendLinkSection[] = [
 			},
 			{
 				title: "TimochanのBlog",
-				url: "Let's start learning",
+				url: "https://www.timochan.cn/",
 				avatar:
 					"https://www.timochan.cn/api/objects/icon/9s6tbcvax674yv2m88.jpg",
 				desc: "Let's start learning",
