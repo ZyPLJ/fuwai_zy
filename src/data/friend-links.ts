@@ -171,6 +171,12 @@ export const friendLinkSections: FriendLinkSection[] = [
 					"https://www.timochan.cn/api/objects/icon/9s6tbcvax674yv2m88.jpg",
 				desc: "Let's start learning",
 			},
+			{
+				title: "郭飞的笔记",
+				url: "https://www.guofei.site/",
+				avatar: "https://www.guofei.site/p/me/me.png",
+				desc: "郭飞的笔记",
+			},
 		],
 	},
 	{
