@@ -200,6 +200,12 @@ export const friendLinkSections: FriendLinkSection[] = [
 				avatar: "https://ebook.deali.cn/static/favicon.ico",
 				desc: "将TXT文本文件转换为EPUB、MOBI、AZW3等电子书格式",
 			},
+			{
+				title: "日历记账系统",
+				url: "https://www.pljzy.top/bookkeeping.html",
+				avatar: "https://www.pljzy.top/logo.ico",
+				desc: "本地记账网页应用，轻松记录和管理您的日常消费",
+			},
 		],
 	},
 ];
