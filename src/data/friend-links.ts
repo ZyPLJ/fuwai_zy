@@ -177,6 +177,18 @@ export const friendLinkSections: FriendLinkSection[] = [
 				avatar: "https://www.guofei.site/p/me/me.png",
 				desc: "郭飞的笔记",
 			},
+			{
+				title: "peachRL的小站",
+				url: "https://wanyijizi.com",
+				avatar: "https://blog.wanyijizi.com/avatar.jpg",
+				desc: "万亿及秭",
+			},
+			{
+				title: "繁华如风的小站",
+				url: "https://fhrf.top",
+				avatar: "https://www.fhrf.top/img/tx.png!/format/webp/lossless/true",
+				desc: "醉后不知天在水,满船清梦压星河。",
+			},
 		],
 	},
 	{
