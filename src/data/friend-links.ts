@@ -189,6 +189,12 @@ export const friendLinkSections: FriendLinkSection[] = [
 				avatar: "https://www.fhrf.top/img/tx.png!/format/webp/lossless/true",
 				desc: "醉后不知天在水,满船清梦压星河。",
 			},
+            {
+                title: "风行Justin - 个人空间",
+                url: "https://forthing.top/",
+                avatar: "https://forthing.top/avatar.jpg",
+                desc: "一个兴趣使然的设计爱好者",
+            },
 		],
 	},
 	{
