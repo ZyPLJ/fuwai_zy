@@ -201,6 +201,12 @@ export const friendLinkSections: FriendLinkSection[] = [
 				avatar: "https://mccsjs.eu.org/img/head.jpg",
 				desc: "点一盏灯，等一个迷路的夜🍁🍁🍁",
 			},
+			{
+				title: "THW's Blog",
+				url: "https://thw.lol",
+				avatar: "前途似海，来日方长",
+				desc: "https://img.dooki.cloud/i/2025/08/29/68b09e116c4b6.webp",
+			},
 		],
 	},
 	{
