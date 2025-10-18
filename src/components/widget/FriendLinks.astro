@@ -12,7 +12,14 @@ const { sections } = Astro.props as { sections: FriendLinkSection[] };
         <div class="friend-link-card" data-url={item.url}>
           <a href={item.url} target="_blank">
             <div class="card-avatar">
-              <img src={item.avatar} alt={item.title} />
+                <img 
+                    src={item.avatar} 
+                    alt={item.title}
+                    data-image-component="true"
+                    loading="lazy"
+                    decoding="async"
+                    fetchpriority="auto"
+                />
               <!-- 进度条状态指示器 -->
               <div class="status-indicator" data-status="unknown">
                 <div class="progress-bar"></div>
@@ -29,10 +36,25 @@ const { sections } = Astro.props as { sections: FriendLinkSection[] };
 
 <div class="status-controls">
   <button id="checkAllBtn" class="status-btn">
-    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-      <path d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9v-9m0-9v9"></path>
-    </svg>
-    检测所有友链
+    <div class="btn-content normal">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9v-9m0-9v9"></path>
+      </svg>
+      检测所有友链
+    </div>
+    <div class="btn-content loading">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M12 2v4"></path>
+        <path d="m16.2 7.8 2.9-2.9"></path>
+        <path d="M18 12h4"></path>
+        <path d="m16.2 16.2 2.9 2.9"></path>
+        <path d="M12 18v4"></path>
+        <path d="m4.9 19.1 2.9-2.9"></path>
+        <path d="M2 12h4"></path>
+        <path d="m4.9 4.9 2.9 2.9"></path>
+      </svg>
+      检测中...
+    </div>
   </button>
   <!-- <button id="resetBtn" class="status-btn secondary">
     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -186,25 +208,86 @@ const { sections } = Astro.props as { sections: FriendLinkSection[] };
     gap: 0.5rem;
     padding: 0.75rem 1.5rem;
     border: none;
-    border-radius: 8px;
-    background: var(--accent-color, #3b82f6);
+    border-radius: var(--radius, 8px);
+    background: var(--primary);
     color: white;
     font-size: 0.9rem;
     font-weight: 500;
     cursor: pointer;
     transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.status-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transition: left 0.5s ease;
+}
+
+.status-btn:hover::before {
+    left: 100%;
 }
 
 .status-btn:hover {
     transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
+    box-shadow: 0 4px 20px oklch(0.70 0.14 var(--hue) / 0.3);
+    background: oklch(0.65 0.16 var(--hue));
 }
 
 .status-btn:disabled {
     opacity: 0.6;
     cursor: not-allowed;
-    transform: none;
     box-shadow: none;
+    background: oklch(0.50 0.08 var(--hue));
+}
+
+.status-btn:disabled:not(.loading) {
+    transform: none;
+}
+
+.status-btn:disabled::before {
+    display: none;
+}
+
+/* 按钮内容控制 */
+.btn-content {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.btn-content.loading {
+    display: none;
+}
+
+.status-btn.loading .btn-content.normal {
+    display: none;
+}
+
+.status-btn.loading .btn-content.loading {
+    display: flex;
+}
+
+.status-btn.loading .btn-content.loading svg {
+    animation: spin 1s linear infinite;
+    transform-origin: center;
+    filter: drop-shadow(0 0 4px oklch(0.70 0.14 var(--hue) / 0.5));
+}
+
+.status-btn.loading {
+    background: oklch(0.60 0.15 var(--hue));
+    box-shadow: 0 2px 12px oklch(0.60 0.15 var(--hue) / 0.4);
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
 }
 
 .status-btn.secondary {
@@ -304,6 +387,30 @@ const { sections } = Astro.props as { sections: FriendLinkSection[] };
 :root.dark .stat-label {
     color: #9ca3af;
 }
+
+/* 暗色主题下的按钮优化 */
+:root.dark .status-btn {
+    background: oklch(0.75 0.14 var(--hue));
+    color: oklch(0.95 0.01 var(--hue));
+}
+
+:root.dark .status-btn:hover {
+    background: oklch(0.80 0.16 var(--hue));
+    box-shadow: 0 4px 20px oklch(0.75 0.14 var(--hue) / 0.4);
+}
+
+:root.dark .status-btn:disabled {
+    background: oklch(0.60 0.08 var(--hue));
+}
+
+:root.dark .status-btn.loading {
+    background: oklch(0.70 0.15 var(--hue));
+    box-shadow: 0 2px 12px oklch(0.70 0.15 var(--hue) / 0.5);
+}
+
+:root.dark .status-btn.loading .btn-content.loading svg {
+    filter: drop-shadow(0 0 6px oklch(0.75 0.14 var(--hue) / 0.6));
+}
 </style>
 
 <script>
@@ -318,6 +425,126 @@ const STATUS = {
 // 存储键名
 const STORAGE_KEY = 'friendLinksStatus';
 
+// 性能检测和并发控制
+class PerformanceManager {
+    private static instance: PerformanceManager;
+    private optimalBatchSize: number = 3;
+    private isPerformanceTested: boolean = false;
+    
+    static getInstance(): PerformanceManager {
+        if (!PerformanceManager.instance) {
+            PerformanceManager.instance = new PerformanceManager();
+        }
+        return PerformanceManager.instance;
+    }
+    
+    // 检测设备性能并确定最优并发数
+    async detectOptimalBatchSize(): Promise<number> {
+        if (this.isPerformanceTested) {
+            return this.optimalBatchSize;
+        }
+        
+        try {
+            // 基于硬件并发数和网络状况动态调整
+            const hardwareConcurrency = navigator.hardwareConcurrency || 4;
+            const connection = (navigator as any).connection;
+            
+            let baseBatchSize = Math.min(hardwareConcurrency, 6); // 最大不超过6
+            
+            // 根据网络状况调整
+            if (connection) {
+                if (connection.effectiveType === 'slow-2g' || connection.effectiveType === '2g') {
+                    baseBatchSize = 1;
+                } else if (connection.effectiveType === '3g') {
+                    baseBatchSize = Math.min(baseBatchSize, 2);
+                } else if (connection.effectiveType === '4g') {
+                    baseBatchSize = Math.min(baseBatchSize, 4);
+                }
+            }
+            
+            this.optimalBatchSize = baseBatchSize;
+            this.isPerformanceTested = true;
+            
+            console.log(`性能检测完成，最优并发数: ${this.optimalBatchSize}`);
+            return this.optimalBatchSize;
+            
+        } catch (error) {
+            console.warn('性能检测失败，使用默认并发数:', error);
+            this.optimalBatchSize = 3;
+            this.isPerformanceTested = true;
+            return this.optimalBatchSize;
+        }
+    }
+    
+    getOptimalBatchSize(): number {
+        return this.optimalBatchSize;
+    }
+}
+
+// 防抖存储管理器
+class DebouncedStorage {
+    private static instance: DebouncedStorage;
+    private saveTimeout: number | null = null;
+    private pendingData: Record<string, string> | null = null;
+    private readonly DEBOUNCE_DELAY = 500; // 500ms 防抖延迟
+    
+    static getInstance(): DebouncedStorage {
+        if (!DebouncedStorage.instance) {
+            DebouncedStorage.instance = new DebouncedStorage();
+        }
+        return DebouncedStorage.instance;
+    }
+    
+    // 防抖保存状态
+    debouncedSave(statusData: Record<string, string>): void {
+        this.pendingData = { ...this.pendingData, ...statusData };
+        
+        if (this.saveTimeout) {
+            clearTimeout(this.saveTimeout);
+        }
+        
+        this.saveTimeout = window.setTimeout(() => {
+            this.saveToStorage();
+        }, this.DEBOUNCE_DELAY);
+    }
+    
+    // 立即保存（用于重要状态变更）
+    immediateSave(statusData: Record<string, string>): void {
+        if (this.saveTimeout) {
+            clearTimeout(this.saveTimeout);
+            this.saveTimeout = null;
+        }
+        this.pendingData = { ...this.pendingData, ...statusData };
+        this.saveToStorage();
+    }
+    
+    private saveToStorage(): void {
+        if (!this.pendingData) return;
+        
+        try {
+            localStorage.setItem(STORAGE_KEY, JSON.stringify(this.pendingData));
+            this.pendingData = null;
+        } catch (error) {
+            console.warn('无法保存状态到本地存储:', error);
+        }
+    }
+    
+    // 清除存储
+    clearStorage(): void {
+        if (this.saveTimeout) {
+            clearTimeout(this.saveTimeout);
+            this.saveTimeout = null;
+        }
+        this.pendingData = null;
+        
+        try {
+            localStorage.removeItem(STORAGE_KEY);
+        } catch (error) {
+            console.warn('无法清除本地存储:', error);
+        }
+    }
+}
+
 // DOM元素
 const checkAllBtn = document.getElementById('checkAllBtn');
 const resetBtn = document.getElementById('resetBtn');
@@ -327,7 +554,7 @@ const offlineCount = document.getElementById('offlineCount');
 const checkingCount = document.getElementById('checkingCount');
 
 // 存储相关函数
-function saveStatusToStorage() {
+function saveStatusToStorage(immediate: boolean = false) {
     const statusData: Record<string, string> = {};
     const statusIndicators = document.querySelectorAll('.status-indicator');
     
@@ -341,20 +568,29 @@ function saveStatusToStorage() {
         }
     });
     
-    try {
-        localStorage.setItem(STORAGE_KEY, JSON.stringify(statusData));
-    } catch (error) {
-        console.warn('无法保存状态到本地存储:', error);
+    const storage = DebouncedStorage.getInstance();
+    if (immediate) {
+        storage.immediateSave(statusData);
+    } else {
+        storage.debouncedSave(statusData);
     }
 }
 
-function loadStatusFromStorage() {
+function clearStatusStorage() {
+    const storage = DebouncedStorage.getInstance();
+    storage.clearStorage();
+}
+
+// 立即加载状态（在DOM解析完成后立即执行）
+function loadStatusImmediately() {
     try {
         const storedData = localStorage.getItem(STORAGE_KEY);
-        if (storedData) {
-            const statusData = JSON.parse(storedData);
-            
-            // 应用存储的状态
+        if (!storedData) return;
+        
+        const statusData = JSON.parse(storedData);
+        
+        // 使用微任务确保DOM已解析但不会阻塞渲染
+        Promise.resolve().then(() => {
             Object.entries(statusData).forEach(([url, status]) => {
                 const cardElement = document.querySelector(`.friend-link-card[data-url="${url}"]`);
                 const statusIndicator = cardElement?.querySelector('.status-indicator');
@@ -363,17 +599,11 @@ function loadStatusFromStorage() {
                     statusIndicator.setAttribute('data-status', status as string);
                 }
             });
-        }
+            
+            updateStats();
+        });
     } catch (error) {
         console.warn('无法从本地存储加载状态:', error);
-    }
-}
-
-function clearStatusStorage() {
-    try {
-        localStorage.removeItem(STORAGE_KEY);
-    } catch (error) {
-        console.warn('无法清除本地存储:', error);
     }
 }
 
@@ -382,11 +612,6 @@ function init() {
     // 计算总链接数
     const totalLinks = document.querySelectorAll('.friend-link-card').length;
     if (totalCount) totalCount.textContent = totalLinks.toString();
-    
-    // 从存储中加载状态
-    loadStatusFromStorage();
-    
-    updateStats();
     
     // 事件监听
     checkAllBtn?.addEventListener('click', checkAllLinks);
@@ -400,76 +625,111 @@ async function checkSingleLink(cardElement: Element) {
     
     if (!url || !statusIndicator) return;
     
-    // 设置检测中状态
-    statusIndicator.setAttribute('data-status', STATUS.CHECKING);
-    updateStats();
-    saveStatusToStorage(); // 保存检测中状态
+    // 设置检测中状态（立即保存，因为这是重要状态变更）
+    setLinkStatus(statusIndicator, STATUS.CHECKING, true);
     
     try {
-        // 尝试加载网站图标
-        const img = new Image();
-        img.src = `${url}/favicon.ico`;
-        
-        await new Promise<void>((resolve, reject) => {
-            img.onload = () => resolve();
-            img.onerror = () => reject();
-            // 设置超时
-            setTimeout(() => reject(), 5000);
-        });
-        
-        statusIndicator.setAttribute('data-status', STATUS.ONLINE);
-    } catch (error) {
-        // 如果图标加载失败，尝试HEAD请求
+        // 先尝试 favicon 检测（更快，资源消耗更少）
+        await checkWithFavicon(url);
+        setLinkStatus(statusIndicator, STATUS.ONLINE);
+    } catch (faviconError) {
         try {
-            const response = await fetch(url, { 
-                method: 'HEAD',
-                mode: 'no-cors'
-            });
-            statusIndicator.setAttribute('data-status', STATUS.ONLINE);
-        } catch (e) {
-            statusIndicator.setAttribute('data-status', STATUS.OFFLINE);
+            // favicon 失败后，再尝试 fetch 检测
+            await checkWithFetch(url);
+            setLinkStatus(statusIndicator, STATUS.ONLINE);
+        } catch (fetchError) {
+            // 两种方法都失败，标记为离线
+            setLinkStatus(statusIndicator, STATUS.OFFLINE);
         }
     }
+}
+
+// 使用 favicon 检测（带超时控制）
+function checkWithFavicon(url: string): Promise<void> {
+    return new Promise((resolve, reject) => {
+        const img = new Image();
+        const timeout = setTimeout(() => {
+            reject(new Error('Favicon timeout'));
+        }, 3000); // 3秒超时
+        
+        img.onload = () => {
+            clearTimeout(timeout);
+            resolve();
+        };
+        img.onerror = () => {
+            clearTimeout(timeout);
+            reject(new Error('Favicon load failed'));
+        };
+        img.src = `${url}/favicon.ico`;
+    });
+}
+
+// 使用 fetch 检测（带超时控制）
+function checkWithFetch(url: string): Promise<void> {
+    const controller = new AbortController();
+    const timeoutId = setTimeout(() => controller.abort(), 5000); // 5秒超时
     
+    return fetch(url, { 
+        method: 'HEAD',
+        mode: 'no-cors',
+        cache: 'no-cache',
+        signal: controller.signal
+    }).then(() => {
+        clearTimeout(timeoutId);
+    }).catch((error) => {
+        clearTimeout(timeoutId);
+        throw error;
+    });
+}
+
+// 设置链接状态并更新统计
+function setLinkStatus(statusIndicator: Element, status: string, immediate: boolean = false): void {
+    statusIndicator.setAttribute('data-status', status);
     updateStats();
-    saveStatusToStorage(); // 保存最终状态
+    saveStatusToStorage(immediate);
 }
 
 // 检测所有链接
 async function checkAllLinks() {
     if (!checkAllBtn) return;
     
-    (checkAllBtn as HTMLButtonElement).disabled = true;
-    checkAllBtn.innerHTML = `
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <path d="M12 2v4"></path>
-            <path d="m16.2 7.8 2.9-2.9"></path>
-            <path d="M18 12h4"></path>
-            <path d="m16.2 16.2 2.9 2.9"></path>
-            <path d="M12 18v4"></path>
-            <path d="m4.9 19.1 2.9-2.9"></path>
-            <path d="M2 12h4"></path>
-            <path d="m4.9 4.9 2.9 2.9"></path>
-        </svg>
-        检测中...
-    `;
+    const button = checkAllBtn as HTMLButtonElement;
     
-    const linkCards = document.querySelectorAll('.friend-link-card');
+    // 禁用按钮并显示加载状态
+    button.disabled = true;
+    button.classList.add('loading');
     
-    // 依次检测每个链接，避免同时发起太多请求
-    for (const card of linkCards) {
-        await checkSingleLink(card);
-        // 添加一点延迟，避免请求过于密集
-        await new Promise(resolve => setTimeout(resolve, 300));
+    try {
+        const linkCards = Array.from(document.querySelectorAll('.friend-link-card'));
+        
+        // 获取最优并发数
+        const performanceManager = PerformanceManager.getInstance();
+        const optimalBatchSize = await performanceManager.detectOptimalBatchSize();
+        
+        // 使用智能并发控制
+        await processInBatches(linkCards, optimalBatchSize);
+        
+    } finally {
+        // 恢复按钮状态
+        button.disabled = false;
+        button.classList.remove('loading');
     }
-    
-    (checkAllBtn as HTMLButtonElement).disabled = false;
-    checkAllBtn.innerHTML = `
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <path d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9v-9m0-9v9"></path>
-        </svg>
-        检测所有友链
-    `;
+}
+
+// 批量处理链接检测
+async function processInBatches(items: Element[], batchSize: number): Promise<void> {
+    for (let i = 0; i < items.length; i += batchSize) {
+        const batch = items.slice(i, i + batchSize);
+        
+        // 并发处理当前批次
+        await Promise.all(batch.map(card => checkSingleLink(card)));
+        
+        // 如果不是最后一批，添加动态延迟（基于批次大小调整）
+        if (i + batchSize < items.length) {
+            const delay = Math.max(100, 300 - (batchSize * 50)); // 批次越大，延迟越短
+            await new Promise(resolve => setTimeout(resolve, delay));
+        }
+    }
 }
 
 // 重置所有状态
@@ -503,6 +763,9 @@ function updateStats() {
     if (offlineCount) offlineCount.textContent = offline.toString();
     if (checkingCount) checkingCount.textContent = checking.toString();
 }
+
+// 立即加载状态（在脚本执行时立即运行）
+loadStatusImmediately();
 
 // 初始化应用
 document.addEventListener('DOMContentLoaded', init);
