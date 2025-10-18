@@ -84,7 +84,7 @@ const { sections } = Astro.props as { sections: FriendLinkSection[] };
   </div>
 </div>
 
-<style>
+<style lang="scss">
 .friend-links-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
@@ -413,360 +413,391 @@ const { sections } = Astro.props as { sections: FriendLinkSection[] };
 }
 </style>
 
-<script>
-// 状态常量
-const STATUS = {
-    UNKNOWN: 'unknown',
-    CHECKING: 'checking',
-    ONLINE: 'online',
-    OFFLINE: 'offline'
-};
+<script is:inline>
+  (function() {
+    function initFriendLinkChecker() {
+      // 状态常量
+      const STATUS = {
+        UNKNOWN: 'unknown',
+        CHECKING: 'checking',
+        ONLINE: 'online',
+        OFFLINE: 'offline'
+      };
 
-// 存储键名
-const STORAGE_KEY = 'friendLinksStatus';
+      // 存储键名
+      const STORAGE_KEY = 'friendLinksStatus';
 
-// 性能检测和并发控制
-class PerformanceManager {
-    private static instance: PerformanceManager;
-    private optimalBatchSize: number = 3;
-    private isPerformanceTested: boolean = false;
-    
-    static getInstance(): PerformanceManager {
-        if (!PerformanceManager.instance) {
+      // 性能检测和并发控制
+      class PerformanceManager {
+        constructor() {
+          this.optimalBatchSize = 3;
+          this.isPerformanceTested = false;
+        }
+
+        static getInstance() {
+          if (!PerformanceManager.instance) {
             PerformanceManager.instance = new PerformanceManager();
+          }
+          return PerformanceManager.instance;
         }
-        return PerformanceManager.instance;
-    }
-    
-    // 检测设备性能并确定最优并发数
-    async detectOptimalBatchSize(): Promise<number> {
-        if (this.isPerformanceTested) {
+
+        // 检测设备性能并确定最优并发数
+        async detectOptimalBatchSize() {
+          if (this.isPerformanceTested) {
             return this.optimalBatchSize;
-        }
-        
-        try {
+          }
+
+          try {
             // 基于硬件并发数和网络状况动态调整
             const hardwareConcurrency = navigator.hardwareConcurrency || 4;
-            const connection = (navigator as any).connection;
-            
-            let baseBatchSize = Math.min(hardwareConcurrency, 6); // 最大不超过6
-            
+            const connection = navigator.connection;
+
+            let baseBatchSize = Math.min(hardwareConcurrency, 12); // 最大不超过12
+
             // 根据网络状况调整
             if (connection) {
-                if (connection.effectiveType === 'slow-2g' || connection.effectiveType === '2g') {
-                    baseBatchSize = 1;
-                } else if (connection.effectiveType === '3g') {
-                    baseBatchSize = Math.min(baseBatchSize, 2);
-                } else if (connection.effectiveType === '4g') {
-                    baseBatchSize = Math.min(baseBatchSize, 4);
-                }
+              if (connection.effectiveType === 'slow-2g' || connection.effectiveType === '2g') {
+                baseBatchSize = 1;
+              } else if (connection.effectiveType === '3g') {
+                baseBatchSize = Math.min(baseBatchSize, 6);
+              } else if (connection.effectiveType === '4g') {
+                baseBatchSize = Math.min(baseBatchSize, 12);
+              }
             }
-            
+
             this.optimalBatchSize = baseBatchSize;
             this.isPerformanceTested = true;
-            
+
             console.log(`性能检测完成，最优并发数: ${this.optimalBatchSize}`);
             return this.optimalBatchSize;
-            
-        } catch (error) {
+
+          } catch (error) {
             console.warn('性能检测失败，使用默认并发数:', error);
             this.optimalBatchSize = 3;
             this.isPerformanceTested = true;
             return this.optimalBatchSize;
+          }
         }
-    }
-    
-    getOptimalBatchSize(): number {
-        return this.optimalBatchSize;
-    }
-}
 
-// 防抖存储管理器
-class DebouncedStorage {
-    private static instance: DebouncedStorage;
-    private saveTimeout: number | null = null;
-    private pendingData: Record<string, string> | null = null;
-    private readonly DEBOUNCE_DELAY = 500; // 500ms 防抖延迟
-    
-    static getInstance(): DebouncedStorage {
-        if (!DebouncedStorage.instance) {
+        getOptimalBatchSize() {
+          return this.optimalBatchSize;
+        }
+      }
+
+      // 防抖存储管理器
+      class DebouncedStorage {
+        constructor() {
+          this.saveTimeout = null;
+          this.pendingData = null;
+          this.DEBOUNCE_DELAY = 500; // 500ms 防抖延迟
+        }
+
+        static getInstance() {
+          if (!DebouncedStorage.instance) {
             DebouncedStorage.instance = new DebouncedStorage();
+          }
+          return DebouncedStorage.instance;
         }
-        return DebouncedStorage.instance;
-    }
-    
-    // 防抖保存状态
-    debouncedSave(statusData: Record<string, string>): void {
-        this.pendingData = { ...this.pendingData, ...statusData };
-        
-        if (this.saveTimeout) {
+
+        // 防抖保存状态
+        debouncedSave(statusData) {
+          this.pendingData = { ...this.pendingData, ...statusData };
+
+          if (this.saveTimeout) {
             clearTimeout(this.saveTimeout);
-        }
-        
-        this.saveTimeout = window.setTimeout(() => {
+          }
+
+          this.saveTimeout = setTimeout(() => {
             this.saveToStorage();
-        }, this.DEBOUNCE_DELAY);
-    }
-    
-    // 立即保存（用于重要状态变更）
-    immediateSave(statusData: Record<string, string>): void {
-        if (this.saveTimeout) {
+          }, this.DEBOUNCE_DELAY);
+        }
+
+        // 立即保存（用于重要状态变更）
+        immediateSave(statusData) {
+          if (this.saveTimeout) {
             clearTimeout(this.saveTimeout);
             this.saveTimeout = null;
+          }
+          this.pendingData = { ...this.pendingData, ...statusData };
+          this.saveToStorage();
         }
-        this.pendingData = { ...this.pendingData, ...statusData };
-        this.saveToStorage();
-    }
-    
-    private saveToStorage(): void {
-        if (!this.pendingData) return;
-        
-        try {
+
+        saveToStorage() {
+          if (!this.pendingData) return;
+
+          try {
             localStorage.setItem(STORAGE_KEY, JSON.stringify(this.pendingData));
             this.pendingData = null;
-        } catch (error) {
+          } catch (error) {
             console.warn('无法保存状态到本地存储:', error);
+          }
         }
-    }
-    
-    // 清除存储
-    clearStorage(): void {
-        if (this.saveTimeout) {
+
+        // 清除存储
+        clearStorage() {
+          if (this.saveTimeout) {
             clearTimeout(this.saveTimeout);
             this.saveTimeout = null;
-        }
-        this.pendingData = null;
-        
-        try {
+          }
+          this.pendingData = null;
+
+          try {
             localStorage.removeItem(STORAGE_KEY);
-        } catch (error) {
+          } catch (error) {
             console.warn('无法清除本地存储:', error);
+          }
         }
-    }
-}
+      }
 
-// DOM元素
-const checkAllBtn = document.getElementById('checkAllBtn');
-const resetBtn = document.getElementById('resetBtn');
-const totalCount = document.getElementById('totalCount');
-const onlineCount = document.getElementById('onlineCount');
-const offlineCount = document.getElementById('offlineCount');
-const checkingCount = document.getElementById('checkingCount');
+      // DOM元素
+      let checkAllBtn, resetBtn, totalCount, onlineCount, offlineCount, checkingCount;
 
-// 存储相关函数
-function saveStatusToStorage(immediate: boolean = false) {
-    const statusData: Record<string, string> = {};
-    const statusIndicators = document.querySelectorAll('.status-indicator');
-    
-    statusIndicators.forEach((indicator: Element) => {
-        const cardElement = indicator.closest('.friend-link-card');
-        const url = cardElement?.getAttribute('data-url');
-        const status = indicator.getAttribute('data-status');
-        
-        if (url && status && status !== STATUS.UNKNOWN) {
+      // 存储相关函数
+      function saveStatusToStorage(immediate = false) {
+        const statusData = {};
+        const statusIndicators = document.querySelectorAll('.status-indicator');
+
+        statusIndicators.forEach((indicator) => {
+          const cardElement = indicator.closest('.friend-link-card');
+          const url = cardElement?.getAttribute('data-url');
+          const status = indicator.getAttribute('data-status');
+
+          if (url && status && status !== STATUS.UNKNOWN) {
             statusData[url] = status;
-        }
-    });
-    
-    const storage = DebouncedStorage.getInstance();
-    if (immediate) {
-        storage.immediateSave(statusData);
-    } else {
-        storage.debouncedSave(statusData);
-    }
-}
-
-function clearStatusStorage() {
-    const storage = DebouncedStorage.getInstance();
-    storage.clearStorage();
-}
-
-// 立即加载状态（在DOM解析完成后立即执行）
-function loadStatusImmediately() {
-    try {
-        const storedData = localStorage.getItem(STORAGE_KEY);
-        if (!storedData) return;
-        
-        const statusData = JSON.parse(storedData);
-        
-        // 使用微任务确保DOM已解析但不会阻塞渲染
-        Promise.resolve().then(() => {
-            Object.entries(statusData).forEach(([url, status]) => {
-                const cardElement = document.querySelector(`.friend-link-card[data-url="${url}"]`);
-                const statusIndicator = cardElement?.querySelector('.status-indicator');
-                
-                if (statusIndicator && Object.values(STATUS).includes(status as string)) {
-                    statusIndicator.setAttribute('data-status', status as string);
-                }
-            });
-            
-            updateStats();
+          }
         });
-    } catch (error) {
-        console.warn('无法从本地存储加载状态:', error);
-    }
-}
 
-// 初始化
-function init() {
-    // 计算总链接数
-    const totalLinks = document.querySelectorAll('.friend-link-card').length;
-    if (totalCount) totalCount.textContent = totalLinks.toString();
-    
-    // 事件监听
-    checkAllBtn?.addEventListener('click', checkAllLinks);
-    resetBtn?.addEventListener('click', resetAllStatus);
-}
+        const storage = DebouncedStorage.getInstance();
+        if (immediate) {
+          storage.immediateSave(statusData);
+        } else {
+          storage.debouncedSave(statusData);
+        }
+      }
 
-// 检测单个链接
-async function checkSingleLink(cardElement: Element) {
-    const url = cardElement.getAttribute('data-url');
-    const statusIndicator = cardElement.querySelector('.status-indicator');
-    
-    if (!url || !statusIndicator) return;
-    
-    // 设置检测中状态（立即保存，因为这是重要状态变更）
-    setLinkStatus(statusIndicator, STATUS.CHECKING, true);
-    
-    try {
-        // 先尝试 favicon 检测（更快，资源消耗更少）
-        await checkWithFavicon(url);
-        setLinkStatus(statusIndicator, STATUS.ONLINE);
-    } catch (faviconError) {
+      function clearStatusStorage() {
+        const storage = DebouncedStorage.getInstance();
+        storage.clearStorage();
+      }
+
+      // 立即加载状态（在DOM解析完成后立即执行）
+      function loadStatusImmediately() {
         try {
+          const storedData = localStorage.getItem(STORAGE_KEY);
+          if (!storedData) return;
+
+          const statusData = JSON.parse(storedData);
+
+          // 使用微任务确保DOM已解析但不会阻塞渲染
+          Promise.resolve().then(() => {
+            Object.entries(statusData).forEach(([url, status]) => {
+              const cardElement = document.querySelector(`.friend-link-card[data-url="${url}"]`);
+              const statusIndicator = cardElement?.querySelector('.status-indicator');
+
+              if (statusIndicator && Object.values(STATUS).includes(status)) {
+                statusIndicator.setAttribute('data-status', status);
+              }
+            });
+
+            updateStats();
+          });
+        } catch (error) {
+          console.warn('无法从本地存储加载状态:', error);
+        }
+      }
+
+      // 检测单个链接
+      async function checkSingleLink(cardElement) {
+        const url = cardElement.getAttribute('data-url');
+        const statusIndicator = cardElement.querySelector('.status-indicator');
+
+        if (!url || !statusIndicator) return;
+
+        // 设置检测中状态（立即保存，因为这是重要状态变更）
+        setLinkStatus(statusIndicator, STATUS.CHECKING, true);
+
+        try {
+          // 先尝试 favicon 检测（更快，资源消耗更少）
+          await checkWithFavicon(url);
+          setLinkStatus(statusIndicator, STATUS.ONLINE);
+        } catch (faviconError) {
+          try {
             // favicon 失败后，再尝试 fetch 检测
             await checkWithFetch(url);
             setLinkStatus(statusIndicator, STATUS.ONLINE);
-        } catch (fetchError) {
+          } catch (fetchError) {
             // 两种方法都失败，标记为离线
             setLinkStatus(statusIndicator, STATUS.OFFLINE);
+          }
         }
-    }
-}
+      }
 
-// 使用 favicon 检测（带超时控制）
-function checkWithFavicon(url: string): Promise<void> {
-    return new Promise((resolve, reject) => {
-        const img = new Image();
-        const timeout = setTimeout(() => {
+      // 使用 favicon 检测（带超时控制）
+      function checkWithFavicon(url) {
+        return new Promise((resolve, reject) => {
+          const img = new Image();
+          const timeout = setTimeout(() => {
             reject(new Error('Favicon timeout'));
-        }, 3000); // 3秒超时
-        
-        img.onload = () => {
+          }, 3000); // 3秒超时
+
+          img.onload = () => {
             clearTimeout(timeout);
             resolve();
-        };
-        img.onerror = () => {
+          };
+          img.onerror = () => {
             clearTimeout(timeout);
             reject(new Error('Favicon load failed'));
-        };
-        img.src = `${url}/favicon.ico`;
-    });
-}
+          };
+          img.src = `${url}/favicon.ico`;
+        });
+      }
 
-// 使用 fetch 检测（带超时控制）
-function checkWithFetch(url: string): Promise<void> {
-    const controller = new AbortController();
-    const timeoutId = setTimeout(() => controller.abort(), 5000); // 5秒超时
-    
-    return fetch(url, { 
-        method: 'HEAD',
-        mode: 'no-cors',
-        cache: 'no-cache',
-        signal: controller.signal
-    }).then(() => {
-        clearTimeout(timeoutId);
-    }).catch((error) => {
-        clearTimeout(timeoutId);
-        throw error;
-    });
-}
+      // 使用 fetch 检测（带超时控制）
+      function checkWithFetch(url) {
+        const controller = new AbortController();
+        const timeoutId = setTimeout(() => controller.abort(), 5000); // 5秒超时
 
-// 设置链接状态并更新统计
-function setLinkStatus(statusIndicator: Element, status: string, immediate: boolean = false): void {
-    statusIndicator.setAttribute('data-status', status);
-    updateStats();
-    saveStatusToStorage(immediate);
-}
+        return fetch(url, {
+          method: 'HEAD',
+          mode: 'no-cors',
+          cache: 'no-cache',
+          signal: controller.signal
+        }).then(() => {
+          clearTimeout(timeoutId);
+        }).catch((error) => {
+          clearTimeout(timeoutId);
+          throw error;
+        });
+      }
 
-// 检测所有链接
-async function checkAllLinks() {
-    if (!checkAllBtn) return;
-    
-    const button = checkAllBtn as HTMLButtonElement;
-    
-    // 禁用按钮并显示加载状态
-    button.disabled = true;
-    button.classList.add('loading');
-    
-    try {
-        const linkCards = Array.from(document.querySelectorAll('.friend-link-card'));
-        
-        // 获取最优并发数
-        const performanceManager = PerformanceManager.getInstance();
-        const optimalBatchSize = await performanceManager.detectOptimalBatchSize();
-        
-        // 使用智能并发控制
-        await processInBatches(linkCards, optimalBatchSize);
-        
-    } finally {
-        // 恢复按钮状态
-        button.disabled = false;
-        button.classList.remove('loading');
-    }
-}
+      // 设置链接状态并更新统计
+      function setLinkStatus(statusIndicator, status, immediate = false) {
+        statusIndicator.setAttribute('data-status', status);
+        updateStats();
+        saveStatusToStorage(immediate);
+      }
 
-// 批量处理链接检测
-async function processInBatches(items: Element[], batchSize: number): Promise<void> {
-    for (let i = 0; i < items.length; i += batchSize) {
-        const batch = items.slice(i, i + batchSize);
-        
-        // 并发处理当前批次
-        await Promise.all(batch.map(card => checkSingleLink(card)));
-        
-        // 如果不是最后一批，添加动态延迟（基于批次大小调整）
-        if (i + batchSize < items.length) {
+      // 检测所有链接
+      async function checkAllLinks() {
+        if (!checkAllBtn) return;
+
+        const button = checkAllBtn;
+
+        // 禁用按钮并显示加载状态
+        button.disabled = true;
+        button.classList.add('loading');
+
+        try {
+          const linkCards = Array.from(document.querySelectorAll('.friend-link-card'));
+
+          // 获取最优并发数
+          const performanceManager = PerformanceManager.getInstance();
+          const optimalBatchSize = await performanceManager.detectOptimalBatchSize();
+
+          // 使用智能并发控制
+          await processInBatches(linkCards, optimalBatchSize);
+
+        } finally {
+          // 恢复按钮状态
+          button.disabled = false;
+          button.classList.remove('loading');
+        }
+      }
+
+      // 批量处理链接检测
+      async function processInBatches(items, batchSize) {
+        for (let i = 0; i < items.length; i += batchSize) {
+          const batch = items.slice(i, i + batchSize);
+
+          // 并发处理当前批次
+          await Promise.all(batch.map(card => checkSingleLink(card)));
+
+          // 如果不是最后一批，添加动态延迟（基于批次大小调整）
+          if (i + batchSize < items.length) {
             const delay = Math.max(100, 300 - (batchSize * 50)); // 批次越大，延迟越短
             await new Promise(resolve => setTimeout(resolve, delay));
+          }
         }
-    }
-}
+      }
 
-// 重置所有状态
-function resetAllStatus() {
-    const statusIndicators = document.querySelectorAll('.status-indicator');
-    statusIndicators.forEach((indicator: Element) => {
-        indicator.setAttribute('data-status', STATUS.UNKNOWN);
-    });
-    updateStats();
-    clearStatusStorage(); // 清除存储的状态
-}
+      // 重置所有状态
+      function resetAllStatus() {
+        const statusIndicators = document.querySelectorAll('.status-indicator');
+        statusIndicators.forEach((indicator) => {
+          indicator.setAttribute('data-status', STATUS.UNKNOWN);
+        });
+        updateStats();
+        clearStatusStorage(); // 清除存储的状态
+      }
 
-// 更新统计信息
-function updateStats() {
-    const statusIndicators = document.querySelectorAll('.status-indicator');
-    
-    let online = 0;
-    let offline = 0;
-    let checking = 0;
-    
-    statusIndicators.forEach((indicator: Element) => {
-        const status = indicator.getAttribute('data-status');
-        switch(status) {
+      // 更新统计信息
+      function updateStats() {
+        const statusIndicators = document.querySelectorAll('.status-indicator');
+
+        let online = 0;
+        let offline = 0;
+        let checking = 0;
+
+        statusIndicators.forEach((indicator) => {
+          const status = indicator.getAttribute('data-status');
+          switch(status) {
             case STATUS.ONLINE: online++; break;
             case STATUS.OFFLINE: offline++; break;
             case STATUS.CHECKING: checking++; break;
-        }
-    });
-    
-    if (onlineCount) onlineCount.textContent = online.toString();
-    if (offlineCount) offlineCount.textContent = offline.toString();
-    if (checkingCount) checkingCount.textContent = checking.toString();
-}
+          }
+        });
 
-// 立即加载状态（在脚本执行时立即运行）
-loadStatusImmediately();
+        if (onlineCount) onlineCount.textContent = online.toString();
+        if (offlineCount) offlineCount.textContent = offline.toString();
+        if (checkingCount) checkingCount.textContent = checking.toString();
+      }
 
-// 初始化应用
-document.addEventListener('DOMContentLoaded', init);
+      // 初始化应用
+      function init() {
+        // 获取DOM元素引用
+        checkAllBtn = document.getElementById('checkAllBtn');
+        resetBtn = document.getElementById('resetBtn');
+        totalCount = document.getElementById('totalCount');
+        onlineCount = document.getElementById('onlineCount');
+        offlineCount = document.getElementById('offlineCount');
+        checkingCount = document.getElementById('checkingCount');
+
+        // 计算总链接数
+        const totalLinks = document.querySelectorAll('.friend-link-card').length;
+        if (totalCount) totalCount.textContent = totalLinks.toString();
+
+        // 事件监听
+        checkAllBtn?.addEventListener('click', checkAllLinks);
+        resetBtn?.addEventListener('click', resetAllStatus);
+
+        // 加载存储的状态
+        loadStatusImmediately();
+      }
+
+      // 返回公共方法
+      return {
+        init: init,
+        checkAllLinks: checkAllLinks,
+        resetAllStatus: resetAllStatus,
+        updateStats: updateStats
+      };
+    }
+
+    // 创建全局实例并初始化
+    if (!window.friendLinkChecker) {
+      window.friendLinkChecker = initFriendLinkChecker();
+
+      // 在DOM加载完成后初始化
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', () => {
+          window.friendLinkChecker.init();
+        });
+      } else {
+        window.friendLinkChecker.init();
+      }
+    }else {
+      window.friendLinkChecker.init();
+    }
+  })();
 </script>
+    
