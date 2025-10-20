@@ -210,7 +210,7 @@ export const friendLinkSections: FriendLinkSection[] = [
 			{
 				title: "阿叶Ayeez",
 				url: "https://blog.Ayeez.cn",
-				avatar: "https://cdn.pljzy.top/linkIco/avatar.avif",
+				avatar: "https://cdn.pljzy.top/linkIco/ayeez.jpg",
 				desc: "记录自己的学习历程，记录自己的美好生活",
 			},
 		],
