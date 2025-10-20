@@ -48,7 +48,6 @@ const hasChildren = processedLink.children && processedLink.children.length > 0;
 						aria-label={child.name}
 					>
 						<div class="flex items-center">
-							{child.icon && <Icon name={child.icon} class="text-[1rem] mr-2" />}
 							<span>{child.name}</span>
 						</div>
 						{child.external && (
@@ -66,7 +65,6 @@ const hasChildren = processedLink.children && processedLink.children.length > 0;
 			class="btn-plain scale-animation rounded-lg h-11 font-bold px-5 active:scale-95"
 		>
 			<div class="flex items-center">
-				{processedLink.icon && <Icon name={processedLink.icon} class="text-[1.1rem] mr-2" />}
 				{processedLink.name}
 				{processedLink.external && <Icon name="fa6-solid:arrow-up-right-from-square" class="text-[0.875rem] transition -translate-y-[1px] ml-1 text-black/[0.2] dark:text-white/[0.2]" />}
 			</div>
@@ -118,84 +116,126 @@ const hasChildren = processedLink.children && processedLink.children.length > 0;
 </style>
 
 <script>
-	// 键盘导航支持
-	document.addEventListener('DOMContentLoaded', function() {
-		const dropdowns = document.querySelectorAll('[data-dropdown]');
-		
-		dropdowns.forEach(dropdown => {
-			const trigger = dropdown.querySelector('[data-dropdown-trigger]');
-			const menu = dropdown.querySelector('[data-dropdown-menu]');
-			const items = dropdown.querySelectorAll('.dropdown-item');
-			
-			if (!trigger || !menu) return;
-			
-			// 键盘事件处理
-			trigger.addEventListener('keydown', function(e) {
-				if (e.key === 'Enter' || e.key === ' ') {
-					e.preventDefault();
-					toggleDropdown(dropdown, trigger, menu);
-				} else if (e.key === 'ArrowDown') {
-					e.preventDefault();
-					openDropdown(dropdown, trigger, menu);
-					if (items.length > 0) {
-						items[0].focus();
-					}
-				} else if (e.key === 'Escape') {
-					closeDropdown(dropdown, trigger, menu);
-				}
-			});
-			
-			// 菜单项键盘导航
-			items.forEach((item, index) => {
-				item.addEventListener('keydown', function(e) {
-					if (e.key === 'ArrowDown') {
-						e.preventDefault();
-						const nextIndex = (index + 1) % items.length;
-						items[nextIndex].focus();
-					} else if (e.key === 'ArrowUp') {
-						e.preventDefault();
-						const prevIndex = (index - 1 + items.length) % items.length;
-						items[prevIndex].focus();
-					} else if (e.key === 'Escape') {
-						closeDropdown(dropdown, trigger, menu);
-						trigger.focus();
-					}
-				});
-			});
-		});
-		
-		// 点击外部关闭下拉菜单
-		document.addEventListener('click', function(e) {
-			dropdowns.forEach(dropdown => {
-				if (!dropdown.contains(e.target)) {
-					const trigger = dropdown.querySelector('[data-dropdown-trigger]');
-					const menu = dropdown.querySelector('[data-dropdown-menu]');
-					if (trigger && menu) {
-						closeDropdown(dropdown, trigger, menu);
-					}
-				}
-			});
-		});
-	});
-	
-	function toggleDropdown(dropdown, trigger, menu) {
-		const isOpen = trigger.getAttribute('aria-expanded') === 'true';
-		if (isOpen) {
-			closeDropdown(dropdown, trigger, menu);
-		} else {
-			openDropdown(dropdown, trigger, menu);
-		}
-	}
-	
-	function openDropdown(dropdown, trigger, menu) {
-		trigger.setAttribute('aria-expanded', 'true');
-		menu.classList.remove('opacity-0', 'invisible', 'pointer-events-none', 'translate-y-[-8px]');
-		menu.classList.add('opacity-100', 'visible', 'pointer-events-auto', 'translate-y-0');
-	}
-	
-	function closeDropdown(dropdown, trigger, menu) {
-		trigger.setAttribute('aria-expanded', 'false');
-		menu.classList.add('opacity-0', 'invisible', 'pointer-events-none', 'translate-y-[-8px]');
-		menu.classList.remove('opacity-100', 'visible', 'pointer-events-auto', 'translate-y-0');
-	}
+    // 键盘导航支持
+    document.addEventListener('DOMContentLoaded', () => {
+        const dropdowns = document.querySelectorAll('[data-dropdown]');
+
+        // 点击外部关闭下拉菜单
+        const handleDocumentClick = (e: Event) => {
+            dropdowns.forEach(dropdown => {
+                if (!dropdown.contains(e.target as Node)) {
+                    const trigger = dropdown.querySelector('[data-dropdown-trigger]') as HTMLElement;
+                    const menu = dropdown.querySelector('[data-dropdown-menu]') as HTMLElement;
+                    if (trigger && menu) {
+                        closeDropdown(trigger, menu);
+                    }
+                }
+            });
+        };
+
+        // 键盘事件处理函数
+        const handleTriggerKeydown = (
+            e: KeyboardEvent,
+            trigger: HTMLElement,
+            menu: HTMLElement,
+            items: NodeListOf<HTMLElement>
+        ) => {
+            switch (e.key) {
+                case 'Enter':
+                case ' ':
+                    e.preventDefault();
+                    toggleDropdown(trigger, menu);
+                    break;
+                case 'ArrowDown':
+                    e.preventDefault();
+                    openDropdown(trigger, menu);
+                    if (items.length > 0) {
+                        items[0].focus();
+                    }
+                    break;
+                case 'Escape':
+                    closeDropdown(trigger, menu);
+                    break;
+            }
+        };
+
+        // 菜单项键盘导航处理
+        const handleItemKeydown = (
+            e: KeyboardEvent,
+            index: number,
+            items: NodeListOf<HTMLElement>,
+            trigger: HTMLElement,
+            menu: HTMLElement
+        ) => {
+            switch (e.key) {
+                case 'ArrowDown':
+                    e.preventDefault();
+                    const nextIndex = (index + 1) % items.length;
+                    items[nextIndex].focus();
+                    break;
+                case 'ArrowUp':
+                    e.preventDefault();
+                    const prevIndex = (index - 1 + items.length) % items.length;
+                    items[prevIndex].focus();
+                    break;
+                case 'Escape':
+                    closeDropdown(trigger, menu);
+                    trigger.focus();
+                    break;
+            }
+        };
+
+        // 初始化下拉菜单
+        dropdowns.forEach(dropdown => {
+            const trigger = dropdown.querySelector('[data-dropdown-trigger]') as HTMLElement;
+            const menu = dropdown.querySelector('[data-dropdown-menu]') as HTMLElement;
+            const items = dropdown.querySelectorAll('.dropdown-item') as NodeListOf<HTMLElement>;
+
+            if (!trigger || !menu) return;
+
+            // 触发器键盘事件
+            trigger.addEventListener('keydown', (e) => {
+                handleTriggerKeydown(e as KeyboardEvent, trigger, menu, items);
+            });
+
+            // 菜单项键盘事件
+            items.forEach((item, index) => {
+                item.addEventListener('keydown', (e) => {
+                    handleItemKeydown(e as KeyboardEvent, index, items, trigger, menu);
+                });
+            });
+        });
+
+        document.addEventListener('click', handleDocumentClick);
+    });
+
+    // 下拉菜单状态管理
+    const toggleDropdown = (trigger: HTMLElement, menu: HTMLElement) => {
+        const isOpen = trigger.getAttribute('aria-expanded') === 'true';
+        isOpen ? closeDropdown(trigger, menu) : openDropdown(trigger, menu);
+    };
+
+    const openDropdown = (trigger: HTMLElement, menu: HTMLElement) => {
+        trigger.setAttribute('aria-expanded', 'true');
+        updateMenuClasses(menu, false);
+    };
+
+    const closeDropdown = (trigger: HTMLElement, menu: HTMLElement) => {
+        trigger.setAttribute('aria-expanded', 'false');
+        updateMenuClasses(menu, true);
+    };
+
+    // 菜单类名管理
+    const updateMenuClasses = (menu: HTMLElement, isClosing: boolean) => {
+        const classesToAdd = isClosing
+            ? ['opacity-0', 'invisible', 'pointer-events-none', 'translate-y-[-8px]']
+            : ['opacity-100', 'visible', 'pointer-events-auto', 'translate-y-0'];
+
+        const classesToRemove = isClosing
+            ? ['opacity-100', 'visible', 'pointer-events-auto', 'translate-y-0']
+            : ['opacity-0', 'invisible', 'pointer-events-none', 'translate-y-[-8px]'];
+
+        menu.classList.remove(...classesToRemove);
+        menu.classList.add(...classesToAdd);
+    };
 </script>
