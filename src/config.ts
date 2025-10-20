@@ -55,8 +55,23 @@ export const navBarConfig: NavBarConfig = {
 		LinkPreset.Home,
 		LinkPreset.Archive,
 		LinkPreset.About,
-		LinkPreset.Links,
-		LinkPreset.Images, // 如果没有lsky.pro图床，则注释掉 https://docs.lsky.pro/archive/free/v2/
+		{
+			name: "社交",
+			url: "/links/",
+			children: [LinkPreset.Links],
+		},
+		{
+			name: "其他",
+			url: "/content/",
+			children: [
+				LinkPreset.Images, // 如果没有lsky.pro图床，则注释掉 https://docs.lsky.pro/archive/free/v2/
+				{
+					name: "网站监控",
+					url: "https://stats.uptimerobot.com/f3bIMzwfwF",
+					external: true,
+				},
+			],
+		},
 		{
 			name: "旧站",
 			url: "https://pljzy.top", // Internal links should not include the base path, as it is automatically added
