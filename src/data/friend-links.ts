@@ -148,7 +148,7 @@ export const friendLinkSections: FriendLinkSection[] = [
 				title: "酥米的小站",
 				url: "https://www.sumi233.top/",
 				avatar:
-					"https://cdn.sumi233.top/gh/huang233893/blog-image-bed/top/huang233893/imgs/blog/userfb6a1018b84ce485.jpg",
+					"https://cdn.sumi233.top/gh/huang233893/blog-image-bed@main/top/huang233893/imgs/blog/usersumi.png",
 				desc: "终有一日，寻梦中人",
 			},
 			{
@@ -235,6 +235,12 @@ export const friendLinkSections: FriendLinkSection[] = [
 				url: "https://www.pljzy.top/bookkeeping.html",
 				avatar: "https://www.pljzy.top/logo.ico",
 				desc: "本地记账网页应用，轻松记录和管理您的日常消费",
+			},
+			{
+				title: "网站监控服务",
+				url: "https://stats.uptimerobot.com/f3bIMzwfwF",
+				avatar: "https://cdn.pljzy.top/linkIco/uptimerobot.png",
+				desc: "提供网站监控服务，实时监测网站状态，确保网站稳定运行",
 			},
 		],
 	},
