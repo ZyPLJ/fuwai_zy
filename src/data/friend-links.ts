@@ -207,6 +207,12 @@ export const friendLinkSections: FriendLinkSection[] = [
 				avatar: "https://img.dooki.cloud/i/2025/08/29/68b09e116c4b6.webp",
 				desc: "前途似海，来日方长",
 			},
+			{
+				title: "阿叶Ayeez",
+				url: "https://blog.Ayeez.cn",
+				avatar: "https://cdn.pljzy.top/linkIco/avatar.avif",
+				desc: "记录自己的学习历程，记录自己的美好生活",
+			},
 		],
 	},
 	{
