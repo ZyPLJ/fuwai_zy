@@ -58,7 +58,7 @@ export const navBarConfig: NavBarConfig = {
 		{
 			name: "社交",
 			url: "/links/",
-			children: [LinkPreset.Links],
+			children: [LinkPreset.Links, LinkPreset.Feed], // 如果没有友链朋友圈功能，则注释掉
 		},
 		{
 			name: "其他",
@@ -133,4 +133,8 @@ export const imageLibraryConfig = {
 	albumsEndpoint: "/albums?order=earliest", // 相册列表接口
 	imagesEndpoint: "/images", // 图片列表接口
 	defaultAlbumId: 4, // 默认相册ID
+};
+
+export const friendLinkFeedConfig = {
+	apiUrl: "https://pljzy.top:1224/all.json", // 友链朋友圈API地址
 };

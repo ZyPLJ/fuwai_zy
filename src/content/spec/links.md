@@ -8,7 +8,7 @@
 
 ### 申请方式
 
-提交issue至：[https://github.com/ZyPLJ/fuwai_zyplj/issues](https://github.com/ZyPLJ/fuwai_zy/issues)
+提交issue至：[https://github.com/ZyPLJ/fuwai_zyplj/issues](https://github.com/ZyPLJ/fuwai_zyplj/issues)
 
 或者在下方评论区留言。
 
