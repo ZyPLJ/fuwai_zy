@@ -213,6 +213,13 @@ export const friendLinkSections: FriendLinkSection[] = [
 				avatar: "https://cdn.pljzy.top/linkIco/ayeez.jpg",
 				desc: "记录自己的学习历程，记录自己的美好生活",
 			},
+			{
+				title: "夏夜流萤",
+				url: "https://blog.cuteleaf.cn",
+				avatar:
+					"https://q.qlogo.cn/headimg_dl?dst_uin=7618557&spec=640&img_type=jpg",
+				desc: "总有一场相遇，是互相喜欢的！",
+			},
 		],
 	},
 	{
