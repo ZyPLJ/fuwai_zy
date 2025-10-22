@@ -101,7 +101,7 @@ function handlePageClick(page: number) {
 		currentPage = page;
 		updateDisplayedArticles();
 		// 滚动到页面顶部
-		window.scrollTo({ top: 0, behavior: "smooth" });
+		// window.scrollTo({ top: 0, behavior: "smooth" });
 	}
 }
 
@@ -142,7 +142,7 @@ onMount(() => {
 });
 </script>
 
-<div class="card-base px-8 py-6">
+<div class="card-base px-8 py-6 mb-4">
   <!-- 页面标题 -->
   <div class="text-center mb-8 prose dark:prose-invert prose-base !max-w-none custom-md mt-2">
     <h1 class="text-3xl font-bold text-[var(--text-main)] mb-2">友链朋友圈</h1>
@@ -296,76 +296,6 @@ onMount(() => {
         {/each}
       </div>
       
-		<!-- Pagination -->
-		{#if totalPages > 1}
-			<div class="flex flex-row gap-3 justify-center">
-				<!-- Previous Page -->
-				<button
-					on:click={() => handlePageClick(currentPage - 1)}
-					disabled={currentPage <= 1}
-					class="btn-card overflow-hidden rounded-lg text-[var(--primary)] w-11 h-11 disabled:opacity-50 disabled:cursor-not-allowed"
-					aria-label={currentPage > 1 ? "Previous Page" : null}
-				>
-					<Icon icon="material-symbols:chevron-left-rounded" class="text-[1.75rem]" />
-				</button>
-
-				<!-- Page Numbers -->
-				<div class="bg-[var(--card-bg)] flex flex-row rounded-lg items-center text-neutral-700 dark:text-neutral-300 font-bold">
-					{#if currentPage > 3}
-						<button
-							on:click={() => handlePageClick(1)}
-							class="btn-card w-11 h-11 rounded-lg overflow-hidden active:scale-[0.85]"
-							aria-label="Page 1"
-						>
-							1
-						</button>
-						{#if currentPage > 4}
-							<Icon icon="material-symbols:more-horiz" class="mx-1" />
-						{/if}
-					{/if}
-
-					{#each getPageNumbers() as pageNum}
-						{#if pageNum === currentPage}
-							<div class="h-11 w-11 rounded-lg bg-[var(--primary)] flex items-center justify-center font-bold text-white dark:text-black/70">
-								{pageNum}
-							</div>
-						{:else}
-							<button
-								on:click={() => handlePageClick(pageNum)}
-								class="btn-card w-11 h-11 rounded-lg overflow-hidden active:scale-[0.85]"
-								aria-label="Page {pageNum}"
-							>
-								{pageNum}
-							</button>
-						{/if}
-					{/each}
-
-					{#if currentPage < totalPages - 2}
-						{#if currentPage < totalPages - 3}
-							<Icon icon="material-symbols:more-horiz" class="mx-1" />
-						{/if}
-						<button
-							on:click={() => handlePageClick(totalPages)}
-							class="btn-card w-11 h-11 rounded-lg overflow-hidden active:scale-[0.85]"
-							aria-label="Page {totalPages}"
-						>
-							{totalPages}
-						</button>
-					{/if}
-				</div>
-
-				<!-- Next Page -->
-				<button
-					on:click={() => handlePageClick(currentPage + 1)}
-					disabled={currentPage >= totalPages}
-					class="btn-card overflow-hidden rounded-lg text-[var(--primary)] w-11 h-11 disabled:opacity-50 disabled:cursor-not-allowed"
-					aria-label={currentPage < totalPages ? "Next Page" : null}
-				>
-					<Icon icon="material-symbols:chevron-right-rounded" class="text-[1.75rem]" />
-				</button>
-			</div>
-		{/if}
-      
       <!-- 最后更新时间 -->
       {#if statisticalData}
         <div class="update-time text-center mt-8 text-[var(--text-secondary)] text-sm">
@@ -381,12 +311,77 @@ onMount(() => {
     {/if}
   {/if}
 </div>
+<!-- Pagination -->
+{#if totalPages > 1}
+  <div class="flex flex-row gap-3 justify-center">
+    <!-- Previous Page -->
+    <button
+            on:click={() => handlePageClick(currentPage - 1)}
+            disabled={currentPage <= 1}
+            class="btn-card overflow-hidden rounded-lg text-[var(--primary)] w-11 h-11 disabled:opacity-50 disabled:cursor-not-allowed"
+            aria-label={currentPage > 1 ? "Previous Page" : null}
+    >
+      <Icon icon="material-symbols:chevron-left-rounded" class="text-[1.75rem]" />
+    </button>
+
+    <!-- Page Numbers -->
+    <div class="bg-[var(--card-bg)] flex flex-row rounded-lg items-center text-neutral-700 dark:text-neutral-300 font-bold">
+      {#if currentPage > 3}
+        <button
+                on:click={() => handlePageClick(1)}
+                class="btn-card w-11 h-11 rounded-lg overflow-hidden active:scale-[0.85]"
+                aria-label="Page 1"
+        >
+          1
+        </button>
+        {#if currentPage > 4}
+          <Icon icon="material-symbols:more-horiz" class="mx-1" />
+        {/if}
+      {/if}
+
+      {#each getPageNumbers() as pageNum}
+        {#if pageNum === currentPage}
+          <div class="h-11 w-11 rounded-lg bg-[var(--primary)] flex items-center justify-center font-bold text-white dark:text-black/70">
+            {pageNum}
+          </div>
+        {:else}
+          <button
+                  on:click={() => handlePageClick(pageNum)}
+                  class="btn-card w-11 h-11 rounded-lg overflow-hidden active:scale-[0.85]"
+                  aria-label="Page {pageNum}"
+          >
+            {pageNum}
+          </button>
+        {/if}
+      {/each}
+
+      {#if currentPage < totalPages - 2}
+        {#if currentPage < totalPages - 3}
+          <Icon icon="material-symbols:more-horiz" class="mx-1" />
+        {/if}
+        <button
+                on:click={() => handlePageClick(totalPages)}
+                class="btn-card w-11 h-11 rounded-lg overflow-hidden active:scale-[0.85]"
+                aria-label="Page {totalPages}"
+        >
+          {totalPages}
+        </button>
+      {/if}
+    </div>
+
+    <!-- Next Page -->
+    <button
+            on:click={() => handlePageClick(currentPage + 1)}
+            disabled={currentPage >= totalPages}
+            class="btn-card overflow-hidden rounded-lg text-[var(--primary)] w-11 h-11 disabled:opacity-50 disabled:cursor-not-allowed"
+            aria-label={currentPage < totalPages ? "Next Page" : null}
+    >
+      <Icon icon="material-symbols:chevron-right-rounded" class="text-[1.75rem]" />
+    </button>
+  </div>
+{/if}
 
 <style>
-.page-container {
-  color: var(--text-main);
-}
-
 /* 卡片基础样式 */
 .stat-card,
 .article-card {
