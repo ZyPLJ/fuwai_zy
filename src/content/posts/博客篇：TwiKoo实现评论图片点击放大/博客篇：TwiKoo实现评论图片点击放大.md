@@ -60,20 +60,22 @@ function createPhotoSwipe() {
 
 虽然实现了点击放大🖱️，但是鼠标移入图片的时候，鼠标应该变为放大镜🔎，所以还需要修改评论组件，添加样式。
 
-需要在`tcomment`后面添加上样式代码🎨：
+需要在`script`代码里面动态添加上样式代码🎨：
 
-```html
-<div id="tcomment" class="twikoo-comment"></div>
-<style>
-    /* 为评论区图片添加放大镜光标样式 */
-    .tk-content img {
-        cursor: zoom-in;
-        transition: opacity 0.2s ease;
-    }
-    .tk-content img:hover {
-        opacity: 0.9;
-    }
-</style>
+```js
+// 动态创建样式并添加到页面
+const style = document.createElement('style');
+style.textContent = `
+                        .tk-content img {
+                            cursor: zoom-in;
+                            transition: opacity 0.2s ease;
+                        }
+                        .tk-content img:hover {
+                            opacity: 0.9;
+                        }
+                     `;
+document.head.appendChild(style);
+console.log("动态样式已添加到页面");
 ```
 
 然后在评论组件`init`方法中的`onCommentLoaded`事件中调用刚刚为`window`对象绑定的方法⚙️。
