@@ -190,12 +190,6 @@ export const friendLinkSections: FriendLinkSection[] = [
 				desc: "醉后不知天在水,满船清梦压星河。",
 			},
 			{
-				title: "风行Justin - 个人空间",
-				url: "https://forthing.top/",
-				avatar: "https://forthing.top/avatar.jpg",
-				desc: "一个兴趣使然的设计爱好者",
-			},
-			{
 				title: "mccsjs",
 				url: "https://mccsjs.eu.org/",
 				avatar: "https://mccsjs.eu.org/img/head.jpg",
@@ -219,6 +213,12 @@ export const friendLinkSections: FriendLinkSection[] = [
 				avatar:
 					"https://q.qlogo.cn/headimg_dl?dst_uin=7618557&spec=640&img_type=jpg",
 				desc: "总有一场相遇，是互相喜欢的！",
+			},
+			{
+				title: "绘星里",
+				url: "https://blog.storical.fun/",
+				avatar: "https://blog.storical.fun/images/icon.png",
+				desc: "一起来绘制属于自己的星星！",
 			},
 		],
 	},
@@ -254,6 +254,17 @@ export const friendLinkSections: FriendLinkSection[] = [
 				url: "https://stats.uptimerobot.com/f3bIMzwfwF",
 				avatar: "https://cdn.pljzy.top/linkIco/uptimerobot.png",
 				desc: "提供网站监控服务，实时监测网站状态，确保网站稳定运行",
+			},
+		],
+	},
+	{
+		title: "🌐 迷失友链",
+		items: [
+			{
+				title: "风行Justin - 个人空间",
+				url: "https://forthing.top/",
+				avatar: "https://forthing.top/avatar.jpg",
+				desc: "一个兴趣使然的设计爱好者",
 			},
 		],
 	},
