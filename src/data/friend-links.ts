@@ -220,6 +220,12 @@ export const friendLinkSections: FriendLinkSection[] = [
 				avatar: "https://blog.storical.fun/images/icon.png",
 				desc: "一起来绘制属于自己的星星！",
 			},
+			{
+				title: "Thun888",
+				url: "https://blog.hzchu.top/",
+				avatar: "https://blog.hzchu.top/img/avatar.webp",
+				desc: "夏日当空，心如深渊",
+			},
 		],
 	},
 	{
