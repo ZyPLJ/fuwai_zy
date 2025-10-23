@@ -117,4 +117,4 @@ twikoo.init({
 
 - 本博客 `Github` 地址：https://github.com/ZyPLJ/fuwai_zyplj
 - 原作者开源地址：https://github.com/saicaca/fuwari
-- `Astro/fuwai` 博客配置教程：[https://blog.pljzy.top/posts/astrofuwai/astrofuwai%E5%8D%9A%E5%AE%A2%E9%83%A8%E7%BD%B2%E6%95%99%E7%A8%8B/
+- `Astro/fuwai` [博客配置教程](https://blog.pljzy.top/posts/astrofuwai/astrofuwai%E5%8D%9A%E5%AE%A2%E9%83%A8%E7%BD%B2%E6%95%99%E7%A8%8B/)
