@@ -232,6 +232,12 @@ export const friendLinkSections: FriendLinkSection[] = [
 				avatar: "https://www.fis.ink/img/logo.png",
 				desc: "非淡泊无以明志，非宁静无以致远",
 			},
+			{
+				title: "花墨",
+				url: "https://flowersink.com",
+				avatar: "https://api.flowersink.com/img/logo.png",
+				desc: "好耶！是再花猫猫头ฅ•ω•ฅ",
+			},
 		],
 	},
 	{
