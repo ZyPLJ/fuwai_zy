@@ -238,6 +238,12 @@ export const friendLinkSections: FriendLinkSection[] = [
 				avatar: "https://api.flowersink.com/img/logo.png",
 				desc: "好耶！是再花猫猫头ฅ•ω•ฅ",
 			},
+			{
+				title: "鈴奈咲桜のBlog",
+				url: "https://blog.sakura.ink",
+				avatar: "https://q2.qlogo.cn/headimg_dl?dst_uin=2731443459&spec=5",
+				desc: "愛することを忘れないで",
+			},
 		],
 	},
 	{
