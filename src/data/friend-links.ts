@@ -226,6 +226,12 @@ export const friendLinkSections: FriendLinkSection[] = [
 				avatar: "https://blog.hzchu.top/img/avatar.webp",
 				desc: "夏日当空，心如深渊",
 			},
+			{
+				title: "fishcpy的小破站",
+				url: "https://blog.fis.ink",
+				avatar: "https://www.fis.ink/img/logo.png",
+				desc: "非淡泊无以明志，非宁静无以致远",
+			},
 		],
 	},
 	{
