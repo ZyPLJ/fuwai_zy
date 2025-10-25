@@ -244,6 +244,12 @@ export const friendLinkSections: FriendLinkSection[] = [
 				avatar: "https://q2.qlogo.cn/headimg_dl?dst_uin=2731443459&spec=5",
 				desc: "愛することを忘れないで",
 			},
+			{
+				title: "LYEy_isine个人博客",
+				url: "https://caiyifeng.top/",
+				avatar: "https://caiyifeng.top/_astro/avatar.B8DZQe79_1TnfkX.webp",
+				desc: "花海无一日,少年踏自来",
+			},
 		],
 	},
 	{
