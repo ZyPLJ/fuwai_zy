@@ -250,6 +250,12 @@ export const friendLinkSections: FriendLinkSection[] = [
 				avatar: "https://caiyifeng.top/_astro/avatar.B8DZQe79_1TnfkX.webp",
 				desc: "花海无一日,少年踏自来",
 			},
+			{
+				title: "LANSGANBS's Blog",
+				url: "https://www.lansganbs.cn/",
+				avatar: "https://www.lansganbs.cn/images/friends/lansganbs.png",
+				desc: "红叶最多情，一舞寄相思。",
+			},
 		],
 	},
 	{
