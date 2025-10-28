@@ -48,7 +48,7 @@
 				window.twikooLoading = true;
 				const script = document.createElement("script");
 				script.src =
-					"https://registry.npmmirror.com/twikoo/1.6.44/files/dist/twikoo.min.js";
+					"https://cdn.pljzy.top/twikoo.min.js";
 				script.onload = () => {
 					window.twikooLoaded = true;
 					loadTwikooCommentCount();
