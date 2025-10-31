@@ -47,8 +47,7 @@
 			} else if (!window.twikooLoading) {
 				window.twikooLoading = true;
 				const script = document.createElement("script");
-				script.src =
-					"https://cdn.pljzy.top/twikoo.min.js";
+				script.src = "https://cdn.pljzy.top/twikoo.min.js";
 				script.onload = () => {
 					window.twikooLoaded = true;
 					loadTwikooCommentCount();

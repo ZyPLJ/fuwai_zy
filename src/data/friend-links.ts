@@ -298,8 +298,8 @@ export const friendLinkSections: FriendLinkSection[] = [
 		items: [
 			{
 				title: "风行Justin - 个人空间",
-				url: "https://forthing.top/",
-				avatar: "https://forthing.top/avatar.jpg",
+				url: "",
+				avatar: "",
 				desc: "一个兴趣使然的设计爱好者",
 			},
 		],
