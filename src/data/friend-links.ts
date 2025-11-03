@@ -269,8 +269,8 @@ export const friendLinkSections: FriendLinkSection[] = [
 			},
 			{
 				title: "文件快递柜",
-				url: "https://share.pljzy.top",
-				avatar: "https://share.pljzy.top/assets/logo_small.png",
+				url: "https://www.pljzy.top/share",
+				avatar: "https://www.pljzy.top:12346/assets/logo_small.png",
 				desc: "FileCodeBox, 文件快递柜, 口令传送箱, 匿名口令分享文本, 文件",
 			},
 			{
@@ -290,6 +290,12 @@ export const friendLinkSections: FriendLinkSection[] = [
 				url: "https://stats.uptimerobot.com/f3bIMzwfwF",
 				avatar: "https://cdn.pljzy.top/linkIco/uptimerobot.png",
 				desc: "提供网站监控服务，实时监测网站状态，确保网站稳定运行",
+			},
+			{
+				title: "便签墙",
+				url: "https://pljzy.top/note.html",
+				avatar: "https://pljzy.top/notelogo.ico",
+				desc: "有趣的静态便签墙",
 			},
 		],
 	},

@@ -66,6 +66,26 @@ export const navBarConfig: NavBarConfig = {
 			children: [
 				LinkPreset.Images, // 如果没有lsky.pro图床，则注释掉 https://docs.lsky.pro/archive/free/v2/
 				{
+					name: "图片转Ico",
+					url: "https://ico.pljzy.top",
+					external: true,
+				},
+				{
+					name: "文件快递柜",
+					url: "https://www.pljzy.top/share",
+					external: true,
+				},
+				{
+					name: "日历记账系统",
+					url: "https://www.pljzy.top/bookkeeping.html",
+					external: true,
+				},
+				{
+					name: "便签墙",
+					url: "https://pljzy.top/note.html",
+					external: true,
+				},
+				{
 					name: "网站监控",
 					url: "https://stats.uptimerobot.com/f3bIMzwfwF",
 					external: true,
@@ -115,7 +135,7 @@ export const commentConfig = {
 	enable: true,
 	provider: "twikoo",
 	twikoo: {
-		envId: "https://api.pljzy.top", // 移除末尾的斜杠
+		envId: "https://img.pljzy.top:4334", // 移除末尾的斜杠
 		region: "",
 		lang: "zh-CN",
 	},
