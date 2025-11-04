@@ -86,6 +86,11 @@ export const navBarConfig: NavBarConfig = {
 					external: true,
 				},
 				{
+					name: "便签墙交互版",
+					url: "https://www.pljzy.top/noteweb",
+					external: true,
+				},
+				{
 					name: "网站监控",
 					url: "https://stats.uptimerobot.com/f3bIMzwfwF",
 					external: true,

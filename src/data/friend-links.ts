@@ -256,6 +256,12 @@ export const friendLinkSections: FriendLinkSection[] = [
 				avatar: "https://www.lansganbs.cn/images/friends/lansganbs.png",
 				desc: "红叶最多情，一舞寄相思。",
 			},
+			{
+				title: "幽默的小刘吖的博客",
+				url: "https://blog.lzch.top/",
+				avatar: "https://blog.lzch.top/favicon.png",
+				desc: "每天分享不一样的知识内容",
+			},
 		],
 	},
 	{
@@ -296,6 +302,12 @@ export const friendLinkSections: FriendLinkSection[] = [
 				url: "https://pljzy.top/note.html",
 				avatar: "https://pljzy.top/notelogo.ico",
 				desc: "有趣的静态便签墙",
+			},
+			{
+				title: "便签墙交互版",
+				url: "https://www.pljzy.top/noteweb",
+				avatar: "https://pljzy.top/notelogo.ico",
+				desc: "有趣的便签墙可以添加便签",
 			},
 		],
 	},
