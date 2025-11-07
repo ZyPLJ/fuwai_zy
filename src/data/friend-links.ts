@@ -262,6 +262,12 @@ export const friendLinkSections: FriendLinkSection[] = [
 				avatar: "https://blog.lzch.top/favicon.png",
 				desc: "每天分享不一样的知识内容",
 			},
+			{
+				title: "千纸鹤",
+				url: "http://blog.wilsonzy.cn/",
+				avatar: "https://cdn.pljzy.top/linkIco/wilsonzy.png",
+				desc: "《千纸鹤》是一个关于个人成长、心灵探索和生活哲学的博客。",
+			},
 		],
 	},
 	{
