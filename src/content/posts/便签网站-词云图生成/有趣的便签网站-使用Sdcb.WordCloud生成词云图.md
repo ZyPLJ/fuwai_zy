@@ -26,11 +26,11 @@ pinned: false
 下面是网站发布以来更新的内容
 
 - 2025/11/04 限制内容长度不能超过30字
-- 2025/11/05 限制`xss`攻击
+- 2025/11/05 限制 `xss` 攻击
 - 2025/11/06 高估互联网的素质了，还是加上了关键词过滤
 - 2025/11/07 被恶意刷屏，无奈添加接口限流
 
-那么也是为了看看大家都发布的什么内容，也是心血来潮想着用词云图实现一下，通过数据清洗、筛选来看看出现频率最高的词语有哪些，并用`词云图`的形式展示出来，话不多说开始操作。
+那么也是为了看看大家都发布的什么内容，也是心血来潮想着用词云图实现一下，通过数据清洗、筛选来看看出现频率最高的词语有哪些，并用 `词云图` 的形式展示出来，话不多说开始操作。
 
 便签网站直达地址：https://pljzy.top/noteweb
 
@@ -42,19 +42,19 @@ pinned: false
 
 ## 后端设计
 
-后端采用的是.Net框架，那么生成词云图必然也是.Net框架下的包，我这里使用的是`Sdcb.WordCloud`包。
+后端采用的是.Net框架，那么生成词云图必然也是.Net框架下的包，我这里使用的是 `Sdcb.WordCloud` 包。
 
 ```csharp
 dotnet add package Sdcb.WordCloud
 ```
 
-这个包**Star**数比较少，可能因为词云图本身不是很知名吧，之前绘制词云图还是学校时期用`python`绘制过。不得不说`python`的包是又多又方便~
+这个包**Star**数比较少，可能因为词云图本身不是很知名吧，之前绘制词云图还是学校时期用 `python` 绘制过。不得不说 `python` 的包是又多又方便~
 
 [sdcb/Sdcb.WordCloud: Generate WordCloud image from .NET/.NET Core](https://github.com/sdcb/Sdcb.WordCloud)
 
 ### 踩坑指南
 
-我在本地`windows`环境下生成词云图是没问题的，当我部署到`Liunx`系统下时，会提示缺少依赖，后面发现需要手动导入`SkiaSharp.NativeAssets.Linux.NoDependencies`包。
+我在本地 `windows` 环境下生成词云图是没问题的，当我部署到 `Liunx` 系统下时，会提示缺少依赖，后面发现需要手动导入 `SkiaSharp.NativeAssets.Linux.NoDependencies` 包。
 
 ```csharp
 dotnet add package SkiaSharp.NativeAssets.Linux.NoDependencies
@@ -100,13 +100,13 @@ public async Task GenerateWordCloud()
 }
 ```
 
-这里由于各方面因素影响，只获取了词频出现最多的前`150`个数据。
+这里由于各方面因素影响，只获取了词频出现最多的前 `150` 条数据。
 
 ### 定时任务
 
-由于词云图生成比较慢，我试了一下150条数据，生成大概要`20~30s`，如果做成接口的话响应很慢，用户体验也不好。
+由于词云图生成比较慢，我试了一下150条数据，生成大概要 `20~30s` ，如果做成接口的话响应很慢，用户体验也不好。
 
-那么我也是采用后台定时任务去执行，我使用的是`Hangfire`，每隔**4小时**重新绘制一次图像。
+那么我也是采用后台定时任务去执行，我使用的是 `Hangfire` ，每隔**4小时**重新绘制一次图像。
 
 ```csharp
 dotnet add package Hangfire
@@ -129,7 +129,7 @@ RecurringJob.AddOrUpdate<WordCloudService>(
 
 #### 多提一嘴
 
-`Hangfire`可以选择是否开启仪表板，仪表板截图如下，用来查看任务执行情况还是挺方便的。
+`Hangfire` 可以选择是否开启仪表板，仪表板截图如下，用来查看任务执行情况还是挺方便的。
 
 ![](./2.png)
 
@@ -141,7 +141,7 @@ RecurringJob.AddOrUpdate<WordCloudService>(
 
 ## 结尾
 
-如果对项目源代码感兴趣的可以访问`Github`并点上`Star`，[ZyPLJ/NoteWeb: 便签墙带后端版本，可以随心所欲(注意文明用语)的发送便签~](https://github.com/ZyPLJ/NoteWeb)。
+如果对项目源代码感兴趣的可以访问 `Github` 并点上 `Star` ，[ZyPLJ/NoteWeb: 便签墙带后端版本，可以随心所欲(注意文明用语)的发送便签~](https://github.com/ZyPLJ/NoteWeb)。
 
 这个项目也就到这里结束了，后续不会更新内容，网站会一直存在，除非服务器到期和其他不可避免因素导致网站关闭。
 
