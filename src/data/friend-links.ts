@@ -268,6 +268,12 @@ export const friendLinkSections: FriendLinkSection[] = [
 				avatar: "https://cdn.pljzy.top/linkIco/wilsonzy.png",
 				desc: "《千纸鹤》是一个关于个人成长、心灵探索和生活哲学的博客。",
 			},
+			{
+				title: "浪小舟的博客",
+				url: "https://blog.lonzov.top/",
+				avatar: "https://img.fastmirror.net/s/2025/09/12/68c39893a84aa.png",
+				desc: "向利而生，随心而活",
+			},
 		],
 	},
 	{
