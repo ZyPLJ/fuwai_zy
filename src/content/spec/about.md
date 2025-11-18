@@ -57,6 +57,25 @@
 
 ---
 
+### 💝 支持创作
+如果我的内容对您有帮助，欢迎通过爱发电支持我的创作和服务器维护：
+
+![imgage](https://www.pljzy.top/images/aifadian-zy.png)
+
+爱发电主页： https://afdian.com/a/pljzy
+
+您的支持将帮助我：
+
+🖥️ 维持服务器运行
+
+📚 创作更多优质内容
+
+🔧 持续优化网站体验
+
+⚡ 探索更多有趣的技术
+
+---
+
 ### 公众号
 
 ![imgage](https://www.pljzy.top/images/5192045913af4a31a7988ed7077a1e0.jpg)

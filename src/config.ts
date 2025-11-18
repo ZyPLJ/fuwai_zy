@@ -66,6 +66,11 @@ export const navBarConfig: NavBarConfig = {
 			children: [
 				LinkPreset.Images, // 如果没有lsky.pro图床，则注释掉 https://docs.lsky.pro/archive/free/v2/
 				{
+					name: "爱发电-支持我",
+					url: "https://afdian.com/a/pljzy",
+					external: true,
+				},
+				{
 					name: "图片转Ico",
 					url: "https://ico.pljzy.top",
 					external: true,
@@ -126,6 +131,11 @@ export const profileConfig: ProfileConfig = {
 			name: "GitHub",
 			icon: "fa6-brands:github",
 			url: "https://github.com/ZyPLJ",
+		},
+		{
+			name: "爱发电",
+			icon: "fa6-solid:heart-circle-bolt",
+			url: "https://afdian.com/a/pljzy",
 		},
 	],
 };
