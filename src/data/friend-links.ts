@@ -247,7 +247,7 @@ export const friendLinkSections: FriendLinkSection[] = [
 			{
 				title: "LYEy_isine个人博客",
 				url: "https://caiyifeng.top/",
-				avatar: "https://caiyifeng.top/_astro/avatar.B8DZQe79_1TnfkX.webp",
+				avatar: "https://caiyifeng.top/avatar.jpg",
 				desc: "花海无一日,少年踏自来",
 			},
 			{
