@@ -56,9 +56,13 @@ export const navBarConfig: NavBarConfig = {
 		LinkPreset.Archive,
 		LinkPreset.About,
 		{
+			name: "资产",
+			url: "/assets/"
+		},
+		{
 			name: "社交",
 			url: "/links/",
-			children: [LinkPreset.Links, LinkPreset.Feed], // 如果没有友链朋友圈功能，则注释掉
+			children: [LinkPreset.Links, LinkPreset.Feed] // 如果没有友链朋友圈功能，则注释掉
 		},
 		{
 			name: "其他",
