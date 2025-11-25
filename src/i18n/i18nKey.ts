@@ -5,6 +5,7 @@ enum I18nKey {
 	images = "images",
 	links = "links",
 	feed = "feed",
+	assets = "assets",
 	search = "search",
 
 	tags = "tags",

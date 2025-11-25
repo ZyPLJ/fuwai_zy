@@ -8,6 +8,7 @@ export const tr: Translation = {
 	[Key.images]: "Resimler",
 	[Key.links]: "Linkler",
 	[Key.feed]: "Arkadaş dinamiği",
+	[Key.assets]: "Varlık",
 	[Key.search]: "Ara",
 
 	[Key.tags]: "Taglar",

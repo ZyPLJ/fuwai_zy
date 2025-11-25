@@ -8,6 +8,7 @@ export const id: Translation = {
 	[Key.images]: "Gambar",
 	[Key.links]: "Links",
 	[Key.feed]: "Friend Feed",
+	[Key.assets]: "Aset",
 	[Key.search]: "Cari",
 
 	[Key.tags]: "Tag",

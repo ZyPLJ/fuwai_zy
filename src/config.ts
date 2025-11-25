@@ -1,11 +1,11 @@
-import type {
-	ExpressiveCodeConfig,
-	LicenseConfig,
-	NavBarConfig,
-	ProfileConfig,
-	SiteConfig,
+import {
+	type ExpressiveCodeConfig,
+	type LicenseConfig,
+	LinkPreset,
+	type NavBarConfig,
+	type ProfileConfig,
+	type SiteConfig,
 } from "./types/config";
-import { LinkPreset } from "./types/config";
 
 export const siteConfig: SiteConfig = {
 	title: "ZY知识库",
@@ -56,19 +56,16 @@ export const navBarConfig: NavBarConfig = {
 		LinkPreset.Archive,
 		LinkPreset.About,
 		{
-			name: "资产",
-			url: "/assets/"
-		},
-		{
 			name: "社交",
 			url: "/links/",
-			children: [LinkPreset.Links, LinkPreset.Feed] // 如果没有友链朋友圈功能，则注释掉
+			children: [LinkPreset.Links, LinkPreset.Feed], // 如果没有友链朋友圈功能，则注释掉
 		},
 		{
 			name: "其他",
 			url: "/content/",
 			children: [
 				LinkPreset.Images, // 如果没有lsky.pro图床，则注释掉 https://docs.lsky.pro/archive/free/v2/
+				LinkPreset.Assets,
 				{
 					name: "爱发电-支持我",
 					url: "https://afdian.com/a/pljzy",
