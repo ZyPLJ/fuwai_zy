@@ -66,6 +66,36 @@ export const navBarConfig: NavBarConfig = {
 			children: [
 				LinkPreset.Images, // 如果没有lsky.pro图床，则注释掉 https://docs.lsky.pro/archive/free/v2/
 				{
+					name: "爱发电-支持我",
+					url: "https://afdian.com/a/pljzy",
+					external: true,
+				},
+				{
+					name: "图片转Ico",
+					url: "https://ico.pljzy.top",
+					external: true,
+				},
+				{
+					name: "文件快递柜",
+					url: "https://www.pljzy.top/share",
+					external: true,
+				},
+				{
+					name: "日历记账系统",
+					url: "https://www.pljzy.top/bookkeeping.html",
+					external: true,
+				},
+				{
+					name: "便签墙",
+					url: "https://pljzy.top/note.html",
+					external: true,
+				},
+				{
+					name: "便签墙交互版",
+					url: "https://www.pljzy.top/noteweb",
+					external: true,
+				},
+				{
 					name: "网站监控",
 					url: "https://stats.uptimerobot.com/f3bIMzwfwF",
 					external: true,
@@ -86,7 +116,7 @@ export const navBarConfig: NavBarConfig = {
 };
 
 export const profileConfig: ProfileConfig = {
-	avatar: "assets/images/logo_1.png", // Relative to the /src directory. Relative to the /public directory if it starts with '/'
+	avatar: "assets/images/logo_2.jpg", // Relative to the /src directory. Relative to the /public directory if it starts with '/'
 	name: "ZyPlj",
 	bio: "一个热爱编程的全栈开发者，热爱开源，热爱分享。",
 	links: [
@@ -102,6 +132,11 @@ export const profileConfig: ProfileConfig = {
 			icon: "fa6-brands:github",
 			url: "https://github.com/ZyPLJ",
 		},
+		{
+			name: "爱发电",
+			icon: "fa6-solid:heart-circle-bolt",
+			url: "https://afdian.com/a/pljzy",
+		},
 	],
 };
 
@@ -115,7 +150,7 @@ export const commentConfig = {
 	enable: true,
 	provider: "twikoo",
 	twikoo: {
-		envId: "https://api.pljzy.top", // 移除末尾的斜杠
+		envId: "https://img.pljzy.top:4334", // 移除末尾的斜杠
 		region: "",
 		lang: "zh-CN",
 	},
