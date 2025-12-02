@@ -3,7 +3,7 @@ title: Mintcaps·C64R2侧印键帽开箱
 published: 2024-12-20 19:49:01
 description: Mintcaps·C64R2侧印键帽开箱前言上一篇文章写了盲盒开箱，我自己也是给自己准备了礼物。身为一位专业的吗喽，一款好的键盘自然必不可少，但是键盘我暂时不想换新，那么在逛小红薯的时候看到了一款键帽，一眼就看上了，简直是梦中情帽。
 image: ./1.jpg
-tags: [日常, 键盘]
+tags: [开箱, 日常, 键盘]
 category: 记录生活
 draft: false
 pinned: false

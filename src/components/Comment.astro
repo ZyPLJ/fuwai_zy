@@ -15,6 +15,9 @@ import { commentConfig } from "src/config";
                     lang: commentConfig.twikoo.lang,
                     onCommentLoaded: function() {
                         console.log('Twikoo comments loaded successfully');
+                        if (window.createPhotoSwipe){
+                            window.createPhotoSwipe()
+                        }
                     }
                 });
                 // 防止 twikoo 内部 a 标签 href="#" 导致页面跳到顶部
@@ -30,6 +33,21 @@ import { commentConfig } from "src/config";
                             e.stopPropagation();
                         }
                     });
+                }
+                if (window.createPhotoSwipe){
+                    // 动态创建样式并添加到页面
+                    const style = document.createElement('style');
+                    style.textContent = `
+                                            .tk-content img {
+                                                cursor: zoom-in;
+                                                transition: opacity 0.2s ease;
+                                            }
+                                            .tk-content img:hover {
+                                                opacity: 0.9;
+                                            }
+                                         `;
+                    document.head.appendChild(style);
+                    console.log("动态样式已添加到页面");
                 }
             }
             // https://twikoo.js.org/frontend.html CDN指南

@@ -5,8 +5,9 @@ export const zh_CN: Translation = {
 	[Key.home]: "主页",
 	[Key.about]: "关于",
 	[Key.archive]: "归档",
-	[Key.images]: "图片",
+	[Key.images]: "图床",
 	[Key.links]: "友链",
+	[Key.feed]: "友链朋友圈",
 	[Key.search]: "搜索",
 
 	[Key.tags]: "标签",
@@ -25,6 +26,8 @@ export const zh_CN: Translation = {
 	[Key.minutesCount]: "分钟",
 	[Key.postCount]: "篇文章",
 	[Key.postsCount]: "篇文章",
+	[Key.commentCount]: "条评论",
+	[Key.commentsCount]: "条评论",
 
 	[Key.themeColor]: "主题色",
 

@@ -7,6 +7,7 @@ export const tr: Translation = {
 	[Key.archive]: "Arşiv",
 	[Key.images]: "Resimler",
 	[Key.links]: "Linkler",
+	[Key.feed]: "Arkadaş dinamiği",
 	[Key.search]: "Ara",
 
 	[Key.tags]: "Taglar",
@@ -25,6 +26,8 @@ export const tr: Translation = {
 	[Key.minutesCount]: "dakika",
 	[Key.postCount]: "gönderi",
 	[Key.postsCount]: "gönderiler",
+	[Key.commentCount]: "yorum",
+	[Key.commentsCount]: "yorum",
 
 	[Key.themeColor]: "Tema Rengi",
 

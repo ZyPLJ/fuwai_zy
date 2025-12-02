@@ -7,6 +7,7 @@ export const ja: Translation = {
 	[Key.archive]: "Archive",
 	[Key.images]: "画像",
 	[Key.links]: "リンク",
+	[Key.feed]: "フィード",
 	[Key.search]: "検索",
 
 	[Key.tags]: "タグ",
@@ -25,6 +26,8 @@ export const ja: Translation = {
 	[Key.minutesCount]: "分",
 	[Key.postCount]: "件の投稿",
 	[Key.postsCount]: "件の投稿",
+	[Key.commentCount]: "件のコメント",
+	[Key.commentsCount]: "件のコメント",
 
 	[Key.themeColor]: "テーマカラー",
 

@@ -60,12 +60,14 @@ export enum LinkPreset {
 	About = 2,
 	Links = 3,
 	Images = 4,
+	Feed = 5,
 }
 
 export type NavBarLink = {
 	name: string;
 	url: string;
 	external?: boolean;
+	children?: (NavBarLink | LinkPreset)[]; // 支持子菜单，可以是NavBarLink或LinkPreset
 };
 
 export type NavBarConfig = {

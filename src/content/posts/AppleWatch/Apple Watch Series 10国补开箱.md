@@ -2,7 +2,7 @@
 title: Apple Watch Series 10-国补开箱
 published: 2025-02-09 22:45:42
 description: Apple Watch Series 10-国补开箱前言高中时候买的Apple Watch 1 一直用到现在 ，将近8年之久(大部分时间在吃灰)，原本我是对手表不是很在意的，因为前几年手机换回国产了，Watch 1也就没带了。
-tags: [日常]
+tags: [开箱, 日常]
 category: 记录生活
 draft: false
 pinned: false

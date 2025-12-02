@@ -7,6 +7,7 @@ export const vi: Translation = {
 	[Key.archive]: "Kho bài",
 	[Key.images]: "Hình ảnh",
 	[Key.links]: "Liên kết",
+	[Key.feed]: "Nguồn bạn bè",
 	[Key.search]: "Tìm kiếm",
 
 	[Key.tags]: "Thẻ",
@@ -25,6 +26,8 @@ export const vi: Translation = {
 	[Key.minutesCount]: "phút đọc",
 	[Key.postCount]: "bài viết",
 	[Key.postsCount]: "bài viết",
+	[Key.commentCount]: "bình luận",
+	[Key.commentsCount]: "bình luận",
 
 	[Key.themeColor]: "Màu giao diện",
 

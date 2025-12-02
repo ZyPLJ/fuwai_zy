@@ -148,7 +148,7 @@ export const friendLinkSections: FriendLinkSection[] = [
 				title: "酥米的小站",
 				url: "https://www.sumi233.top/",
 				avatar:
-					"https://cdn.sumi233.top/gh/huang233893/blog-image-bed/top/huang233893/imgs/blog/userfb6a1018b84ce485.jpg",
+					"https://cdn.sumi233.top/gh/huang233893/blog-image-bed@main/top/huang233893/imgs/blog/usersumi.png",
 				desc: "终有一日，寻梦中人",
 			},
 			{
@@ -171,6 +171,115 @@ export const friendLinkSections: FriendLinkSection[] = [
 					"https://www.timochan.cn/api/objects/icon/9s6tbcvax674yv2m88.jpg",
 				desc: "Let's start learning",
 			},
+			{
+				title: "郭飞的笔记",
+				url: "https://www.guofei.site/",
+				avatar: "https://www.guofei.site/p/me/me.png",
+				desc: "郭飞的笔记",
+			},
+			{
+				title: "peachRL的小站",
+				url: "https://wanyijizi.com",
+				avatar: "https://blog.wanyijizi.com/avatar.jpg",
+				desc: "万亿及秭",
+			},
+			{
+				title: "繁华如风的小站",
+				url: "https://fhrf.top",
+				avatar: "https://www.fhrf.top/img/tx.png!/format/webp/lossless/true",
+				desc: "醉后不知天在水,满船清梦压星河。",
+			},
+			{
+				title: "mccsjs",
+				url: "https://mccsjs.eu.org/",
+				avatar: "https://mccsjs.eu.org/img/head.jpg",
+				desc: "点一盏灯，等一个迷路的夜🍁🍁🍁",
+			},
+			{
+				title: "THW's Blog",
+				url: "https://thw.lol",
+				avatar: "https://img.dooki.cloud/i/2025/08/29/68b09e116c4b6.webp",
+				desc: "前途似海，来日方长",
+			},
+			{
+				title: "阿叶Ayeez",
+				url: "https://blog.Ayeez.cn",
+				avatar: "https://cdn.pljzy.top/linkIco/ayeez.jpg",
+				desc: "记录自己的学习历程，记录自己的美好生活",
+			},
+			{
+				title: "夏夜流萤",
+				url: "https://blog.cuteleaf.cn",
+				avatar:
+					"https://q.qlogo.cn/headimg_dl?dst_uin=7618557&spec=640&img_type=jpg",
+				desc: "总有一场相遇，是互相喜欢的！",
+			},
+			{
+				title: "绘星里",
+				url: "https://blog.storical.fun/",
+				avatar: "https://blog.storical.fun/images/icon.png",
+				desc: "一起来绘制属于自己的星星！",
+			},
+			{
+				title: "Thun888",
+				url: "https://blog.hzchu.top/",
+				avatar: "https://blog.hzchu.top/img/avatar.webp",
+				desc: "夏日当空，心如深渊",
+			},
+			{
+				title: "fishcpy的小破站",
+				url: "https://blog.fis.ink",
+				avatar: "https://www.fis.ink/img/logo.png",
+				desc: "非淡泊无以明志，非宁静无以致远",
+			},
+			{
+				title: "花墨",
+				url: "https://flowersink.com",
+				avatar: "https://api.flowersink.com/img/logo.png",
+				desc: "好耶！是再花猫猫头ฅ•ω•ฅ",
+			},
+			{
+				title: "鈴奈咲桜のBlog",
+				url: "https://blog.sakura.ink",
+				avatar: "https://q2.qlogo.cn/headimg_dl?dst_uin=2731443459&spec=5",
+				desc: "愛することを忘れないで",
+			},
+			{
+				title: "LYEy_isine个人博客",
+				url: "https://caiyifeng.top/",
+				avatar: "https://caiyifeng.top/avatar.jpg",
+				desc: "花海无一日,少年踏自来",
+			},
+			{
+				title: "LANSGANBS's Blog",
+				url: "https://www.lansganbs.cn/",
+				avatar: "https://www.lansganbs.cn/images/friends/lansganbs.png",
+				desc: "红叶最多情，一舞寄相思。",
+			},
+			{
+				title: "幽默的小刘吖的博客",
+				url: "https://blog.lzch.top/",
+				avatar: "https://blog.lzch.top/favicon.png",
+				desc: "每天分享不一样的知识内容",
+			},
+			{
+				title: "千纸鹤",
+				url: "http://blog.wilsonzy.cn/",
+				avatar: "https://cdn.pljzy.top/linkIco/wilsonzy.png",
+				desc: "《千纸鹤》是一个关于个人成长、心灵探索和生活哲学的博客。",
+			},
+			{
+				title: "拾音集",
+				url: "https://blog.tibtob.cn/",
+				avatar: "https://blog.tibtob.cn/upload/logo.png",
+				desc: "收集生活里的声与光",
+			},
+			{
+				title: "浪小舟的博客",
+				url: "https://blog.lonzov.top/",
+				avatar: "https://img.fastmirror.net/s/2025/09/12/68c39893a84aa.png",
+				desc: "向利而生，随心而活",
+			},
 		],
 	},
 	{
@@ -184,8 +293,8 @@ export const friendLinkSections: FriendLinkSection[] = [
 			},
 			{
 				title: "文件快递柜",
-				url: "https://share.pljzy.top",
-				avatar: "https://share.pljzy.top/assets/logo_small.png",
+				url: "https://www.pljzy.top/share",
+				avatar: "https://www.pljzy.top:12346/assets/logo_small.png",
 				desc: "FileCodeBox, 文件快递柜, 口令传送箱, 匿名口令分享文本, 文件",
 			},
 			{
@@ -193,6 +302,41 @@ export const friendLinkSections: FriendLinkSection[] = [
 				url: "https://ebook.deali.cn/",
 				avatar: "https://ebook.deali.cn/static/favicon.ico",
 				desc: "将TXT文本文件转换为EPUB、MOBI、AZW3等电子书格式",
+			},
+			{
+				title: "日历记账系统",
+				url: "https://www.pljzy.top/bookkeeping.html",
+				avatar: "https://www.pljzy.top/logo.ico",
+				desc: "本地记账网页应用，轻松记录和管理您的日常消费",
+			},
+			{
+				title: "网站监控服务",
+				url: "https://stats.uptimerobot.com/f3bIMzwfwF",
+				avatar: "https://cdn.pljzy.top/linkIco/uptimerobot.png",
+				desc: "提供网站监控服务，实时监测网站状态，确保网站稳定运行",
+			},
+			{
+				title: "便签墙",
+				url: "https://pljzy.top/note.html",
+				avatar: "https://pljzy.top/notelogo.ico",
+				desc: "有趣的静态便签墙",
+			},
+			{
+				title: "便签墙交互版",
+				url: "https://www.pljzy.top/noteweb",
+				avatar: "https://pljzy.top/notelogo.ico",
+				desc: "有趣的便签墙可以添加便签",
+			},
+		],
+	},
+	{
+		title: "🌐 迷失友链",
+		items: [
+			{
+				title: "风行Justin - 个人空间",
+				url: "",
+				avatar: "",
+				desc: "一个兴趣使然的设计爱好者",
 			},
 		],
 	},

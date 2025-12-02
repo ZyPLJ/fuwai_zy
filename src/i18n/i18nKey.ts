@@ -4,6 +4,7 @@ enum I18nKey {
 	archive = "archive",
 	images = "images",
 	links = "links",
+	feed = "feed",
 	search = "search",
 
 	tags = "tags",
@@ -22,6 +23,8 @@ enum I18nKey {
 	minutesCount = "minutesCount",
 	postCount = "postCount",
 	postsCount = "postsCount",
+	commentCount = "commentCount",
+	commentsCount = "commentsCount",
 
 	themeColor = "themeColor",
 

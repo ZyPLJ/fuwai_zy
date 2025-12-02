@@ -7,6 +7,7 @@ export const es: Translation = {
 	[Key.archive]: "Archivo",
 	[Key.images]: "Imágenes",
 	[Key.links]: "Enlaces",
+	[Key.feed]: "Friend Feed",
 	[Key.search]: "Buscar",
 
 	[Key.tags]: "Etiquetas",
@@ -25,6 +26,8 @@ export const es: Translation = {
 	[Key.minutesCount]: "minutos",
 	[Key.postCount]: "publicación",
 	[Key.postsCount]: "publicaciones",
+	[Key.commentCount]: "comentarios",
+	[Key.commentsCount]: "comentarios",
 
 	[Key.themeColor]: "Color del tema",
 
