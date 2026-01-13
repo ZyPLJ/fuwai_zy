@@ -280,6 +280,12 @@ export const friendLinkSections: FriendLinkSection[] = [
 				avatar: "https://img.fastmirror.net/s/2025/09/12/68c39893a84aa.png",
 				desc: "向利而生，随心而活",
 			},
+			{
+				title: "栖梦集",
+				url: "https://www.lafoyer.com",
+				avatar: "https://www.lafoyer.com/wp-content/uploads/2025/12/cropped-icon.png",
+				desc: "一席小筑结网缘，半分禅意伴闲言 ",
+			},
 		],
 	},
 	{
