@@ -197,8 +197,8 @@ export const friendLinkSections: FriendLinkSection[] = [
 			},
 			{
 				title: "THW's Blog",
-				url: "https://thw.lol",
-				avatar: "https://img.dooki.cloud/i/2025/08/29/68b09e116c4b6.webp",
+				url: "https://blog.tianhw.top",
+				avatar: "https://image.tianhw.top/avatar.webp",
 				desc: "前途似海，来日方长",
 			},
 			{
