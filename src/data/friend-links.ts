@@ -285,7 +285,13 @@ export const friendLinkSections: FriendLinkSection[] = [
 				url: "https://www.lafoyer.com",
 				avatar:
 					"https://www.lafoyer.com/wp-content/uploads/2025/12/cropped-icon.png",
-				desc: "一席小筑结网缘，半分禅意伴闲言 ",
+				desc: "一席小筑结网缘，半分禅意伴闲言",
+			},
+			{
+				title: "Serenity",
+				url: "https://serenity.aobp.cn/",
+				avatar: "https://serenity.aobp.cn/upload/%E5%A4%B4%E5%83%8F.png",
+				desc: "热爱可抵岁月漫长",
 			},
 		],
 	},
