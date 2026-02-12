@@ -293,6 +293,13 @@ export const friendLinkSections: FriendLinkSection[] = [
 				avatar: "https://serenity.aobp.cn/upload/%E5%A4%B4%E5%83%8F.png",
 				desc: "热爱可抵岁月漫长",
 			},
+			{
+				title: "Inalineの小站",
+				url: "https://inaline.net",
+				avatar:
+					"https://inaline.net/usr/themes/inaline/assets/images/logo/cover.png",
+				desc: "此情可待成追忆，只是当时已惘然",
+			},
 		],
 	},
 	{
