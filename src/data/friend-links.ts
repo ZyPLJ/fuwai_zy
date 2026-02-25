@@ -60,7 +60,7 @@ export const friendLinkSections: FriendLinkSection[] = [
 			{
 				title: "Horean's Blog",
 				url: "https://blog.hxrch.top",
-				avatar: "https://cdn-images.hxrch.top/blog-logo_128x128.png",
+				avatar: "https://img.hxrch.top/bfav256.webp",
 				desc: "Spread the Knowledge Wisely & Widely",
 			},
 			{
@@ -216,8 +216,8 @@ export const friendLinkSections: FriendLinkSection[] = [
 			},
 			{
 				title: "绘星里",
-				url: "https://blog.storical.fun/",
-				avatar: "https://blog.storical.fun/images/icon.png",
+				url: "https://blog.storia.ren/",
+				avatar: "https://blog.storia.ren/images/icon.png",
 				desc: "一起来绘制属于自己的星星！",
 			},
 			{
