@@ -300,6 +300,12 @@ export const friendLinkSections: FriendLinkSection[] = [
 					"https://inaline.net/usr/themes/inaline/assets/images/logo/cover.png",
 				desc: "此情可待成追忆，只是当时已惘然",
 			},
+			{
+				title: "许耿彬的博客",
+				url: "https://xugengbin.com/",
+				avatar: "https://xugengbin.com/_astro/avatar.kViV4Dl9_ZoB1ND.webp",
+				desc: "许耿彬的博客",
+			},
 		],
 	},
 	{
@@ -351,13 +357,6 @@ export const friendLinkSections: FriendLinkSection[] = [
 	},
 	{
 		title: "🌐 迷失友链",
-		items: [
-			{
-				title: "风行Justin - 个人空间",
-				url: "",
-				avatar: "",
-				desc: "一个兴趣使然的设计爱好者",
-			},
-		],
+		items: [],
 	},
 ];
