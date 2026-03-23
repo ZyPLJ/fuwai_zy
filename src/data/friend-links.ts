@@ -271,7 +271,7 @@ export const friendLinkSections: FriendLinkSection[] = [
 			{
 				title: "拾音集",
 				url: "https://blog.tibtob.cn/",
-				avatar: "https://blog.tibtob.cn/upload/logo.png",
+				avatar: "https://s1.tibtob.cn/blog/logo.png",
 				desc: "收集生活里的声与光",
 			},
 			{
