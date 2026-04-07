@@ -289,8 +289,8 @@ export const friendLinkSections: FriendLinkSection[] = [
 			},
 			{
 				title: "Serenity",
-				url: "https://serenity.aobp.cn/",
-				avatar: "https://serenity.aobp.cn/upload/%E5%A4%B4%E5%83%8F.png",
+				url: "https://www.aobp.cn/",
+				avatar: "https://www..aobp.cn/upload/%E5%A4%B4%E5%83%8F.png",
 				desc: "热爱可抵岁月漫长",
 			},
 			{
@@ -305,6 +305,12 @@ export const friendLinkSections: FriendLinkSection[] = [
 				url: "https://xugengbin.com/",
 				avatar: "https://xugengbin.com/_astro/avatar.kViV4Dl9_ZoB1ND.webp",
 				desc: "许耿彬的博客",
+			},
+			{
+				title: "小慧博客",
+				url: "https://www.itxiaohui.top/",
+				avatar: "https://blogoss.itxiaohui.top/logo%20-uhlgnmrf.png",
+				desc: "小慧的技术博客",
 			},
 		],
 	},
