@@ -312,6 +312,12 @@ export const friendLinkSections: FriendLinkSection[] = [
 				avatar: "https://blogoss.itxiaohui.top/logo%20-uhlgnmrf.png",
 				desc: "小慧的技术博客",
 			},
+			{
+				title: "SengokuCola'sBlog",
+				url: "https://home.nibutupaopao.top/",
+				avatar: "https://lsky.nibutupaopao.top/i/2026/07/09/6a4fc40211f69.png",
+				desc: "随着风的轨迹 在那耀眼的午后",
+			},
 		],
 	},
 	{
