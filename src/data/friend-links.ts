@@ -318,6 +318,12 @@ export const friendLinkSections: FriendLinkSection[] = [
 				avatar: "https://lsky.nibutupaopao.top/i/2026/07/09/6a4fc40211f69.png",
 				desc: "随着风的轨迹 在那耀眼的午后",
 			},
+			{
+				title: "Cheng · 技术刊",
+				url: "https://blog.lzch.eu.org/",
+				avatar: "https://blog.lzch.eu.org//favicon.ico",
+				desc: "关注人工智能、系统设计与知识管理。喜欢把复杂问题写清楚，也把半成品笔记种进花园。",
+			},
 		],
 	},
 	{
