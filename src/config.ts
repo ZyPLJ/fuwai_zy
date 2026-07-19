@@ -48,6 +48,18 @@ export const siteConfig: SiteConfig = {
 	musicPlayer: {
 		enable: true, // 是否启用音乐播放器
 	},
+	pet: {
+		enable: true, // 是否启用桌面宠物
+		// 可选: "firefly" | "fufu-sticker" | "ganyu-pet-v2" | "rich-paimon"
+		id: "rich-paimon",
+		scale: 0.5,
+		speed: 120,
+		position: "bottom-right",
+		margin: 20,
+		state: "idle",
+		draggable: true,
+		clickCycle: true,
+	},
 };
 
 export const navBarConfig: NavBarConfig = {
