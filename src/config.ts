@@ -65,6 +65,7 @@ export const navBarConfig: NavBarConfig = {
 			url: "/content/",
 			children: [
 				LinkPreset.Images, // 如果没有lsky.pro图床，则注释掉 https://docs.lsky.pro/archive/free/v2/
+				LinkPreset.Anime,
 				{
 					name: "爱发电-支持我",
 					url: "https://afdian.com/a/pljzy",

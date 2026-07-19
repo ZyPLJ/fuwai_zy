@@ -8,6 +8,7 @@ export const th: Translation = {
 	[Key.images]: "รูปภาพ",
 	[Key.links]: "ลิงก์",
 	[Key.feed]: "ฟีดเพื่อน",
+	[Key.anime]: "อนิเมะ",
 	[Key.search]: "ค้นหา",
 
 	[Key.tags]: "ป้ายกำกับ",

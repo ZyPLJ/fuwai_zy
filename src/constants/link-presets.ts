@@ -27,4 +27,8 @@ export const LinkPresets: { [key in LinkPreset]: NavBarLink } = {
 		name: i18n(I18nKey.feed),
 		url: "/feed/",
 	},
+	[LinkPreset.Anime]: {
+		name: i18n(I18nKey.anime),
+		url: "/anime/",
+	},
 };
