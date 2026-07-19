@@ -285,6 +285,7 @@ const bannerOffset =
 				is:inline
 				define:vars={{
 					petId: siteConfig.pet.id,
+					petSpritesheet: siteConfig.pet.spritesheet ?? "",
 					petScale: siteConfig.pet.scale ?? 0.5,
 					petSpeed: siteConfig.pet.speed ?? 120,
 					petPosition: siteConfig.pet.position ?? "bottom-right",
@@ -301,9 +302,13 @@ const bannerOffset =
 				window.__sitePetBooted = true;
 
 				const base = "/pets/" + petId + "/";
+				// spritesheet: 配置了 CDN 完整 URL 则用 CDN，否则回退本地
+				const sheet = (typeof petSpritesheet === "string" && petSpritesheet.trim())
+					? petSpritesheet.trim()
+					: base + "spritesheet.webp";
 				const config = {
 					petJson: base + "pet.json",
-					spritesheet: base + "spritesheet.webp",
+					spritesheet: sheet,
 					mode: "fixed",
 					position: petPosition,
 					scale: petScale,
