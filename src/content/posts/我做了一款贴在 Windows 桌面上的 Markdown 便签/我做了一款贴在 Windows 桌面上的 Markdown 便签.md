@@ -1,6 +1,6 @@
 ---
 title: 我做了一款贴在 Windows 桌面上的 Markdown 便签
-published: 2026-07-024 14:58:08
+published: 2026-07-24 14:58:08
 description: 我做了一款贴在 Windows 桌面上的 Markdown 便签简介很多人的桌面其实缺一块「刚好够用」的空间：既不想开 Notion / Obsidian 那种重应用，也不想用系统记事本写一堆没格式的草稿。MarkdownNote（便签） 就是为这个场景写的
 image: ./1.png
 tags: [实用工具, 其他]
