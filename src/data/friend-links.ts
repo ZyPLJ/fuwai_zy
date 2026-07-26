@@ -324,6 +324,12 @@ export const friendLinkSections: FriendLinkSection[] = [
 				avatar: "https://blog.lzch.eu.org//favicon.ico",
 				desc: "关注人工智能、系统设计与知识管理。喜欢把复杂问题写清楚，也把半成品笔记种进花园。",
 			},
+			{
+				title: "南风未起",
+				url: "https://aly.lbool.site/",
+				avatar: "https://www.lbool.site/MyBlog/head.jpg",
+				desc: "云原生/Go技术分享站",
+			},
 		],
 	},
 	{
