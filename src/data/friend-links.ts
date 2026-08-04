@@ -330,6 +330,12 @@ export const friendLinkSections: FriendLinkSection[] = [
 				avatar: "https://www.lbool.site/MyBlog/head.jpg",
 				desc: "云原生/Go技术分享站",
 			},
+			{
+				title: "YuJing的记忆终端",
+				url: "https://www.yujingblog.top/",
+				avatar: "https://www.yujingblog.top/assets/home/avatar.webp",
+				desc: "不怪天气不好，是我心事太多。",
+			},
 		],
 	},
 	{
@@ -340,18 +346,6 @@ export const friendLinkSections: FriendLinkSection[] = [
 				url: "https://ico.pljzy.top",
 				avatar: "https://ico.pljzy.top/logo.ico",
 				desc: "在线png、jpg、jpeg图片转Ico工具",
-			},
-			{
-				title: "文件快递柜",
-				url: "https://www.pljzy.top/share",
-				avatar: "https://www.pljzy.top:12346/assets/logo_small.png",
-				desc: "FileCodeBox, 文件快递柜, 口令传送箱, 匿名口令分享文本, 文件",
-			},
-			{
-				title: "TXT转电子书工具",
-				url: "https://ebook.deali.cn/",
-				avatar: "https://ebook.deali.cn/static/favicon.ico",
-				desc: "将TXT文本文件转换为EPUB、MOBI、AZW3等电子书格式",
 			},
 			{
 				title: "日历记账系统",
