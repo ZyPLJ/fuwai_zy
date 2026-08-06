@@ -23,7 +23,7 @@ jobs:
           test -f docker-compose.yml && echo "docker-compose.yml exists" || echo "docker-compose.yml missing"
 
       - name: Upload Files to Server
-        uses: appleboy/scp-action@v0.1.6
+        uses: appleboy/scp-action@v0.1.7
         with:
           host: ${{ secrets.SERVER_IP }}
           username: ${{ secrets.SSH_USERNAME }}
