@@ -90,4 +90,13 @@ export const vi: Translation = {
 	[Key.calendarDecember]: "T12",
 	[Key.calendar]: "Lịch trang web",
 	[Key.calendarHeatmapWeek]: "Tuần {week} tháng {month}, {count} bài viết",
+	[Key.passwordProtected]: "Bảo vệ bằng mật khẩu",
+	[Key.passwordProtectedDesc]:
+		"Nội dung này được bảo vệ bằng mật khẩu. Vui lòng nhập mật khẩu để xem.",
+	[Key.passwordHint]: "Gợi ý",
+	[Key.passwordPlaceholder]: "Nhập mật khẩu",
+	[Key.passwordSubmit]: "Mở khóa",
+	[Key.passwordError]: "Sai mật khẩu, vui lòng thử lại.",
+	[Key.passwordProtectedRss]:
+		"Bài viết này đã được mã hóa. Vui lòng truy cập trang web để xem.",
 };

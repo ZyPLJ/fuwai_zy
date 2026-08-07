@@ -87,6 +87,13 @@ enum I18nKey {
 	calendarDecember = "calendarDecember",
 	calendar = "calendar",
 	calendarHeatmapWeek = "calendarHeatmapWeek",
+	passwordProtected = "passwordProtected",
+	passwordProtectedDesc = "passwordProtectedDesc",
+	passwordHint = "passwordHint",
+	passwordPlaceholder = "passwordPlaceholder",
+	passwordSubmit = "passwordSubmit",
+	passwordError = "passwordError",
+	passwordProtectedRss = "passwordProtectedRss",
 }
 
 export default I18nKey;

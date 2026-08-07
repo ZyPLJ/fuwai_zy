@@ -90,4 +90,13 @@ export const ja: Translation = {
 	[Key.calendarDecember]: "12月",
 	[Key.calendar]: "サイトカレンダー",
 	[Key.calendarHeatmapWeek]: "{month}月第{week}週、{count}記事",
+	[Key.passwordProtected]: "パスワード保護",
+	[Key.passwordProtectedDesc]:
+		"このコンテンツはパスワードで保護されています。表示するにはパスワードを入力してください。",
+	[Key.passwordHint]: "ヒント",
+	[Key.passwordPlaceholder]: "パスワードを入力",
+	[Key.passwordSubmit]: "ロック解除",
+	[Key.passwordError]: "パスワードが間違っています。もう一度お試しください。",
+	[Key.passwordProtectedRss]:
+		"この記事は暗号化されています。ウェブサイトにアクセスしてご覧ください。",
 };

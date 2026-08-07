@@ -90,4 +90,11 @@ export const th: Translation = {
 	[Key.calendarDecember]: "ธ.ค.",
 	[Key.calendar]: "ปฏิทินเว็บไซต์",
 	[Key.calendarHeatmapWeek]: "{month} เดือนที่ {week} สัปดาห์ {count} บทความ",
+	[Key.passwordProtected]: "ป้องกันด้วยรหัสผ่าน",
+	[Key.passwordProtectedDesc]: "เนื้อหานี้ได้รับการป้องกันด้วยรหัสผ่าน กรุณาป้อนรหัสผ่านเพื่อดู",
+	[Key.passwordHint]: "คำใบ้",
+	[Key.passwordPlaceholder]: "ป้อนรหัสผ่าน",
+	[Key.passwordSubmit]: "ปลดล็อก",
+	[Key.passwordError]: "รหัสผ่านไม่ถูกต้อง กรุณาลองอีกครั้ง",
+	[Key.passwordProtectedRss]: "บทความนี้ถูกเข้ารหัส กรุณาเข้าชมเว็บไซต์เพื่อดู",
 };

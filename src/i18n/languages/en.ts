@@ -90,4 +90,13 @@ export const en: Translation = {
 	[Key.calendarDecember]: "Dec",
 	[Key.calendar]: "Site Calendar",
 	[Key.calendarHeatmapWeek]: "Week {week} of {month}, {count} posts",
+	[Key.passwordProtected]: "Password Protected",
+	[Key.passwordProtectedDesc]:
+		"This content is password protected. Please enter the password to view.",
+	[Key.passwordHint]: "Hint",
+	[Key.passwordPlaceholder]: "Enter password",
+	[Key.passwordSubmit]: "Unlock",
+	[Key.passwordError]: "Incorrect password, please try again.",
+	[Key.passwordProtectedRss]:
+		"This article is encrypted. Please visit the website to view it.",
 };

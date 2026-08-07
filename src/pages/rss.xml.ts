@@ -1,4 +1,6 @@
 import rss from "@astrojs/rss";
+import I18nKey from "@i18n/i18nKey";
+import { i18n } from "@i18n/translation";
 import { getSortedPosts } from "@utils/content-utils";
 import { url } from "@utils/url-utils";
 import type { APIContext } from "astro";
@@ -24,6 +26,16 @@ export async function GET(context: APIContext) {
 		description: siteConfig.subtitle || "No description",
 		site: context.site ?? "https://fuwari.vercel.app",
 		items: blog.map((post) => {
+			// 加密文章不在 RSS 中泄露正文
+			if (post.data.password) {
+				return {
+					title: post.data.title,
+					pubDate: post.data.published,
+					description: i18n(I18nKey.passwordProtectedRss),
+					link: url(`/posts/${post.slug}/`),
+					content: i18n(I18nKey.passwordProtectedRss),
+				};
+			}
 			const content =
 				typeof post.body === "string" ? post.body : String(post.body || "");
 			const cleanedContent = stripInvalidXmlChars(content);

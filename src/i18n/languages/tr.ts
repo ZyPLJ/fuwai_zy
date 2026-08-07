@@ -90,4 +90,13 @@ export const tr: Translation = {
 	[Key.calendarDecember]: "Ara",
 	[Key.calendar]: "Site Takvimi",
 	[Key.calendarHeatmapWeek]: "{month}. ay {week}. hafta, {count} yazı",
+	[Key.passwordProtected]: "Parola Korumalı",
+	[Key.passwordProtectedDesc]:
+		"Bu içerik parola korumalıdır. Görüntülemek için parolayı girin.",
+	[Key.passwordHint]: "İpucu",
+	[Key.passwordPlaceholder]: "Parolayı girin",
+	[Key.passwordSubmit]: "Kilidi Aç",
+	[Key.passwordError]: "Parola hatalı, lütfen tekrar deneyin.",
+	[Key.passwordProtectedRss]:
+		"Bu makale şifrelenmiştir. Görüntülemek için web sitesini ziyaret edin.",
 };

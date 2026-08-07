@@ -90,4 +90,11 @@ export const zh_TW: Translation = {
 	[Key.calendarDecember]: "12月",
 	[Key.calendar]: "站點日曆",
 	[Key.calendarHeatmapWeek]: "{month}月第{week}週，{count}篇文章",
+	[Key.passwordProtected]: "密碼保護",
+	[Key.passwordProtectedDesc]: "此內容已被密碼保護，請輸入密碼查看。",
+	[Key.passwordHint]: "提示",
+	[Key.passwordPlaceholder]: "請輸入密碼",
+	[Key.passwordSubmit]: "解鎖",
+	[Key.passwordError]: "密碼錯誤，請重試。",
+	[Key.passwordProtectedRss]: "本文已加密保護，請訪問網站查看。",
 };

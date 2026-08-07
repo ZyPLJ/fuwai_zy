@@ -90,4 +90,13 @@ export const id: Translation = {
 	[Key.calendarDecember]: "Des",
 	[Key.calendar]: "Kalender Situs",
 	[Key.calendarHeatmapWeek]: "Minggu {week} bulan {month}, {count} artikel",
+	[Key.passwordProtected]: "Dilindungi Kata Sandi",
+	[Key.passwordProtectedDesc]:
+		"Konten ini dilindungi kata sandi. Masukkan kata sandi untuk melihatnya.",
+	[Key.passwordHint]: "Petunjuk",
+	[Key.passwordPlaceholder]: "Masukkan kata sandi",
+	[Key.passwordSubmit]: "Buka Kunci",
+	[Key.passwordError]: "Kata sandi salah, coba lagi.",
+	[Key.passwordProtectedRss]:
+		"Artikel ini dienkripsi. Kunjungi situs web untuk melihatnya.",
 };

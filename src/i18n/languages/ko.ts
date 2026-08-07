@@ -90,4 +90,13 @@ export const ko: Translation = {
 	[Key.calendarDecember]: "12월",
 	[Key.calendar]: "사이트 캘린더",
 	[Key.calendarHeatmapWeek]: "{month}의 {week}주차, 게시글 {count}개",
+	[Key.passwordProtected]: "비밀번호로 보호됨",
+	[Key.passwordProtectedDesc]:
+		"이 콘텐츠는 비밀번호로 보호되어 있습니다. 보려면 비밀번호를 입력하세요.",
+	[Key.passwordHint]: "힌트",
+	[Key.passwordPlaceholder]: "비밀번호 입력",
+	[Key.passwordSubmit]: "잠금 해제",
+	[Key.passwordError]: "비밀번호가 올바르지 않습니다. 다시 시도해 주세요.",
+	[Key.passwordProtectedRss]:
+		"이 글은 암호화되어 있습니다. 웹사이트에서 확인해 주세요.",
 };
