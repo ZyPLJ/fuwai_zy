@@ -46,13 +46,17 @@ function normalizeContentPath(value) {
 }
 
 /**
- * 本项目 URL 恒为 /posts/<dir>/<filename>/（Astro glob loader 的 entry.id
- * 即相对文件路径，无 slug 覆盖、无 index 剥离）。
+ * 本项目 URL 恒为 /posts/<dir>/<filename>/。
+ *
+ * 注意：Astro 5.12+ 的 glob loader（getContentEntryIdAndSlug）会对每个
+ * 路径段应用 github-slugger 的 slug()（转小写、移除标点），entry.slug 与
+ * 静态文件路径都是处理后的结果（如磁盘 "Astrofuwai" → slug "astrofuwai"）。
+ * 因此这里必须复刻同样的处理，直接用磁盘原始路径生成链接会 404。
  */
 function createPostUrl(contentPath) {
 	const encodedPath = contentPath
 		.split("/")
-		.map((segment) => encodeURIComponent(segment))
+		.map((segment) => encodeURIComponent(slug(segment)))
 		.join("/");
 
 	return `/posts/${encodedPath ? `${encodedPath}/` : ""}`;
