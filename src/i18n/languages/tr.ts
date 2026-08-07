@@ -99,4 +99,5 @@ export const tr: Translation = {
 	[Key.passwordError]: "Parola hatalı, lütfen tekrar deneyin.",
 	[Key.passwordProtectedRss]:
 		"Bu makale şifrelenmiştir. Görüntülemek için web sitesini ziyaret edin.",
+	[Key.toc]: "İçindekiler",
 };

@@ -94,6 +94,7 @@ enum I18nKey {
 	passwordSubmit = "passwordSubmit",
 	passwordError = "passwordError",
 	passwordProtectedRss = "passwordProtectedRss",
+	toc = "toc",
 }
 
 export default I18nKey;

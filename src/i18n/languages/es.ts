@@ -99,4 +99,5 @@ export const es: Translation = {
 	[Key.passwordError]: "Contraseña incorrecta, inténtalo de nuevo.",
 	[Key.passwordProtectedRss]:
 		"Este artículo está cifrado. Visita el sitio web para verlo.",
+	[Key.toc]: "Tabla de contenidos",
 };

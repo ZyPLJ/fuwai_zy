@@ -69,6 +69,18 @@
         mask-image: linear-gradient(to bottom, transparent 0%, black 2rem, black calc(100% - 2rem), transparent 100%);
     }
 
+    /* 目录容器(TOC):仅文章详情页且 xl(1280px) 及以上显示,
+       位于右侧栏隐藏后的第 3 列位置(与日历同位置,fixed top-14 滚动时固定在视口顶部)。
+       移动端(<xl)目录走浮动按钮 MobileToc,此容器始终隐藏 */
+    #toc-wrapper {
+        display: none;
+    }
+    @media (min-width: 1280px) {
+        body.is-posts-route #toc-wrapper {
+            display: block;
+        }
+    }
+
     .hide-scrollbar {
         scrollbar-width: none;
         -ms-overflow-style: none;

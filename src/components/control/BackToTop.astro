@@ -2,8 +2,9 @@
 import { Icon } from "astro-icon/components";
 ---
 
-<!-- There can't be a filter on parent element, or it will break `fixed` -->
-<div class="back-to-top-wrapper hidden lg:block">
+<!-- There can't be a filter on parent element, or it will break `fixed`.
+     全断点显示(含手机模式),滚动显示/隐藏由 Layout.astro 的 scrollFunction 控制 -->
+<div class="back-to-top-wrapper">
     <div id="back-to-top-btn" class="back-to-top-btn hide flex items-center rounded-2xl overflow-hidden transition" onclick="backToTop()">
         <button aria-label="Back to Top" class="btn-card h-[3.75rem] w-[3.75rem]">
             <Icon name="material-symbols:keyboard-arrow-up-rounded" class="mx-auto"></Icon>

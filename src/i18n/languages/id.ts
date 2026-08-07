@@ -99,4 +99,5 @@ export const id: Translation = {
 	[Key.passwordError]: "Kata sandi salah, coba lagi.",
 	[Key.passwordProtectedRss]:
 		"Artikel ini dienkripsi. Kunjungi situs web untuk melihatnya.",
+	[Key.toc]: "Daftar Isi",
 };

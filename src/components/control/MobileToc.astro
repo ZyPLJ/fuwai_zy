@@ -1,0 +1,254 @@
+---
+import I18nKey from "@i18n/i18nKey";
+import { i18n } from "@i18n/translation";
+import type { MarkdownHeading } from "astro";
+import { Icon } from "astro-icon/components";
+import { siteConfig } from "../../config";
+import { url } from "../../utils/url-utils";
+
+interface Props {
+	headings?: MarkdownHeading[];
+}
+
+const { headings = [] } = Astro.props;
+const isPostsRoute = Astro.url.pathname.startsWith(url("/posts/"));
+const showMobileToc =
+	isPostsRoute && siteConfig.toc.enable && headings.length > 0;
+
+let minDepth = 10;
+for (const heading of headings) {
+	minDepth = Math.min(minDepth, heading.depth);
+}
+
+const maxLevel = siteConfig.toc.depth;
+
+const removeTailingHash = (text: string) => {
+	let lastIndexOfHash = text.lastIndexOf("#");
+	if (lastIndexOfHash !== text.length - 1) {
+		return text;
+	}
+	return text.substring(0, lastIndexOfHash);
+};
+
+let heading1Count = 1;
+---
+
+<!-- 移动端目录浮层(<xl 显示):固定在右下角回到顶部按钮上方,点击展开目录面板。
+     按钮与面板容器位于 main-grid 之外(非 swup 容器),切换页面时保留;
+     面板内容 #mobile-toc-content 是 swup 容器(见 astro.config 的 containers),随页面切换更新。
+     非详情页(或文章无标题/关闭目录)时 wrapper 隐藏,但内容容器保留空元素供 swup 使用 -->
+<div id="mobile-toc-wrapper" class:list={["mobile-toc-wrapper", {"hidden": !showMobileToc}]}>
+    <div id="mobile-toc-btn" class="mobile-toc-btn hide flex items-center rounded-2xl overflow-hidden transition" onclick="toggleMobileToc()">
+        <button aria-label={i18n(I18nKey.toc)} class="btn-card h-[3.75rem] w-[3.75rem]">
+            <Icon class="mobile-toc-icon-list mx-auto" name="material-symbols:format-list-bulleted"></Icon>
+            <Icon class="mobile-toc-icon-close mx-auto" name="material-symbols:close"></Icon>
+        </button>
+    </div>
+    <div id="mobile-toc-panel" class="mobile-toc-panel hide card-base overflow-hidden rounded-2xl shadow-2xl">
+        <div class="mobile-toc-scroll overflow-y-auto overflow-x-hidden">
+            <div id="mobile-toc-content" class="relative py-3 transition-swup-fade">
+                {showMobileToc && headings.filter((heading) => heading.depth < minDepth + maxLevel).map((heading) => (
+                    <a href={`#${heading.slug}`} class="mobile-toc-item px-2 flex gap-2 relative transition w-full min-h-9 rounded-xl hover:bg-[var(--toc-btn-hover)] active:bg-[var(--toc-btn-active)] py-2">
+                        <div class:list={["transition w-5 h-5 shrink-0 rounded-lg text-xs flex items-center justify-center font-bold", {
+                            "bg-[var(--toc-badge-bg)] text-[var(--btn-content)]": heading.depth == minDepth,
+                            "ml-4": heading.depth == minDepth + 1,
+                            "ml-8": heading.depth == minDepth + 2,
+                        }]}>
+                            {heading.depth == minDepth && heading1Count++}
+                            {heading.depth == minDepth + 1 && <div class="transition w-2 h-2 rounded-[0.1875rem] bg-[var(--toc-badge-bg)]"></div>}
+                            {heading.depth == minDepth + 2 && <div class="transition w-1.5 h-1.5 rounded-sm bg-black/5 dark:bg-white/10"></div>}
+                        </div>
+                        <div class:list={["transition text-sm", {
+                            "text-50": heading.depth == minDepth || heading.depth == minDepth + 1,
+                            "text-30": heading.depth == minDepth + 2,
+                        }]}>{removeTailingHash(heading.text)}</div>
+                    </a>
+                ))}
+            </div>
+        </div>
+    </div>
+</div>
+
+<style lang="stylus">
+.mobile-toc-wrapper
+    position: fixed
+    right: 1.25rem
+    bottom: 14.25rem /* 回到顶部按钮 10rem + 3.75rem + 间距 0.5rem */
+    z-index: 40
+    pointer-events: none
+    &.hidden
+        display: none
+
+.mobile-toc-btn
+    color: var(--primary)
+    font-size: 2.25rem
+    font-weight: bold
+    border: none
+    opacity: 1
+    cursor: pointer
+    transform: translateX(0)
+    pointer-events: auto
+    i
+        font-size: 1.75rem
+    &.hide
+        transform: translateX(calc(100% + 1.5rem))
+        opacity: 0
+        pointer-events: none
+    &:active
+        transform: translateX(0) scale(0.9)
+    /* 面板展开时切换图标(列表 <-> 关闭) */
+    .mobile-toc-icon-close
+        display: none
+    &.toggled
+        .mobile-toc-icon-list
+            display: none
+        .mobile-toc-icon-close
+            display: block
+
+.mobile-toc-panel
+    position: absolute
+    bottom: calc(100% + 0.75rem)
+    right: 0
+    width: calc(100vw - 1.5rem)
+    max-width: 20rem
+    transition: all 0.3s ease
+    transform: translateY(20px)
+    opacity: 0
+    pointer-events: none
+    z-index: 40
+
+    &.show
+        transform: translateY(0)
+        opacity: 1
+        pointer-events: auto
+    &.hide
+        transform: translateY(20px)
+        opacity: 0
+        pointer-events: none
+        visibility: hidden
+
+.mobile-toc-scroll
+    max-height: calc(100vh - 14rem)
+    overscroll-behavior: contain
+    @media (max-height: 42rem)
+        max-height: 28rem
+
+.mobile-toc-item.active
+    background: var(--toc-btn-hover)
+</style>
+
+<script is:inline>
+(function () {
+    if (window.__mobileTocInitialized) return;
+    window.__mobileTocInitialized = true;
+
+    const wrapper = document.getElementById("mobile-toc-wrapper");
+    const btn = document.getElementById("mobile-toc-btn");
+    const panel = document.getElementById("mobile-toc-panel");
+    if (!wrapper || !btn || !panel) return;
+
+    const NAVBAR_OFFSET = 80; // 平滑滚动时的顶部偏移,避免被导航栏遮挡
+    let links = [];
+    let rafPending = false;
+
+    // content 是 swup 容器、切页时会被替换为新节点,因此每次重新获取
+    const rebuildLinks = () => {
+        const content = document.getElementById("mobile-toc-content");
+        links = content ? Array.from(content.querySelectorAll("a[href^='#']")) : [];
+    };
+
+    const closePanel = () => {
+        if (panel.classList.contains("hide")) return;
+        panel.classList.remove("show");
+        panel.classList.add("hide");
+        btn.classList.remove("toggled");
+    };
+
+    window.toggleMobileToc = function () {
+        const isHidden = panel.classList.contains("hide");
+        if (isHidden) {
+            panel.classList.remove("hide");
+            panel.classList.add("show");
+            btn.classList.add("toggled");
+        } else {
+            closePanel();
+        }
+    };
+
+    // 点击面板外的任意位置关闭
+    document.addEventListener("click", (event) => {
+        const target = event.target;
+        if (target instanceof Node && wrapper.contains(target)) return;
+        closePanel();
+    });
+
+    // 点击目录项:平滑滚动到标题(减去导航栏高度)。
+    // 绑定在稳定面板上(事件委托):content 会被 swup 替换,直接绑定会丢失监听
+    panel.addEventListener("click", (event) => {
+        const anchor = event.target instanceof Element ? event.target.closest("a[href^='#']") : null;
+        if (!anchor) return;
+        event.preventDefault();
+        const target = document.querySelector(anchor.getAttribute("href"));
+        if (!target) return;
+        const y = target.getBoundingClientRect().top + window.scrollY - NAVBAR_OFFSET;
+        window.scrollTo({ top: Math.max(y, 0), behavior: "smooth" });
+        closePanel();
+    });
+
+    // 滚动高亮当前章节 + 按钮显隐(与回到顶部同阈值:超过 banner 高度显示)
+    const updateState = () => {
+        rafPending = false;
+        const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+        const show = scrollTop > window.innerHeight * 0.35;
+        btn.classList.toggle("hide", !show);
+        if (!show) closePanel();
+
+        let current = null;
+        for (const link of links) {
+            const el = document.querySelector(link.getAttribute("href"));
+            if (el && el.getBoundingClientRect().top <= NAVBAR_OFFSET + 16) {
+                current = link;
+            }
+        }
+        for (const link of links) {
+            link.classList.toggle("active", link === current);
+        }
+    };
+
+    const onScroll = () => {
+        if (rafPending) return;
+        rafPending = true;
+        requestAnimationFrame(updateState);
+    };
+
+    window.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("resize", onScroll, { passive: true });
+
+    // 显隐:wrapper 不在 swup 容器内、SSR class 不随页面切换更新,
+    // 按新页面内容(是否详情页且有目录链接)重新计算
+    const updateVisibility = () => {
+        rebuildLinks();
+        const isPost = window.location.pathname.startsWith("/posts/");
+        wrapper.classList.toggle("hidden", !(isPost && links.length > 0));
+    };
+
+    // 观察稳定节点 panel(content 是它的子树):
+    // swup 切页会替换 content 节点,观察 panel 在节点级替换下也能捕获变化
+    new MutationObserver(() => {
+        closePanel();
+        updateVisibility();
+    }).observe(panel, { childList: true, subtree: true });
+
+    // 页面切换开始时关闭面板
+    const setupSwup = () => {
+        window.swup.hooks.on("visit:start", closePanel);
+    };
+    if (window.swup) {
+        setupSwup();
+    } else {
+        document.addEventListener("swup:enable", setupSwup);
+    }
+
+    updateVisibility();
+})();
+</script>

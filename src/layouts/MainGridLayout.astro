@@ -1,5 +1,6 @@
 ---
 import BackToTop from "@components/control/BackToTop.astro";
+import MobileToc from "@components/control/MobileToc.astro";
 import Footer from "@components/Footer.astro";
 import Navbar from "@components/Navbar.astro";
 import Calendar from "@components/widget/Calendar.astro";
@@ -97,6 +98,9 @@ const mainPanelTop = siteConfig.banner.enable
             </main>
 
             <!-- 右侧栏(站点统计/站点信息/日历):同一容器跨断点复用。
+                 所有页面渲染相同内容(swup 不更新容器之外的 DOM,切页后残留内容无法纠正);
+                 详情页(posts 路由)通过 body.is-posts-route 的 CSS 规则隐藏(见 Layout.astro),
+                 目录在 #toc 悬浮容器中展示。
                  xl 及以上:位于第 3 列(统计/信息随页面滚动,日历 sticky 贴顶);
                  <xl:网格自动放置到内容底部整行(相当于 Firefly 的 mobileBottomComponents,
                  但 Calendar 只渲染一次,避免固定 id 与 getElementById 冲突) -->
@@ -119,17 +123,24 @@ const mainPanelTop = siteConfig.banner.enable
         </div>
 
         <BackToTop></BackToTop>
+        <MobileToc headings={headings}></MobileToc>
     </div>
 </div>
 
-<!-- The things that should be under the banner, only the TOC for now -->
-<div class="absolute w-full z-0 hidden 2xl:block">
+<!-- 目录(TOC):swup 容器 #toc,页面切换时随内容更新。
+     仅详情页(posts 路由)且 xl 及以上显示(右侧栏隐藏后的第 3 列位置,见 main.css 的 #toc-wrapper 规则):
+     fixed top-14 使目录在滚动时固定在视口顶部(同日历 sticky 行为);
+     固定宽度 17.5rem 与右侧栏一致,不再使用 --toc-width(旧公式在 <1768px 视口下为负值导致目录消失)。
+     移动端目录走浮动按钮(MobileToc)。
+     z-30 与主内容同层且 DOM 靠后,保证目录链接可点击(第 3 列被 main-grid 覆盖);
+     外层 pointer-events-none,仅 toc-inner-wrapper 可交互,避免拦截下方内容 -->
+<div class="absolute w-full z-30 pointer-events-none">
     <div class="relative w-full xl:w-[92vw] max-w-[var(--page-width)] mx-auto">
         <!-- TOC component -->
-        {siteConfig.toc.enable && <div id="toc-wrapper" class:list={["hidden lg:block transition absolute top-0 -right-[var(--toc-width)] w-[var(--toc-width)] items-center",
+        {siteConfig.toc.enable && <div id="toc-wrapper" class:list={["transition absolute top-0 right-4 w-[17.5rem] items-center",
             {"toc-hide": siteConfig.banner.enable}]}
         >
-            <div id="toc-inner-wrapper" class="fixed top-14 w-[var(--toc-width)] h-[calc(100vh_-_20rem)] overflow-y-scroll overflow-x-hidden hide-scrollbar">
+            <div id="toc-inner-wrapper" class="fixed top-14 w-[17.5rem] h-[calc(100vh_-_20rem)] overflow-y-scroll overflow-x-hidden hide-scrollbar pointer-events-auto">
                 <div id="toc" class="w-full h-full transition-swup-fade ">
                     <div class="h-8 w-full"></div>
                     <TOC headings={headings}></TOC>

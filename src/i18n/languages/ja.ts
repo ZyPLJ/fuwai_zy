@@ -99,4 +99,5 @@ export const ja: Translation = {
 	[Key.passwordError]: "パスワードが間違っています。もう一度お試しください。",
 	[Key.passwordProtectedRss]:
 		"この記事は暗号化されています。ウェブサイトにアクセスしてご覧ください。",
+	[Key.toc]: "目次",
 };

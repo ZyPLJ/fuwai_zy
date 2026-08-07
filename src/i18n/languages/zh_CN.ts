@@ -97,4 +97,5 @@ export const zh_CN: Translation = {
 	[Key.passwordSubmit]: "解锁",
 	[Key.passwordError]: "密码错误，请重试。",
 	[Key.passwordProtectedRss]: "本文已加密保护，请访问网站查看。",
+	[Key.toc]: "目录",
 };

@@ -35,6 +35,9 @@ let { title, banner, description, lang, setOGTypeArticle } = Astro.props;
 // Swup can update the body for each page visit, but it's after the page transition, causing a delay for banner height change
 // so use Swup hooks instead to change the height immediately when a link is clicked
 const isHomePage = pathsEqual(Astro.url.pathname, url("/"));
+// 详情页(posts 路由):body 标记 is-posts-route,用于隐藏右侧栏(站点统计/信息/日历)。
+// 右侧栏不在 swup 容器内、切页不更新,因此不能按页面条件渲染,只能由 body class 的 CSS 规则控制
+const isPostsRoute = Astro.url.pathname.startsWith(url("/posts/"));
 
 // defines global css variables
 // why doing this in Layout instead of GlobalStyles: https://github.com/withastro/astro/issues/6728#issuecomment-1502203757
@@ -165,7 +168,7 @@ const bannerOffset =
 		)}
 
 	</head>
-	<body class=" min-h-screen transition " class:list={[{"lg:is-home": isHomePage, "enable-banner": enableBanner}]}
+	<body class=" min-h-screen transition " class:list={[{"lg:is-home": isHomePage, "enable-banner": enableBanner, "is-posts-route": isPostsRoute}]}
 		  data-overlayscrollbars-initialize
 	>
 		<ConfigCarrier></ConfigCarrier>
@@ -386,6 +389,11 @@ const bannerOffset =
 	   否则 #main-grid 的 translate-y 会把固定位置整体带偏约 30vh */
 	.enable-banner.is-home #right-sidebar-sticky {
 		@apply top-[calc(1rem_-_var(--banner-height-extend))]
+	}
+	/* 详情页隐藏右侧栏(站点统计/站点信息/日历):
+	   目录改由 #toc 悬浮容器展示(xl 及以上,fixed top-14 滚动时固定) */
+	.is-posts-route #right-sidebar {
+		display: none;
 	}
 	.navbar-hidden {
 		@apply opacity-0 -translate-y-16
@@ -638,6 +646,13 @@ const setup = () => {
 			bodyElement!.classList.add('lg:is-home');
 		} else {
 			bodyElement!.classList.remove('lg:is-home');
+		}
+
+		// 详情页标记:隐藏右侧栏(站点统计/信息/日历)
+		if (visit.to.url.startsWith(url('/posts/'))) {
+			bodyElement!.classList.add('is-posts-route');
+		} else {
+			bodyElement!.classList.remove('is-posts-route');
 		}
 
 		// increase the page height during page transition to prevent the scrolling animation from jumping

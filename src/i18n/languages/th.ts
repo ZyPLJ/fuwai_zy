@@ -97,4 +97,5 @@ export const th: Translation = {
 	[Key.passwordSubmit]: "ปลดล็อก",
 	[Key.passwordError]: "รหัสผ่านไม่ถูกต้อง กรุณาลองอีกครั้ง",
 	[Key.passwordProtectedRss]: "บทความนี้ถูกเข้ารหัส กรุณาเข้าชมเว็บไซต์เพื่อดู",
+	[Key.toc]: "สารบัญ",
 };

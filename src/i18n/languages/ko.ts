@@ -99,4 +99,5 @@ export const ko: Translation = {
 	[Key.passwordError]: "비밀번호가 올바르지 않습니다. 다시 시도해 주세요.",
 	[Key.passwordProtectedRss]:
 		"이 글은 암호화되어 있습니다. 웹사이트에서 확인해 주세요.",
+	[Key.toc]: "목차",
 };
