@@ -92,8 +92,8 @@ const { remarkPluginFrontmatter } = await entry.render();
 
     {hasCover && <a href={url} aria-label={title}
                     class:list={["group",
-                        "aspect-2/1 md:aspect-auto mx-4 mt-4 mb-0 md:mx-0 md:mt-0",
-                        "w-full md:w-[var(--coverWidth)] relative md:absolute md:top-4 md:bottom-4 md:right-4 rounded-xl overflow-hidden"
+                        "aspect-[2/1] md:aspect-auto mx-4 mt-4 mb-0 md:mx-0 md:mt-0",
+                        "w-[calc(100%_-_2rem)] md:w-[var(--coverWidth)] relative md:absolute md:top-4 md:bottom-4 md:right-4 rounded-xl overflow-hidden"
                     ]} >
         <div class="absolute pointer-events-none z-10 w-full h-full group-hover:bg-black/30 group-active:bg-black/50 transition"></div>
         <div class="absolute pointer-events-none z-20 w-full h-full flex items-center justify-center ">
