@@ -97,5 +97,12 @@ export const zh_CN: Translation = {
 	[Key.passwordSubmit]: "解锁",
 	[Key.passwordError]: "密码错误，请重试。",
 	[Key.passwordProtectedRss]: "本文已加密保护，请访问网站查看。",
+	[Key.relatedPosts]: "相关文章",
+	[Key.randomPosts]: "随机文章",
+	[Key.smartRecommend]: "智能推荐",
+	[Key.randomRecommend]: "随机推荐",
+	[Key.lastModifiedPrefix]: "最后更新于 ",
+	[Key.lastModifiedDaysAgo]: "距今已过 {days} 天",
+	[Key.lastModifiedOutdated]: "部分内容可能已过时",
 	[Key.toc]: "目录",
 };

@@ -92,6 +92,14 @@ export type SiteConfig = {
 		draggable?: boolean;
 		clickCycle?: boolean;
 	};
+
+	/** 文章页配置（移植自 Firefly） */
+	post: {
+		/** 是否在文章末尾显示最后更新时间提示卡片 */
+		showLastModified: boolean;
+		/** 超过该天数才显示「内容可能已过时」提示 */
+		outdatedThreshold: number;
+	};
 };
 
 export type Favicon = {

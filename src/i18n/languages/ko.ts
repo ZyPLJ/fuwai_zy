@@ -99,5 +99,12 @@ export const ko: Translation = {
 	[Key.passwordError]: "비밀번호가 올바르지 않습니다. 다시 시도해 주세요.",
 	[Key.passwordProtectedRss]:
 		"이 글은 암호화되어 있습니다. 웹사이트에서 확인해 주세요.",
+	[Key.relatedPosts]: "관련 글",
+	[Key.randomPosts]: "랜덤 글",
+	[Key.smartRecommend]: "스마트 추천",
+	[Key.randomRecommend]: "랜덤 추천",
+	[Key.lastModifiedPrefix]: "최종 업데이트 ",
+	[Key.lastModifiedDaysAgo]: "{days}일 전",
+	[Key.lastModifiedOutdated]: "일부 내용이 오래되었을 수 있습니다",
 	[Key.toc]: "목차",
 };

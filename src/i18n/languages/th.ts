@@ -97,5 +97,12 @@ export const th: Translation = {
 	[Key.passwordSubmit]: "ปลดล็อก",
 	[Key.passwordError]: "รหัสผ่านไม่ถูกต้อง กรุณาลองอีกครั้ง",
 	[Key.passwordProtectedRss]: "บทความนี้ถูกเข้ารหัส กรุณาเข้าชมเว็บไซต์เพื่อดู",
+	[Key.relatedPosts]: "บทความที่เกี่ยวข้อง",
+	[Key.randomPosts]: "บทความสุ่ม",
+	[Key.smartRecommend]: "แนะนำอัจฉริยะ",
+	[Key.randomRecommend]: "แนะนำแบบสุ่ม",
+	[Key.lastModifiedPrefix]: "อัปเดตล่าสุด ",
+	[Key.lastModifiedDaysAgo]: "{days} วันที่แล้ว",
+	[Key.lastModifiedOutdated]: "บางเนื้อหาอาจล้าสมัย",
 	[Key.toc]: "สารบัญ",
 };

@@ -99,5 +99,12 @@ export const en: Translation = {
 	[Key.passwordError]: "Incorrect password, please try again.",
 	[Key.passwordProtectedRss]:
 		"This article is encrypted. Please visit the website to view it.",
+	[Key.relatedPosts]: "Related Posts",
+	[Key.randomPosts]: "Random Posts",
+	[Key.smartRecommend]: "Smart",
+	[Key.randomRecommend]: "Random",
+	[Key.lastModifiedPrefix]: "Last updated on ",
+	[Key.lastModifiedDaysAgo]: "{days} days ago",
+	[Key.lastModifiedOutdated]: "Some content may be outdated",
 	[Key.toc]: "Table of Contents",
 };

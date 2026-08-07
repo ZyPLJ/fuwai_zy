@@ -97,5 +97,12 @@ export const zh_TW: Translation = {
 	[Key.passwordSubmit]: "解鎖",
 	[Key.passwordError]: "密碼錯誤，請重試。",
 	[Key.passwordProtectedRss]: "本文已加密保護，請訪問網站查看。",
+	[Key.relatedPosts]: "相關文章",
+	[Key.randomPosts]: "隨機文章",
+	[Key.smartRecommend]: "智慧推薦",
+	[Key.randomRecommend]: "隨機推薦",
+	[Key.lastModifiedPrefix]: "最後更新於 ",
+	[Key.lastModifiedDaysAgo]: "距今已過 {days} 天",
+	[Key.lastModifiedOutdated]: "部分內容可能已過時",
 	[Key.toc]: "目錄",
 };

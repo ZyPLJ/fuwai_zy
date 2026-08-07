@@ -99,5 +99,12 @@ export const vi: Translation = {
 	[Key.passwordError]: "Sai mật khẩu, vui lòng thử lại.",
 	[Key.passwordProtectedRss]:
 		"Bài viết này đã được mã hóa. Vui lòng truy cập trang web để xem.",
+	[Key.relatedPosts]: "Bài viết liên quan",
+	[Key.randomPosts]: "Bài viết ngẫu nhiên",
+	[Key.smartRecommend]: "Gợi ý thông minh",
+	[Key.randomRecommend]: "Gợi ý ngẫu nhiên",
+	[Key.lastModifiedPrefix]: "Cập nhật lần cuối ",
+	[Key.lastModifiedDaysAgo]: "{days} ngày trước",
+	[Key.lastModifiedOutdated]: "Một số nội dung có thể đã lỗi thời",
 	[Key.toc]: "Mục lục",
 };

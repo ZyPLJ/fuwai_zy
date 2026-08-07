@@ -37,7 +37,7 @@ let heading1Count = 1;
      按钮与面板容器位于 main-grid 之外(非 swup 容器),切换页面时保留;
      面板内容 #mobile-toc-content 是 swup 容器(见 astro.config 的 containers),随页面切换更新。
      非详情页(或文章无标题/关闭目录)时 wrapper 隐藏,但内容容器保留空元素供 swup 使用 -->
-<div id="mobile-toc-wrapper" class:list={["mobile-toc-wrapper", {"hidden": !showMobileToc}]}>
+<div id="mobile-toc-wrapper" class:list={["mobile-toc-wrapper xl:hidden", {"hidden": !showMobileToc}]}>
     <div id="mobile-toc-btn" class="mobile-toc-btn hide flex items-center rounded-2xl overflow-hidden transition" onclick="toggleMobileToc()">
         <button aria-label={i18n(I18nKey.toc)} class="btn-card h-[3.75rem] w-[3.75rem]">
             <Icon class="mobile-toc-icon-list mx-auto" name="material-symbols:format-list-bulleted"></Icon>

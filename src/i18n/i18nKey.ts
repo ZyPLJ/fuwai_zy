@@ -95,6 +95,17 @@ enum I18nKey {
 	passwordError = "passwordError",
 	passwordProtectedRss = "passwordProtectedRss",
 	toc = "toc",
+
+	// 文章推荐组件（相关文章 + 随机文章）
+	relatedPosts = "relatedPosts",
+	randomPosts = "randomPosts",
+	smartRecommend = "smartRecommend",
+	randomRecommend = "randomRecommend",
+
+	// 文章最后更新时间提示
+	lastModifiedPrefix = "lastModifiedPrefix",
+	lastModifiedDaysAgo = "lastModifiedDaysAgo",
+	lastModifiedOutdated = "lastModifiedOutdated",
 }
 
 export default I18nKey;

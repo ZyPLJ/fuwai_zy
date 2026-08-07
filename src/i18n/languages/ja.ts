@@ -99,5 +99,12 @@ export const ja: Translation = {
 	[Key.passwordError]: "パスワードが間違っています。もう一度お試しください。",
 	[Key.passwordProtectedRss]:
 		"この記事は暗号化されています。ウェブサイトにアクセスしてご覧ください。",
+	[Key.relatedPosts]: "関連記事",
+	[Key.randomPosts]: "ランダム記事",
+	[Key.smartRecommend]: "スマートおすすめ",
+	[Key.randomRecommend]: "ランダムおすすめ",
+	[Key.lastModifiedPrefix]: "最終更新 ",
+	[Key.lastModifiedDaysAgo]: "{days}日前",
+	[Key.lastModifiedOutdated]: "一部の内容が古くなっている可能性があります",
 	[Key.toc]: "目次",
 };

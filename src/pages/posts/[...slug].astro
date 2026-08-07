@@ -4,10 +4,11 @@ import Comment from "@components/Comment.astro";
 import EncryptedPost from "@components/misc/EncryptedPost.astro";
 import License from "@components/misc/License.astro";
 import Markdown from "@components/misc/Markdown.astro";
+import RecommendedPost from "@components/misc/RecommendedPost.astro";
 import I18nKey from "@i18n/i18nKey";
 import { i18n } from "@i18n/translation";
 import MainGridLayout from "@layouts/MainGridLayout.astro";
-import { getSortedPosts } from "@utils/content-utils";
+import { getRelatedPosts, getSortedPosts } from "@utils/content-utils";
 import { getDir, getPostUrlBySlug } from "@utils/url-utils";
 import { Icon } from "astro-icon/components";
 import { licenseConfig } from "src/config";
@@ -47,6 +48,8 @@ const jsonLd = {
 		: siteConfig.lang.replace("_", "-"),
 	// TODO include cover image here
 };
+
+const relatedPosts = await getRelatedPosts(entry, 5);
 ---
 <MainGridLayout banner={entry.data.image} title={entry.data.title} description={entry.data.description} lang={entry.data.lang} setOGTypeArticle={true} headings={entry.data.password ? [] : headings}>
     <script is:inline slot="head" type="application/ld+json" set:html={JSON.stringify(jsonLd)}></script>
@@ -126,8 +129,79 @@ const jsonLd = {
         </div>
     </div>
 
+    <!-- 上次编辑时间提示卡片（参考 Firefly） -->
+    {
+        siteConfig.post.showLastModified && (() => {
+            const lastModified = entry.data.updated || entry.data.published;
+            const dateStr = formatDateToYYYYMMDD(lastModified);
+            const outdatedThreshold = siteConfig.post.outdatedThreshold ?? 30;
+
+            // 默认加 hidden 隐藏，时间与阈值绑定在 data-* 属性上，由客户端脚本计算天数后显示
+            return (
+                <div
+                    id="outdated-card"
+                    class="card-base p-6 mb-4 hidden"
+                    data-date={lastModified.toISOString()}
+                    data-threshold={outdatedThreshold}
+                >
+                    <div class="flex items-center gap-2">
+                        <div class="transition h-9 w-9 rounded-lg overflow-hidden relative flex items-center justify-center mr-0">
+                            <Icon is:inline
+                                name="material-symbols:history-rounded"
+                                class="text-4xl text-[var(--primary)] transition-transform group-hover:translate-x-0.5 bg-[var(--enter-btn-bg)] p-2 rounded-md"
+                            />
+                        </div>
+
+                        <div class="flex flex-col gap-0.1">
+                            <div class="text-[1.0rem] leading-tight text-black/75 dark:text-white/75">
+                                {i18n(I18nKey.lastModifiedPrefix)}{dateStr}
+                                <span id="days-ago-text" data-template={i18n(I18nKey.lastModifiedDaysAgo)}></span>
+                            </div>
+                            <p id="outdated-warning" class="text-[0.8rem] leading-tight text-black/75 dark:text-white/75 hidden">
+                                {i18n(I18nKey.lastModifiedOutdated)}
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            );
+        })()
+    }
+
+    <script is:inline>
+        const card = document.getElementById('outdated-card');
+        const dateStr = card?.dataset.date;
+
+        if (card && dateStr) {
+            // 读取服务器给的日期，用原生 Date 计算天数差（避免向客户端打包 dayjs）
+            const lastModified = new Date(dateStr);
+            const daysDiff = Math.floor(
+                (Date.now() - lastModified.getTime()) / 86400000,
+            );
+            const threshold = Number(card.dataset.threshold);
+
+            // 超过阈值才显示卡片与提示文字
+            if (daysDiff >= threshold) {
+                card.classList.remove('hidden');
+
+                if (daysDiff >= 1) {
+                    const textEl = document.getElementById('days-ago-text');
+                    if (textEl && textEl.dataset.template) {
+                        textEl.textContent = `，${textEl.dataset.template.replace("{days}", daysDiff.toString())}`;
+                    }
+
+                    const warningEl = document.getElementById('outdated-warning');
+                    if (warningEl) {
+                        warningEl.classList.remove('hidden');
+                    }
+                }
+            }
+        }
+    </script>
+
     <Comment />
-    
+
+    <RecommendedPost relatedPosts={relatedPosts} currentSlug={entry.slug} />
+
     <div class="flex flex-col md:flex-row justify-between mb-4 gap-4 overflow-hidden w-full">
         <a href={entry.data.nextSlug ? getPostUrlBySlug(entry.data.nextSlug) : "#"}
            class:list={["w-full font-bold overflow-hidden active:scale-95", {"pointer-events-none": !entry.data.nextSlug}]}>

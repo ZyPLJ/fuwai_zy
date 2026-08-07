@@ -54,6 +54,10 @@ export const siteConfig: SiteConfig = {
 	musicPlayer: {
 		enable: true, // 是否启用音乐播放器
 	},
+	post: {
+		showLastModified: true, // 文章末尾显示最后更新时间提示卡片
+		outdatedThreshold: 30, // 距最后更新超过 30 天才提示「内容可能已过时」
+	},
 	pet: {
 		enable: true, // 是否启用桌面宠物
 		// 可选: "firefly" | "fufu-sticker" | "ganyu-pet-v2" | "rich-paimon"
