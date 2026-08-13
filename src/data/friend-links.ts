@@ -303,7 +303,8 @@ export const friendLinkSections: FriendLinkSection[] = [
 			{
 				title: "许耿彬的博客",
 				url: "https://xugengbin.com/",
-				avatar: "https://xugengbin.com/_astro/gengar_icon_by_chibilyra_d9ilmcm.mv3880j3_1Ec8ce.webp",
+				avatar:
+					"https://xugengbin.com/_astro/gengar_icon_by_chibilyra_d9ilmcm.mv3880j3_1Ec8ce.webp",
 				desc: "许耿彬的博客",
 			},
 			{
