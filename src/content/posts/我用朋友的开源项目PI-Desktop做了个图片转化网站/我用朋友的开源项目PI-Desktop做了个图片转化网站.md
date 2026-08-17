@@ -1,5 +1,5 @@
 ---
-title: 我用朋友的开源项目PI-Desktop做了个图片转换网站 🖼️
+title: 我用朋友的开源项目PI-Desktop做了个图片转换网站
 published: 2026-08-06 14:55:58
 description: 我用朋友的开源项目PI-Desktop做了个图片转换网站 🖼️本文除总结外，无AI污染，放心食用。前言 🚀现在AI越来越厉害，市面上的AI应用层出不穷，比如Codex、Claude Code、Cursor以及Trae。这些软件不管是桌面应用还是终端应用，都是用来调用并使用AI大模型的。
 image: ./banner.jpg
