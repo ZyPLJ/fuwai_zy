@@ -1,6 +1,6 @@
 ---
 title: Abp框架下EF Core导致数据库参数嗅探问题探究
-published: 2026-08-26 16:29:02
+published: 2026-08-26 17:00:02
 description: 上周六，吃完中饭，刚准备玩游戏，一通电话打进来，领导打电话说：“客户反馈某某页面系统查询慢，看看什么问题”。
 tags: [Sql Server, Sql, .NET]
 category: 杂七杂八
