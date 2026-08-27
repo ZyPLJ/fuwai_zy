@@ -14,6 +14,8 @@ jobs:
 
       - name: Install and Build (Astro)
         uses: withastro/action@v3
+        with:
+          upload-artifact: false # 部署走 SCP 直传服务器，不需要 GitHub artifact（否则每次 124MB 会占满存储配额）
 
       - name: Debug file existence
         run: |
