@@ -115,6 +115,7 @@ export enum LinkPreset {
 	Links = 3,
 	Images = 4,
 	Feed = 5,
+	Moments = 6,
 }
 
 export type NavBarLink = {

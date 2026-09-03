@@ -81,6 +81,7 @@ export const navBarConfig: NavBarConfig = {
 		LinkPreset.Home,
 		LinkPreset.Archive,
 		LinkPreset.About,
+		LinkPreset.Moments, // 动态页
 		{
 			name: "社交",
 			url: "/links/",
@@ -198,4 +199,10 @@ export const imageLibraryConfig = {
 
 export const friendLinkFeedConfig = {
 	apiUrl: "https://pljzy.top:1224/all.json", // 友链朋友圈API地址
+};
+
+export const momentsConfig = {
+	enable: true, // 是否开启动态页
+	pageSize: 10, // 每批加载的动态条数
+	publishPath: "/moments/publish/", // 站长发动态用的 Twikoo path
 };
