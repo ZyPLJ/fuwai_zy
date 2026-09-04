@@ -319,7 +319,10 @@ onDestroy(() => {
 });
 </script>
 
-<div class="card-base px-6 md:px-9 py-6 mb-4">
+<!-- text-black/80 dark:text-white/80 与 Comment.astro 外层卡片保持一致：
+     twikoo 组件自身 css 不设容器/文字颜色，暗色适配全靠外层继承色
+     （实测：缺这两类时动态面板评论区在暗色下继承纯黑 rgb(0,0,0)，黑字黑底不可读） -->
+<div class="card-base px-6 md:px-9 py-6 mb-4 text-black/80 dark:text-white/80">
 	<!-- 页面标题 -->
 	<div class="text-center mb-8 prose dark:prose-invert prose-base !max-w-none custom-md mt-2">
 		<h1 class="text-3xl font-bold text-[var(--text-primary)] mb-2">动态</h1>
