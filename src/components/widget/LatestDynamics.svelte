@@ -124,7 +124,7 @@ onMount(() => {
 			>
 				<div class="min-w-0 flex-1">
 					<div class="mb-1 flex items-center gap-1.5 text-xs leading-4 text-[var(--primary)]">
-						<Icon icon="material-symbols:schedule-rounded" class="size-3.5 shrink-0" />
+						<Icon icon="material-symbols:schedule-outline-rounded" class="size-3.5 shrink-0" />
 						<time datetime={new Date(m.created).toISOString()}>
 							{fmtTime(m.created)}
 						</time>

@@ -422,7 +422,7 @@ onDestroy(() => {
 							</span>
 						</div>
 						<div class="flex items-center gap-1.5 text-sm text-neutral-500 dark:text-neutral-400">
-							<Icon icon="material-symbols:schedule-rounded" class="w-4 h-4" />
+							<Icon icon="material-symbols:schedule-outline-rounded" class="w-4 h-4" />
 							<span>{formatMomentTime(m.created)}</span>
 						</div>
 					</div>
