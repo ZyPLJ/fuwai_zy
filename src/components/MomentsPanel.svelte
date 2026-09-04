@@ -109,12 +109,19 @@ function dedupeById(list: TwikooComment[]): TwikooComment[] {
 }
 
 // 拉取一批动态：before 游标作用于含垃圾评论的原始流，凑满 PAGE_SIZE 条站主动态为止
+// 追加模式（append=true）下 batch 自带已展示的旧动态，条件是「新增」满 PAGE_SIZE——
+// 否则首屏 ≥10 条时循环一次都不执行，点加载更多永远空转（hasMore/cursor 不变，按钮形同虚设）
 async function fetchMomentsBatch(before: number | null, append: boolean) {
 	const batch: TwikooComment[] = append ? [...moments] : [];
+	const baseCount = batch.length;
 	let more = true;
 	let rawBefore = before;
 	let loops = 0;
-	while (batch.length < PAGE_SIZE && more && loops < RAW_PAGE_LOOP_LIMIT) {
+	while (
+		batch.length - baseCount < PAGE_SIZE &&
+		more &&
+		loops < RAW_PAGE_LOOP_LIMIT
+	) {
 		loops++;
 		const body: Record<string, unknown> = { url: PUBLISH_PATH };
 		if (rawBefore != null) body.before = rawBefore;
