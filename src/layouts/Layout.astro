@@ -154,9 +154,10 @@ const bannerOffset =
 			<link href="https://cdn.bootcdn.net/ajax/libs/aplayer/1.10.1/APlayer.min.css" rel="stylesheet">
 		)}
 
-		{/* Twikoo 评论样式：静态引入，避免 swup 切页时 head 更新清掉 twikoo.min.js 动态注入的样式 */}
+		{/* Twikoo 评论样式：静态引入，避免 swup 切页时 head 更新清掉 twikoo.min.js 动态注入的样式。
+		    必须用同源文件（public/lib/twikoo.css，构建时随站点部署）*/}
 		{commentConfig.enable && (
-			<link href="https://registry.npmmirror.com/twikoo/1.7.20/files/dist/twikoo.css" rel="stylesheet">
+			<link href="https://cdn.pljzy.top/twikoo.css" rel="stylesheet">
 		)}
 
 		<link rel="alternate" type="application/rss+xml" title={profileConfig.name} href={`${Astro.site}rss.xml`}/>
