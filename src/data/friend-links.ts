@@ -337,6 +337,12 @@ export const friendLinkSections: FriendLinkSection[] = [
 				avatar: "https://www.yujingblog.top/assets/home/avatar.webp",
 				desc: "不怪天气不好，是我心事太多。",
 			},
+			{
+				title: "GrunRay",
+				url: "https://www.grunray.tech/",
+				avatar: "https://www.grunray.tech/favicon.jpg",
+				desc: "找不到实习捏",
+			},
 		],
 	},
 	{
