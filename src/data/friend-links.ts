@@ -327,9 +327,9 @@ export const friendLinkSections: FriendLinkSection[] = [
 			},
 			{
 				title: "南风未起",
-				url: "https://aly.lbool.site/",
-				avatar: "https://www.lbool.site/MyBlog/head.jpg",
-				desc: "云原生/Go技术分享站",
+				url: "https://lbool.site/",
+				avatar: "https://qny.lbool.site/MyBlog/head.jpg",
+				desc: "君子敬其在己者，而不慕其在天者，是以日进也",
 			},
 			{
 				title: "YuJing的记忆终端",
