@@ -343,6 +343,12 @@ export const friendLinkSections: FriendLinkSection[] = [
 				avatar: "https://www.grunray.tech/favicon.jpg",
 				desc: "找不到实习捏",
 			},
+			{
+				title: "Hyde Blog",
+				url: "https://seasir.top",
+				avatar: "https://seasir.top/assets/avatar.avif",
+				desc: "人心中的成见是一座大山",
+			},
 		],
 	},
 	{
