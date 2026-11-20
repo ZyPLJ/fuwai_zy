@@ -349,6 +349,12 @@ export const friendLinkSections: FriendLinkSection[] = [
 				avatar: "https://seasir.top/assets/avatar.avif",
 				desc: "人心中的成见是一座大山",
 			},
+			{
+				title: "愈见博客",
+				url: "https://cpumind.com",
+				avatar: "https://pic1.imgdb.cn/i/034v6XMHAb0KjGWOHAr8ig.jpg",
+				desc: "建站经验记录，实用工具推荐，免费的资源分享。",
+			},
 		],
 	},
 	{
